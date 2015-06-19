@@ -10,7 +10,7 @@ public class Teste {
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory("hibernateteste");
 		emf.close();
-	
+	//test
 	}
 
 }
