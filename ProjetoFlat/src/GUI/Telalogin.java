@@ -52,11 +52,11 @@ public class Telalogin extends javax.swing.JFrame {
             }
         });
 
-        jLabelImagemCadeado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/portal_loginNIMBUS.jpg"))); // NOI18N
+        jLabelImagemCadeado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/portal_loginNIMBUS.jpg"))); // NOI18N
 
         jPasswordFieldPassWord.setText("jPasswordField1");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/barra.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

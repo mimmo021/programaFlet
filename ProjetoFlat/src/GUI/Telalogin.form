@@ -124,7 +124,7 @@
     <Component class="javax.swing.JLabel" name="jLabelImagemCadeado">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/portal_loginNIMBUS.jpg"/>
+          <Image iconType="3" name="/util/portal_loginNIMBUS.jpg"/>
         </Property>
       </Properties>
     </Component>
@@ -136,7 +136,7 @@
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/barra.png"/>
+          <Image iconType="3" name="/util/barra.png"/>
         </Property>
       </Properties>
     </Component>

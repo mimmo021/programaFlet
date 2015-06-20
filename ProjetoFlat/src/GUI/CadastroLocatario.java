@@ -47,7 +47,7 @@ public class CadastroLocatario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelBarra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/barra2.png"))); // NOI18N
+        jLabelBarra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra2.png"))); // NOI18N
 
         jPanelCadastroLocatario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Locatário"));
 
