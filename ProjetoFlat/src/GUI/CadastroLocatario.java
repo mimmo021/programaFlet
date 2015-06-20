@@ -47,7 +47,7 @@ public class CadastroLocatario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelBarra.setIcon(new javax.swing.ImageIcon("C:\\Users\\mimmo\\Pictures\\imagens Para projetos\\barra2.png")); // NOI18N
+        jLabelBarra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/barra2.png"))); // NOI18N
 
         jPanelCadastroLocatario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Locatário"));
 
@@ -170,7 +170,7 @@ public class CadastroLocatario extends javax.swing.JFrame {
                 .addComponent(jLabelTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelCadastroLocatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 335, Short.MAX_VALUE))
+                .addGap(0, 320, Short.MAX_VALUE))
         );
 
         pack();
