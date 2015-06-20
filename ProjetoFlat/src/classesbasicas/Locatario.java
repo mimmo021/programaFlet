@@ -1,9 +1,14 @@
 package classesbasicas;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.GregorianCalendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Locatario {
@@ -35,8 +40,15 @@ public class Locatario {
 	private String estadocivil;
 	private String responsavelpagamento;
 	private String carro;
+        private Calendar dataderegistro;
 	private String carrocor;
 	private String placa;
+        @OneToMany
+        Collection<CheckIn> checkin;
+        public Locatario(){
+            this.checkin = new ArrayList<>();
+            this.dataderegistro = new GregorianCalendar();
+        }
 
 	public String getPlaca() {
 		return placa;
@@ -233,5 +245,19 @@ public class Locatario {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+    /**
+     * @return the dataderegistro
+     */
+    public Calendar getDataderegistro() {
+        return dataderegistro;
+    }
+
+    /**
+     * @param dataderegistro the dataderegistro to set
+     */
+    public void setDataderegistro(Calendar dataderegistro) {
+        this.dataderegistro = dataderegistro;
+    }
 
 }

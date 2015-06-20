@@ -10,7 +10,7 @@ public class Login {
 	@GeneratedValue
 	private int id;
 	private String usuario;
-	private String senha;
+	private String senha;        
 	public String getSenha() {
 		return senha;
 	}

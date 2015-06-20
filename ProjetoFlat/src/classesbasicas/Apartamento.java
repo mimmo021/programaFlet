@@ -17,6 +17,7 @@ public class Apartamento {
 	private int quartos;
 	private int numero;
 	private double valorminimo;
+        
 	@ManyToOne
 	private
 	Proprietario proprietario;
@@ -25,11 +26,13 @@ public class Apartamento {
 	private int id;
         
         @OneToMany
-        Collection<Reserva> reservas; 
+        private Collection<Reserva> reservas; 
+        private Collection<CheckIn> checkin;
 	
 	public Apartamento(){
 		this.proprietario = new Proprietario();
                 this.reservas = new ArrayList<>();
+                this.checkin = new ArrayList<>();
 	}
 	public int getId() {
 		return id;
@@ -79,4 +82,32 @@ public class Apartamento {
 	public void setValorminimo(double valorminimo) {
 		this.valorminimo = valorminimo;
 	}
+
+    /**
+     * @return the reservas
+     */
+    public Collection<Reserva> getReservas() {
+        return reservas;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(Collection<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+
+    /**
+     * @return the checkin
+     */
+    public Collection<CheckIn> getCheckin() {
+        return checkin;
+    }
+
+    /**
+     * @param checkin the checkin to set
+     */
+    public void setCheckin(Collection<CheckIn> checkin) {
+        this.checkin = checkin;
+    }
 }
