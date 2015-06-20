@@ -26,7 +26,7 @@ public class Telalogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelUserName = new javax.swing.JLabel();
+        jLabelLogin = new javax.swing.JLabel();
         jLabelPassWord = new javax.swing.JLabel();
         jLabelTitulo = new javax.swing.JLabel();
         jButtonLogin = new javax.swing.JButton();
@@ -37,9 +37,9 @@ public class Telalogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelUserName.setText("UserName:");
+        jLabelLogin.setText("Login:");
 
-        jLabelPassWord.setText("PassWord :");
+        jLabelPassWord.setText("Senha :");
 
         jLabelTitulo.setFont(new java.awt.Font("Razer Header Regular", 1, 24)); // NOI18N
         jLabelTitulo.setText("Login");
@@ -52,11 +52,11 @@ public class Telalogin extends javax.swing.JFrame {
             }
         });
 
-        jLabelImagemCadeado.setIcon(new javax.swing.ImageIcon("C:\\Users\\mimmo\\Pictures\\imagens Para projetos\\portal_loginNIMBUS.jpg")); // NOI18N
+        jLabelImagemCadeado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/portal_loginNIMBUS.jpg"))); // NOI18N
 
         jPasswordFieldPassWord.setText("jPasswordField1");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\mimmo\\Pictures\\imagens Para projetos\\barra.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/barra.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,7 +77,7 @@ public class Telalogin extends javax.swing.JFrame {
                                     .addComponent(jLabelPassWord)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGap(2, 2, 2)
-                                        .addComponent(jLabelUserName)))
+                                        .addComponent(jLabelLogin)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPasswordFieldPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -98,7 +98,7 @@ public class Telalogin extends javax.swing.JFrame {
                             .addComponent(jPasswordFieldPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelUserName)
+                                    .addComponent(jLabelLogin)
                                     .addComponent(jTextFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabelPassWord)))
@@ -109,6 +109,8 @@ public class Telalogin extends javax.swing.JFrame {
                         .addComponent(jLabelImagemCadeado, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
+
+        jLabelLogin.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -156,9 +158,9 @@ public class Telalogin extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelImagemCadeado;
+    private javax.swing.JLabel jLabelLogin;
     private javax.swing.JLabel jLabelPassWord;
     private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JLabel jLabelUserName;
     private javax.swing.JPasswordField jPasswordFieldPassWord;
     private javax.swing.JTextField jTextFieldUserName;
     // End of variables declaration//GEN-END:variables
