@@ -1,8 +1,8 @@
 package classesdados;
 
-import classesbasicas.Quarto;
+import classesbasicas.Apartamento;
 import classesinterfaces.InterfaceQuarto;
 
-public class QuartoDAO extends GenericDAO<Quarto> implements InterfaceQuarto {
+public class QuartoDAO extends GenericDAO<Apartamento> implements InterfaceQuarto {
 
 }

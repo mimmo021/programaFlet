@@ -1,5 +1,6 @@
 package classesbasicas;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -20,7 +21,10 @@ public class Proprietario {
 	private String telefone3;
 	private String email;
 	@OneToMany
-	Collection<Quarto> quartos;
+	private Collection<Apartamento> apartamento;
+        public Proprietario(){
+            this.apartamento = new ArrayList<Apartamento>();
+        }
 	
 	public String getEmail() {
 		return email;
@@ -58,4 +62,18 @@ public class Proprietario {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+    /**
+     * @return the apartamento
+     */
+    public Collection<Apartamento> getApartamento() {
+        return apartamento;
+    }
+
+    /**
+     * @param apartamento the apartamento to set
+     */
+    public void setApartamento(Collection<Apartamento> apartamento) {
+        this.apartamento = apartamento;
+    }
 }

@@ -1,5 +1,7 @@
 package classesbasicas;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Quarto {
+public class Apartamento {
 	
 	private String numerocelpe;
 	private String numeronet;
@@ -21,9 +23,13 @@ public class Quarto {
 	@Id
 	@GeneratedValue
 	private int id;
+        
+        @OneToMany
+        Collection<Reserva> reservas; 
 	
-	public Quarto(){
+	public Apartamento(){
 		this.proprietario = new Proprietario();
+                this.reservas = new ArrayList<>();
 	}
 	public int getId() {
 		return id;
