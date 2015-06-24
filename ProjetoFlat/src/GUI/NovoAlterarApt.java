@@ -9,12 +9,12 @@ package GUI;
  *
  * @author SONY VAIO
  */
-public class CadastroApt extends javax.swing.JFrame {
+public class NovoAlterarApt extends javax.swing.JFrame {
 
     /**
-     * Creates new form CadastroApt
+     * Creates new form NovoAlterarApt
      */
-    public CadastroApt() {
+    public NovoAlterarApt() {
         initComponents();
     }
 
@@ -27,7 +27,6 @@ public class CadastroApt extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabelCelpe = new javax.swing.JLabel();
         jLabelNet = new javax.swing.JLabel();
@@ -43,22 +42,12 @@ public class CadastroApt extends javax.swing.JFrame {
         jTextFieldVM = new javax.swing.JTextField();
         jComboBoxSituacao = new javax.swing.JComboBox();
         jComboBoxPropietario = new javax.swing.JComboBox();
-        jButtonCadastrarSalvar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableReservas = new javax.swing.JTable();
-        jToggleButtonAlterar = new javax.swing.JToggleButton();
-        jButtonRemover = new javax.swing.JButton();
-        jLabelReservas = new javax.swing.JLabel();
-        jLabelCheckIn = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTableChecIn = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTableApt = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonSalvar = new javax.swing.JButton();
+        jButtonAlterar = new javax.swing.JButton();
+        jToggleButtonRetornar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra2.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Aptº"));
 
@@ -163,118 +152,55 @@ public class CadastroApt extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButtonCadastrarSalvar.setText("Novo");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra2.png"))); // NOI18N
 
-        jTableReservas.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jTableReservas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Locatário", "Data de Entrada", "Data de Saída", "Situação"
-            }
-        ));
-        jScrollPane1.setViewportView(jTableReservas);
+        jButtonSalvar.setText("Salvar");
 
-        jToggleButtonAlterar.setText("Aterar");
+        jButtonAlterar.setText("Altera");
 
-        jButtonRemover.setText("Remover");
-
-        jLabelReservas.setText("Reservas:");
-
-        jLabelCheckIn.setText("Check-In:");
-
-        jTableChecIn.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Locatário", "Data Entrada", "Data Saída", "Situação"
-            }
-        ));
-        jScrollPane2.setViewportView(jTableChecIn);
-
-        jTableApt.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Propietario", "Nº do Apt", "Nº de Quartos", "Situação"
-            }
-        ));
-        jScrollPane3.setViewportView(jTableApt);
+        jToggleButtonRetornar.setText("Retornar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jToggleButtonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonCadastrarSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabelReservas)
-                            .addComponent(jLabelCheckIn)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2))))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButtonRetornar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelReservas)
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonCadastrarSalvar)
-                                .addGap(5, 5, 5)
-                                .addComponent(jToggleButtonAlterar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonRemover))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelCheckIn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButtonAlterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButtonRetornar))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldCelpeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCelpeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCelpeActionPerformed
-
     private void jTextFieldAptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAptActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAptActionPerformed
+
+    private void jTextFieldCelpeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCelpeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCelpeActionPerformed
 
     private void jTextFieldNetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNetActionPerformed
         // TODO add your handling code here:
@@ -297,51 +223,43 @@ public class CadastroApt extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NovoAlterarApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NovoAlterarApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NovoAlterarApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NovoAlterarApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroApt().setVisible(true);
+                new NovoAlterarApt().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCadastrarSalvar;
-    private javax.swing.JButton jButtonRemover;
+    private javax.swing.JButton jButtonAlterar;
+    private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox jComboBoxNQuartos;
     private javax.swing.JComboBox jComboBoxPropietario;
     private javax.swing.JComboBox jComboBoxSituacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelApt;
     private javax.swing.JLabel jLabelCelpe;
-    private javax.swing.JLabel jLabelCheckIn;
     private javax.swing.JLabel jLabelNQuartos;
     private javax.swing.JLabel jLabelNet;
     private javax.swing.JLabel jLabelPropietario;
-    private javax.swing.JLabel jLabelReservas;
     private javax.swing.JLabel jLabelSituação;
     private javax.swing.JLabel jLabelVM;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTableApt;
-    private javax.swing.JTable jTableChecIn;
-    private javax.swing.JTable jTableReservas;
     private javax.swing.JTextField jTextFieldApt;
     private javax.swing.JTextField jTextFieldCelpe;
     private javax.swing.JTextField jTextFieldNet;
     private javax.swing.JTextField jTextFieldVM;
-    private javax.swing.JToggleButton jToggleButtonAlterar;
+    private javax.swing.JToggleButton jToggleButtonRetornar;
     // End of variables declaration//GEN-END:variables
 }
