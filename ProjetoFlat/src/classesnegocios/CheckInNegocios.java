@@ -5,10 +5,43 @@
  */
 package classesnegocios;
 
+import classesbasicas.CheckIn;
+import classesdados.CheckInDAO;
+import classesexception.CheckInException;
+import classesinterfaces.InterfaceCheckIn;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  *
  * @author peppe
  */
 public class CheckInNegocios {
+     private InterfaceCheckIn checkindao;
+    
+    public CheckInNegocios(){
+        this.checkindao = new CheckInDAO();
+    }
+    public void save(CheckIn a) throws CheckInException{
+	
+	this.checkindao.save(a);
+}
+public CheckIn find(CheckIn a){
+	
+	return (CheckIn) this.checkindao.find(a, a.getId());
+}
+public void delete(CheckIn a ){
+	this.checkindao.delete(a);
+}
+public List<CheckIn> listall(CheckIn a){
+	List<CheckIn> listaCheckIn = new ArrayList<CheckIn>();
+	List<Object> lista = this.checkindao.listall(a);
+	for (Iterator iterator = lista.iterator(); iterator.hasNext();) {
+		CheckIn attraction = (CheckIn) iterator.next();
+		listaCheckIn.add(attraction);
+	}
+        return listaCheckIn;
+}
     
 }
