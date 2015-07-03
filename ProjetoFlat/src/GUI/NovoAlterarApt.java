@@ -30,7 +30,13 @@ public class NovoAlterarApt extends javax.swing.JFrame {
         initComponents();
         carregarProprietario();
         this.p1= p;
+        jComboBoxPropietario.setSelectedItem(p1.getProprietario().getNome());
+        jTextFieldApt.setText(String.valueOf(p1.getNumero()));
         jTextFieldCelpe.setText(p1.getNumerocelpe());
+        jTextFieldNet.setText(p1.getNumeronet());
+        jComboBoxNQuartos.setSelectedItem(p1.getQuartos());
+        jTextFieldVM.setText(String.valueOf(p1.getValorminimo()));
+        jComboBoxSituacao.setSelectedItem(p1.getSituacao());
         
     }
     public NovoAlterarApt() {

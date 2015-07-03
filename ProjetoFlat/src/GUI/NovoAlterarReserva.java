@@ -5,6 +5,18 @@
  */
 package GUI;
 
+import classesbasicas.Apartamento;
+import classesbasicas.Locatario;
+import classesbasicas.Proprietario;
+import classesbasicas.Reserva;
+import classesexception.LocatarioException;
+import classesexception.ReservaException;
+import classesfachada.Fachada;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import util.Datas;
+
 /**
  *
  * @author SONY VAIO
@@ -14,10 +26,22 @@ public class NovoAlterarReserva extends javax.swing.JFrame {
     /**
      * Creates new form NovoAlterarReserva
      */
+    Reserva r1 = new Reserva();
     public NovoAlterarReserva() {
         initComponents();
+        carregarApts();
     }
-
+private void carregarApts() {
+        Fachada fachada = new Fachada();
+        Apartamento apto = new Apartamento();
+        ArrayList<Apartamento> listaApto;
+        listaApto = (ArrayList<Apartamento>) fachada.listallApartamento(apto);
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (int i = 0; i < listaApto.size(); i++) {
+            modelo.addElement(listaApto.get(i).getNumero());
+        }
+        jComboBoxApt.setModel(modelo);
+	}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,6 +51,7 @@ public class NovoAlterarReserva extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupSimNao = new javax.swing.ButtonGroup();
         jLabelBarra = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabelDataEntrada = new javax.swing.JLabel();
@@ -66,7 +91,7 @@ public class NovoAlterarReserva extends javax.swing.JFrame {
 
         jLabelValorCalcao.setText("Valor Calção:");
 
-        jLabelCalcao.setText("Calção:");
+        jLabelCalcao.setText("Caução:");
 
         jLabelApt.setText("Aptº:");
 
@@ -74,11 +99,23 @@ public class NovoAlterarReserva extends javax.swing.JFrame {
 
         jComboBoxApt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ATIVO", "INATIVO" }));
 
+        buttonGroupSimNao.add(jRadioButtonSim);
         jRadioButtonSim.setText("Sim");
+        jRadioButtonSim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonSimActionPerformed(evt);
+            }
+        });
 
+        buttonGroupSimNao.add(jRadioButtonNao);
         jRadioButtonNao.setText("Não");
+        jRadioButtonNao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonNaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -161,6 +198,11 @@ public class NovoAlterarReserva extends javax.swing.JFrame {
         jButtonAlterar.setText("Altera");
 
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,6 +237,49 @@ public class NovoAlterarReserva extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        // TODO add your handling code here:
+        try{
+        Fachada fachada = new Fachada();
+        Apartamento ap = new Apartamento();
+        Reserva r = new Reserva();
+       
+        ap.setId(jComboBoxApt.getSelectedIndex()+1);
+        r.setApartamento(fachada.findApartamento(ap));
+        
+        r.setDataregistro(Datas.criarData(jTextFieldDataRegistro.getText()));
+        r.setDataentrada(Datas.criarData(jTextFieldDataEntrada.getText()));
+        r.setDatasaida(Datas.criarData(jTextFieldDataSaida.getText()));
+    
+        r.setValor(Double.parseDouble(jTextFieldValor.getText()));
+        
+        if(jRadioButtonSim.isSelected()){
+            r.setCalcao(true);
+        }
+        if(jRadioButtonNao.isSelected()){
+            r.setCalcao(false);
+        }
+        
+        r.setValorcalcao(Double.parseDouble(jTextFieldValorCalcao.getText()));
+       
+        
+        
+        fachada.saveReserva(r);
+        }catch(ReservaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jRadioButtonSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSimActionPerformed
+        // TODO add your handling code here:
+         jRadioButtonNao.setSelected(false);
+    }//GEN-LAST:event_jRadioButtonSimActionPerformed
+
+    private void jRadioButtonNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNaoActionPerformed
+        // TODO add your handling code here:
+        jRadioButtonSim.setSelected(false);
+    }//GEN-LAST:event_jRadioButtonNaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,6 +317,7 @@ public class NovoAlterarReserva extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroupSimNao;
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox jComboBoxApt;

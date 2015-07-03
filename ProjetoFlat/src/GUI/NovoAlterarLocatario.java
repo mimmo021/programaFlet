@@ -11,6 +11,7 @@ import classesexception.ProprietarioException;
 import classesfachada.Fachada;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import util.Datas;
 
 /**
  *
@@ -406,12 +407,12 @@ public class NovoAlterarLocatario extends javax.swing.JFrame {
         l.setCarrocor(jTextFieldCor.getText());
         l.setPlaca(jTextFieldPlaca.getText());
         
+        l.setDataderegistro(Datas.criarData(jTextFieldDataRegistro.getText()));
+        
         l.setTelefone(jTextFieldFone.getText());
         l.setTelefone2(jTextFieldCelular.getText());
         l.setEmail(jTextFieldEmail.getText());
-        
         l.setPassaporte(jTextFieldPassaporte.getText());
-        //l.setDataderegistro(Calendar.getInstance(String.format()));
         l.setResponsavelpagamento(jTextFieldResponsavelPag.getText());
         
         
