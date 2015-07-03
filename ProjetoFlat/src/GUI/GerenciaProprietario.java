@@ -9,12 +9,12 @@ package GUI;
  *
  * @author mimmo
  */
-public class CadastroLocatario extends javax.swing.JFrame {
+public class GerenciaProprietario extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroLocador
      */
-    public CadastroLocatario() {
+    public GerenciaProprietario() {
         initComponents();
     }
 
@@ -79,7 +79,7 @@ public class CadastroLocatario extends javax.swing.JFrame {
         jTextFieldDataRegistro = new javax.swing.JTextField();
         jLabelTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableLocatario = new javax.swing.JTable();
+        jTableProprietario = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -89,29 +89,17 @@ public class CadastroLocatario extends javax.swing.JFrame {
 
         jLabelBarra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra2.png"))); // NOI18N
 
-        jPanelCadastroLocatario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Locatário"));
+        jPanelCadastroLocatario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Proprietário"));
 
         jLabelNome.setText("Nome Completo/ Full name:");
 
         jLabelEndereco.setText("Endereço residencial/ Full adress:");
-
-        jTextFieldEndereco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEnderecoActionPerformed(evt);
-            }
-        });
 
         jLabelApto.setText("Aptº:");
 
         jLabelBairro.setText("Bairro:");
 
         jLabelCep.setText("CEP:");
-
-        jTextFieldCep.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCepActionPerformed(evt);
-            }
-        });
 
         jLabelFone.setText("Fone/ Phone:");
 
@@ -133,12 +121,6 @@ public class CadastroLocatario extends javax.swing.JFrame {
 
         jLabelOrgaoExp.setText("Orgão Exp:");
 
-        jTextFieldProcedencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldProcedenciaActionPerformed(evt);
-            }
-        });
-
         jLabelPassaporte.setText("Passaporte:");
 
         jLabelCpf.setText("CPF:");
@@ -156,12 +138,6 @@ public class CadastroLocatario extends javax.swing.JFrame {
         jLabelDataRegistro.setText("Data Registro:");
 
         jLabelResponsavelPag.setText("Responsável Pelo Pagamento:");
-
-        jTextFieldCarro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCarroActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanelCadastroLocatarioLayout = new javax.swing.GroupLayout(jPanelCadastroLocatario);
         jPanelCadastroLocatario.setLayout(jPanelCadastroLocatarioLayout);
@@ -356,9 +332,9 @@ public class CadastroLocatario extends javax.swing.JFrame {
         );
 
         jLabelTitulo.setFont(new java.awt.Font("Razer Header Regular", 1, 24)); // NOI18N
-        jLabelTitulo.setText("Cadastro de locatário");
+        jLabelTitulo.setText("Gerência Proprietário");
 
-        jTableLocatario.setModel(new javax.swing.table.DefaultTableModel(
+        jTableProprietario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -369,7 +345,7 @@ public class CadastroLocatario extends javax.swing.JFrame {
                 "Nome", "Telefone", "Celular", "E-mail"
             }
         ));
-        jScrollPane1.setViewportView(jTableLocatario);
+        jScrollPane1.setViewportView(jTableProprietario);
 
         jButton1.setText("Novo");
 
@@ -425,22 +401,6 @@ public class CadastroLocatario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCepActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCepActionPerformed
-
-    private void jTextFieldEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEnderecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEnderecoActionPerformed
-
-    private void jTextFieldProcedenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProcedenciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldProcedenciaActionPerformed
-
-    private void jTextFieldCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCarroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCarroActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -458,14 +418,18 @@ public class CadastroLocatario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroLocatario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaProprietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroLocatario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaProprietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroLocatario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaProprietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroLocatario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaProprietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -474,7 +438,7 @@ public class CadastroLocatario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroLocatario().setVisible(true);
+                new GerenciaProprietario().setVisible(true);
             }
         });
     }
@@ -511,7 +475,7 @@ public class CadastroLocatario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelCadastroLocatario;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableLocatario;
+    private javax.swing.JTable jTableProprietario;
     private javax.swing.JTextField jTextFieldApto;
     private javax.swing.JTextField jTextFieldBairro;
     private javax.swing.JTextField jTextFieldCarro;

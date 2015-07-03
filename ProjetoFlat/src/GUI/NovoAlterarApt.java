@@ -5,6 +5,17 @@
  */
 package GUI;
 
+import classesbasicas.Apartamento;
+import classesbasicas.Proprietario;
+import classesexception.ApartamentoException;
+import classesexception.ProprietarioException;
+import classesfachada.Fachada;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author SONY VAIO
@@ -14,9 +25,29 @@ public class NovoAlterarApt extends javax.swing.JFrame {
     /**
      * Creates new form NovoAlterarApt
      */
+    Apartamento p1 = new Apartamento();
+    public NovoAlterarApt(Apartamento p){
+        initComponents();
+        carregarProprietario();
+        this.p1= p;
+        jTextFieldCelpe.setText(p1.getNumerocelpe());
+        
+    }
     public NovoAlterarApt() {
         initComponents();
+        carregarProprietario();
     }
+    private void carregarProprietario() {
+        Fachada fachada = new Fachada();
+        Proprietario proprietario = new Proprietario();
+        ArrayList<Proprietario> listaUsuario;
+        listaUsuario = (ArrayList<Proprietario>) fachada.listallProprietario(proprietario);
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (int i = 0; i < listaUsuario.size(); i++) {
+            modelo.addElement(listaUsuario.get(i).getNome());
+        }
+        jComboBoxPropietario.setModel(modelo);
+	}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,6 +79,7 @@ public class NovoAlterarApt extends javax.swing.JFrame {
         jToggleButtonRetornar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Aptº"));
 
@@ -61,31 +93,18 @@ public class NovoAlterarApt extends javax.swing.JFrame {
 
         jLabelPropietario.setText("Propietário:");
 
-        jTextFieldApt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAptActionPerformed(evt);
-            }
-        });
-
         jLabelApt.setText("Número Aptº:");
 
-        jComboBoxNQuartos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxNQuartos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2" }));
 
         jLabelVM.setText("Valor Mínimo:");
 
-        jTextFieldCelpe.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vago", "Ocupado", "Reservado" }));
+        jComboBoxSituacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCelpeActionPerformed(evt);
+                jComboBoxSituacaoActionPerformed(evt);
             }
         });
-
-        jTextFieldNet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNetActionPerformed(evt);
-            }
-        });
-
-        jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jComboBoxPropietario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -120,8 +139,8 @@ public class NovoAlterarApt extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPropietario)
                     .addComponent(jComboBoxPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -149,14 +168,24 @@ public class NovoAlterarApt extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelSituação)
                     .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra2.png"))); // NOI18N
 
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
         jButtonAlterar.setText("Altera");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         jToggleButtonRetornar.setText("Retornar");
 
@@ -179,32 +208,60 @@ public class NovoAlterarApt extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonAlterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
                         .addComponent(jToggleButtonRetornar))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldAptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAptActionPerformed
+    private void jComboBoxSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSituacaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAptActionPerformed
+    }//GEN-LAST:event_jComboBoxSituacaoActionPerformed
 
-    private void jTextFieldCelpeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCelpeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCelpeActionPerformed
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+                // TODO add your handling code here:
+        Fachada f = new Fachada();
+        Apartamento a = new Apartamento();
+        Proprietario p = new Proprietario();
+        ArrayList<Proprietario> listaProprietarios = new ArrayList<>();
+        p.setId(jComboBoxPropietario.getSelectedIndex()+1);
+        a.setProprietario(f.findProprietario(p));
+       
+        a.setNumero(Integer.parseInt(jTextFieldApt.getText()));
+        a.setNumerocelpe(jTextFieldCelpe.getText());
+        a.setNumeronet(jTextFieldNet.getText());
+        a.setQuartos(Integer.parseInt((String) jComboBoxNQuartos.getSelectedItem()));
+        a.setValorminimo(Double.parseDouble(jTextFieldVM.getText()));
+        a.setSituacao((String) jComboBoxSituacao.getSelectedItem());
+        try {
+            f.saveApartamento(a);
+        } catch (ApartamentoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+        
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
-    private void jTextFieldNetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNetActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNetActionPerformed
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        try {
+            Fachada f = new Fachada();
+            p1 = f.findApartamento(p1);
+            f.saveApartamento(p1);
+            
+        } catch (ApartamentoException ex) {
+            Logger.getLogger(NovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**
      * @param args the command line arguments

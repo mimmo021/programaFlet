@@ -5,6 +5,13 @@
  */
 package GUI;
 
+import classesbasicas.Locatario;
+import classesexception.LocatarioException;
+import classesexception.ProprietarioException;
+import classesfachada.Fachada;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author SONY VAIO
@@ -91,23 +98,11 @@ public class NovoAlterarLocatario extends javax.swing.JFrame {
 
         jLabelEndereco.setText("Endereço residencial/ Full adress:");
 
-        jTextFieldEndereco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEnderecoActionPerformed(evt);
-            }
-        });
-
         jLabelApto.setText("Aptº:");
 
         jLabelBairro.setText("Bairro:");
 
         jLabelCep.setText("CEP:");
-
-        jTextFieldCep.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCepActionPerformed(evt);
-            }
-        });
 
         jLabelFone.setText("Fone/ Phone:");
 
@@ -129,12 +124,6 @@ public class NovoAlterarLocatario extends javax.swing.JFrame {
 
         jLabelOrgaoExp.setText("Orgão Exp:");
 
-        jTextFieldProcedencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldProcedenciaActionPerformed(evt);
-            }
-        });
-
         jLabelPassaporte.setText("Passaporte:");
 
         jLabelCpf.setText("CPF:");
@@ -152,12 +141,6 @@ public class NovoAlterarLocatario extends javax.swing.JFrame {
         jLabelDataRegistro.setText("Data Registro:");
 
         jLabelResponsavelPag.setText("Responsável Pelo Pagamento:");
-
-        jTextFieldCarro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCarroActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanelCadastroLocatarioLayout = new javax.swing.GroupLayout(jPanelCadastroLocatario);
         jPanelCadastroLocatario.setLayout(jPanelCadastroLocatarioLayout);
@@ -352,6 +335,11 @@ public class NovoAlterarLocatario extends javax.swing.JFrame {
         );
 
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
         jButtonAlterar.setText("Alterar");
 
@@ -365,7 +353,7 @@ public class NovoAlterarLocatario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelCadastroLocatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonRetornar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -394,21 +382,45 @@ public class NovoAlterarLocatario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEnderecoActionPerformed
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEnderecoActionPerformed
-
-    private void jTextFieldCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCepActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCepActionPerformed
-
-    private void jTextFieldProcedenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProcedenciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldProcedenciaActionPerformed
-
-    private void jTextFieldCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCarroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCarroActionPerformed
+        try{
+        Fachada fachada = new Fachada();
+        Locatario l = new Locatario();
+        l.setNome(jTextFieldNome.getText());
+        l.setEndereco(jTextFieldEndereco.getText());
+        l.setApto(jTextFieldApto.getText());
+        l.setNumero(jTextFieldNumero.getText());
+        l.setCidade(jTextFieldCidade.getText());
+        l.setBairro(jTextFieldBairro.getText());
+        l.setCep(jTextFieldCep.getText());
+        l.setIdade(Integer.parseInt((String)jTextFieldIdade.getText()));
+        l.setEstado(jTextFieldEstado.getText());
+        l.setProcedencia(jTextFieldProcedencia.getText());
+        l.setIdentidade(jTextFieldIdentidade.getText());
+        l.setOrgexp(jTextFieldOrgaoExp.getText());
+        l.setMotivoviagem(jTextFieldMotivo.getText());
+        l.setCpg(jTextFieldCpf.getText());
+        l.setEstadocivil(jTextFieldEstadoCivil.getText());
+        l.setCarro(jTextFieldCarro.getText());
+        l.setCarrocor(jTextFieldCor.getText());
+        l.setPlaca(jTextFieldPlaca.getText());
+        
+        l.setTelefone(jTextFieldFone.getText());
+        l.setTelefone2(jTextFieldCelular.getText());
+        l.setEmail(jTextFieldEmail.getText());
+        
+        l.setPassaporte(jTextFieldPassaporte.getText());
+        //l.setDataderegistro(Calendar.getInstance(String.format()));
+        l.setResponsavelpagamento(jTextFieldResponsavelPag.getText());
+        
+        
+        fachada.saveLocatario(l);
+        }catch(LocatarioException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+                                         
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**
      * @param args the command line arguments

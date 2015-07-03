@@ -27,6 +27,7 @@ public class Apartamento {
         
         @OneToMany
         private Collection<Reserva> reservas; 
+        @OneToMany
         private Collection<CheckIn> checkin;
 	
 	public Apartamento(){

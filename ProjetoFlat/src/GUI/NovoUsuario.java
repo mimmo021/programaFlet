@@ -1,19 +1,20 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package GUI;
 
 /**
  *
- * @author mimmo
+ * @author SONY VAIO
  */
-public class Telalogin extends javax.swing.JFrame {
+public class NovoUsuario extends javax.swing.JFrame {
 
     /**
-     * Creates new form Telalogin
+     * Creates new form NovoUsuario
      */
-    public Telalogin() {
+    public NovoUsuario() {
         initComponents();
     }
 
@@ -26,40 +27,40 @@ public class Telalogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelLogin = new javax.swing.JLabel();
         jLabelPassWord = new javax.swing.JLabel();
-        jLabelTitulo = new javax.swing.JLabel();
-        jButtonLogin = new javax.swing.JButton();
-        jTextFieldUserName = new javax.swing.JTextField();
-        jLabelImagemCadeado = new javax.swing.JLabel();
-        jPasswordFieldPassWord = new javax.swing.JPasswordField();
+        jLabelLogin = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButtonNovoCadastro = new javax.swing.JButton();
+        jPasswordFieldNovoPassWord = new javax.swing.JPasswordField();
+        jLabelImagemCadeado = new javax.swing.JLabel();
+        jTextFieldNovoLogin = new javax.swing.JTextField();
+        jButtonSalvarUsuario = new javax.swing.JButton();
+        jLabelTitulo = new javax.swing.JLabel();
+        jButtoncancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelLogin.setText("Login:");
-
         jLabelPassWord.setText("Senha :");
 
-        jLabelTitulo.setFont(new java.awt.Font("Razer Header Regular", 1, 24)); // NOI18N
-        jLabelTitulo.setText("Login");
-
-        jButtonLogin.setText("Login");
-
-        jTextFieldUserName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUserNameActionPerformed(evt);
-            }
-        });
-
-        jLabelImagemCadeado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/portal_loginNIMBUS.jpg"))); // NOI18N
-
-        jPasswordFieldPassWord.setText("jPasswordField1");
+        jLabelLogin.setText("Login:");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra.png"))); // NOI18N
 
-        jButtonNovoCadastro.setText("Novo Cadastro");
+        jPasswordFieldNovoPassWord.setText("jPasswordField1");
+
+        jLabelImagemCadeado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/portal_loginNIMBUS.jpg"))); // NOI18N
+
+        jTextFieldNovoLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNovoLoginActionPerformed(evt);
+            }
+        });
+
+        jButtonSalvarUsuario.setText("Salvar");
+
+        jLabelTitulo.setFont(new java.awt.Font("Razer Header Regular", 1, 24)); // NOI18N
+        jLabelTitulo.setText("Novo Usuário");
+
+        jButtoncancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,58 +74,58 @@ public class Telalogin extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(jLabelTitulo))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelPassWord)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabelLogin)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonNovoCadastro)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonLogin))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPasswordFieldPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(jButtoncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonSalvarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelPassWord)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(jLabelLogin)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPasswordFieldNovoPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldNovoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(30, 30, 30))
             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPasswordFieldPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPasswordFieldNovoPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelLogin)
-                                    .addComponent(jTextFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldNovoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabelPassWord)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonLogin)
-                            .addComponent(jButtonNovoCadastro)))
+                            .addComponent(jButtonSalvarUsuario)
+                            .addComponent(jButtoncancelar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabelImagemCadeado, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap(18, Short.MAX_VALUE))
         );
-
-        jLabelLogin.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserNameActionPerformed
-       // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldUserNameActionPerformed
+    private void jTextFieldNovoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNovoLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNovoLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,33 +144,33 @@ public class Telalogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Telalogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NovoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Telalogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NovoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Telalogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NovoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Telalogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NovoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Telalogin().setVisible(true);
+                new NovoUsuario().setVisible(true);
             }
         });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonLogin;
-    private javax.swing.JButton jButtonNovoCadastro;
+    private javax.swing.JButton jButtonSalvarUsuario;
+    private javax.swing.JButton jButtoncancelar;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelImagemCadeado;
     private javax.swing.JLabel jLabelLogin;
     private javax.swing.JLabel jLabelPassWord;
     private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JPasswordField jPasswordFieldPassWord;
-    private javax.swing.JTextField jTextFieldUserName;
+    private javax.swing.JPasswordField jPasswordFieldNovoPassWord;
+    private javax.swing.JTextField jTextFieldNovoLogin;
     // End of variables declaration//GEN-END:variables
 }

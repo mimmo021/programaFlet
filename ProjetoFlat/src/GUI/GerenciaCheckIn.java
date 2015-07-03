@@ -8,12 +8,12 @@ package GUI;
  *
  * @author mimmo
  */
-public class CadastroCheckIn extends javax.swing.JFrame {
+public class GerenciaCheckIn extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroImovel
      */
-    public CadastroCheckIn() {
+    public GerenciaCheckIn() {
         initComponents();
     }
 
@@ -106,7 +106,6 @@ public class CadastroCheckIn extends javax.swing.JFrame {
         jLabelBorda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 700));
 
         jLabelTitulo.setFont(new java.awt.Font("Razer Header Regular", 1, 24)); // NOI18N
         jLabelTitulo.setText("Ficha de Registro - registration card");
@@ -128,12 +127,6 @@ public class CadastroCheckIn extends javax.swing.JFrame {
 
         jLabelEnderecoRes.setText("Endereço residencial/ Full adress:");
 
-        jTextFieldEnderecoRes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEnderecoResActionPerformed(evt);
-            }
-        });
-
         jLabelFone.setText("Fone/ Phone:");
 
         jLabelIdade.setText("Idade / Age:");
@@ -154,19 +147,7 @@ public class CadastroCheckIn extends javax.swing.JFrame {
 
         jLabelCelular.setText("Celular:");
 
-        jTextFieldProcedencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldProcedenciaActionPerformed(evt);
-            }
-        });
-
         jLabelMotivo.setText("Motivo da Viagem / Porpose of Trip");
-
-        jTextFieldCEP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCEPActionPerformed(evt);
-            }
-        });
 
         jLabelBairro.setText("Bairro:");
 
@@ -177,12 +158,6 @@ public class CadastroCheckIn extends javax.swing.JFrame {
         jLabelEstCivil.setText("Est. Civil / Marital Status:");
 
         jLabelNome.setText("Nome Completo/ Full name:");
-
-        jTextFieldNomeCompleto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeCompletoActionPerformed(evt);
-            }
-        });
 
         jLabelResponsavel.setText("Responsável pelo Pagamento / Responsabile for payment:");
 
@@ -331,11 +306,6 @@ public class CadastroCheckIn extends javax.swing.JFrame {
         jCheckBox1Sim.setText("Sim");
 
         jCheckBox1Nao.setText("Não");
-        jCheckBox1Nao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1NaoActionPerformed(evt);
-            }
-        });
 
         jTextFieldCarroMarca.setEditable(false);
 
@@ -410,11 +380,6 @@ public class CadastroCheckIn extends javax.swing.JFrame {
         jLabelValorDiaria.setText("Valor de 1(Uma) Diária:");
 
         jCheckBox3não.setText("Não");
-        jCheckBox3não.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3nãoActionPerformed(evt);
-            }
-        });
 
         jCheckBox2Nao.setText("Não");
         jCheckBox2Nao.addActionListener(new java.awt.event.ActionListener() {
@@ -598,33 +563,9 @@ public class CadastroCheckIn extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1NaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1NaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1NaoActionPerformed
-
-    private void jTextFieldEnderecoResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEnderecoResActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEnderecoResActionPerformed
-
-    private void jTextFieldCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCEPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCEPActionPerformed
-
-    private void jTextFieldProcedenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProcedenciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldProcedenciaActionPerformed
-
     private void jCheckBox2NaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2NaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox2NaoActionPerformed
-
-    private void jCheckBox3nãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3nãoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3nãoActionPerformed
-
-    private void jTextFieldNomeCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeCompletoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeCompletoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -643,14 +584,18 @@ public class CadastroCheckIn extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -659,7 +604,7 @@ public class CadastroCheckIn extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroCheckIn().setVisible(true);
+                new GerenciaCheckIn().setVisible(true);
             }
         });
     }

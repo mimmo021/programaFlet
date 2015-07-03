@@ -27,7 +27,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanelCadastroLocatario" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jButtonRetornar" max="32767" attributes="0"/>
                   <Component id="jButtonAlterar" alignment="0" max="32767" attributes="0"/>
@@ -319,6 +319,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNome">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="NovoAlterarLocatario_jTextFieldNome"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelEndereco">
           <Properties>
@@ -326,9 +329,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEndereco">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldEnderecoActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelApto">
           <Properties>
@@ -350,9 +350,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldCep">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCepActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelFone">
           <Properties>
@@ -415,9 +412,6 @@
         <Component class="javax.swing.JTextField" name="jTextFieldEstado">
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldProcedencia">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldProcedenciaActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldIdentidade">
         </Component>
@@ -481,9 +475,6 @@
         <Component class="javax.swing.JTextField" name="jTextFieldFone">
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldCarro">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCarroActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldCor">
         </Component>
@@ -499,6 +490,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSalvarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonAlterar">
       <Properties>

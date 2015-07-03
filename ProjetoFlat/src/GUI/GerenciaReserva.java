@@ -5,18 +5,46 @@
  */
 package GUI;
 
+import classesbasicas.Reserva;
+import classesfachada.Fachada;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author SONY VAIO
  */
-public class CadastroReserva extends javax.swing.JFrame {
+public class GerenciaReserva extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroReserva
      */
-    public CadastroReserva() {
+    public GerenciaReserva() {
         initComponents();
+        listarTabelaReserva();
     }
+     public void listarTabelaReserva(){
+       
+		Fachada f = new Fachada();
+		Reserva e = new Reserva();
+		ArrayList<Reserva> listaReservao;
+		listaReservao = (ArrayList<Reserva>) f.listallReserva(e);
+
+		DefaultTableModel dtm = new DefaultTableModel();
+		dtm.setColumnIdentifiers(new String[] {  "Data Entrada",
+				"Data Saída","Apartamento", "Situação"});
+		for (int i = 0; i < listaReservao.size(); i++) {
+			dtm.addRow(new String[] { listaReservao.get(i).getId() + "",
+					listaReservao.get(i).getDataentrada()+ "",
+					listaReservao.get(i).getDatasaida()+ "",
+                                        listaReservao.get(i).getApartamento().getNumero()+ "",
+					listaReservao.get(i).getApartamento().getSituacao()
+                        });
+		}
+
+		jTable1.setModel(dtm);
+	
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -238,20 +266,21 @@ public class CadastroReserva extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroReserva().setVisible(true);
+                new GerenciaReserva().setVisible(true);
             }
         });
     }

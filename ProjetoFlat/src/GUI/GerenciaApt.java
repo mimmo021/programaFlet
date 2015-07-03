@@ -5,18 +5,48 @@
  */
 package GUI;
 
+import classesbasicas.Apartamento;
+import classesfachada.Fachada;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author SONY VAIO
  */
-public class CadastroApt extends javax.swing.JFrame {
+public class GerenciaApt extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroApt
      */
-    public CadastroApt() {
+    public GerenciaApt() {
         initComponents();
+        listarTabelaApt();
     }
+    
+     public void listarTabelaApt(){
+       
+		Fachada f = new Fachada();
+		Apartamento e = new Apartamento();
+		ArrayList<Apartamento> listaApartamentoo;
+		listaApartamentoo = (ArrayList<Apartamento>) f.listallApartamento(e);
+
+		DefaultTableModel dtm = new DefaultTableModel();
+		dtm.setColumnIdentifiers(new String[] { "Proprietario", "N°Apt","N°Quarto",
+				"Situacao"});
+		for (int i = 0; i < listaApartamentoo.size(); i++) {
+			dtm.addRow(new String[] { listaApartamentoo.get(i).getId() + "",
+					listaApartamentoo.get(i).getProprietario().getNome()+ "",
+					listaApartamentoo.get(i).getNumero()+ "",
+					listaApartamentoo.get(i).getQuartos()+ "",
+					listaApartamentoo.get(i).getSituacao()+ ""
+					
+                        });
+		}
+
+		jTableApt.setModel(dtm);
+	
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,29 +102,11 @@ public class CadastroApt extends javax.swing.JFrame {
 
         jLabelPropietario.setText("Propietário:");
 
-        jTextFieldApt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAptActionPerformed(evt);
-            }
-        });
-
         jLabelApt.setText("Número Aptº:");
 
         jComboBoxNQuartos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabelVM.setText("Valor Mínimo:");
-
-        jTextFieldCelpe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCelpeActionPerformed(evt);
-            }
-        });
-
-        jTextFieldNet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNetActionPerformed(evt);
-            }
-        });
 
         jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -106,27 +118,24 @@ public class CadastroApt extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelPropietario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxPropietario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelSituação)
-                            .addComponent(jLabelNQuartos)
-                            .addComponent(jLabelApt)
-                            .addComponent(jLabelCelpe)
-                            .addComponent(jLabelNet)
-                            .addComponent(jLabelVM))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldApt)
-                            .addComponent(jTextFieldCelpe)
-                            .addComponent(jTextFieldNet)
-                            .addComponent(jComboBoxNQuartos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldVM)
-                            .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelSituação)
+                    .addComponent(jLabelNQuartos)
+                    .addComponent(jLabelApt)
+                    .addComponent(jLabelCelpe)
+                    .addComponent(jLabelNet)
+                    .addComponent(jLabelVM)
+                    .addComponent(jLabelPropietario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextFieldApt)
+                        .addComponent(jTextFieldCelpe)
+                        .addComponent(jTextFieldNet)
+                        .addComponent(jComboBoxNQuartos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldVM)
+                        .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -180,6 +189,11 @@ public class CadastroApt extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableReservas);
 
         jToggleButtonAlterar.setText("Aterar");
+        jToggleButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonAlterarActionPerformed(evt);
+            }
+        });
 
         jButtonRemover.setText("Remover");
 
@@ -217,10 +231,10 @@ public class CadastroApt extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane3))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -234,9 +248,9 @@ public class CadastroApt extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabelReservas)
                             .addComponent(jLabelCheckIn)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                             .addComponent(jScrollPane2))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,17 +282,12 @@ public class CadastroApt extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldCelpeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCelpeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCelpeActionPerformed
-
-    private void jTextFieldAptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAptActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAptActionPerformed
-
-    private void jTextFieldNetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNetActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNetActionPerformed
+    private void jToggleButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAlterarActionPerformed
+       Apartamento p = new Apartamento();
+       
+        NovoAlterarApt a = new NovoAlterarApt(p);
+        a.setVisible(true);
+    }//GEN-LAST:event_jToggleButtonAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,20 +306,21 @@ public class CadastroApt extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciaApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroApt().setVisible(true);
+                new GerenciaApt().setVisible(true);
             }
         });
     }

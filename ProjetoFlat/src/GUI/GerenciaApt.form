@@ -24,10 +24,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jLabel1" max="32767" attributes="0"/>
+          <Component id="jLabel1" pref="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane3" max="32767" attributes="0"/>
                   </Group>
@@ -43,12 +43,12 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabelReservas" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelCheckIn" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" alignment="0" pref="539" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" pref="500" max="32767" attributes="0"/>
                           <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -107,30 +107,25 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabelPropietario" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jComboBoxPropietario" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelSituação" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelNQuartos" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelApt" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelCelpe" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelNet" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelVM" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTextFieldApt" max="32767" attributes="0"/>
-                              <Component id="jTextFieldCelpe" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextFieldNet" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jComboBoxNQuartos" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextFieldVM" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jComboBoxSituacao" alignment="0" min="-2" pref="213" max="-2" attributes="0"/>
-                          </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabelSituação" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelNQuartos" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelApt" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelCelpe" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelNet" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelVM" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelPropietario" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jComboBoxPropietario" min="-2" pref="213" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jTextFieldApt" max="32767" attributes="0"/>
+                          <Component id="jTextFieldCelpe" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextFieldNet" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jComboBoxNQuartos" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextFieldVM" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jComboBoxSituacao" alignment="0" min="-2" pref="213" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -207,9 +202,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldApt">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldAptActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelApt">
           <Properties>
@@ -234,14 +226,8 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldCelpe">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCelpeActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNet">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNetActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldVM">
         </Component>
@@ -306,6 +292,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Aterar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonAlterarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonRemover">
       <Properties>
