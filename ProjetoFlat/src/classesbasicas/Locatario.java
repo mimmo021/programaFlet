@@ -3,7 +3,7 @@ package classesbasicas;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,14 +40,14 @@ public class Locatario {
 	private String estadocivil;
 	private String responsavelpagamento;
 	private String carro;
-        private Calendar dataderegistro;
+        private Date dataderegistro;
 	private String carrocor;
 	private String placa;
         @OneToMany
         Collection<CheckIn> checkin;
         public Locatario(){
             this.checkin = new ArrayList<>();
-            this.dataderegistro = new GregorianCalendar();
+            this.dataderegistro = new Date();
         }
 
 	public String getPlaca() {
@@ -249,14 +249,14 @@ public class Locatario {
     /**
      * @return the dataderegistro
      */
-    public Calendar getDataderegistro() {
+    public Date getDataderegistro() {
         return dataderegistro;
     }
 
     /**
      * @param dataderegistro the dataderegistro to set
      */
-    public void setDataderegistro(Calendar dataderegistro) {
+    public void setDataderegistro(Date dataderegistro) {
         this.dataderegistro = dataderegistro;
     }
 

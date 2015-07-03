@@ -1,7 +1,7 @@
 package classesbasicas;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,17 +20,17 @@ private Double valortotaldiarias;
 private Apartamento apartamento;
 @ManyToOne
 private Locatario locatario;
-private Calendar dataderegistro;
-private Calendar dataentrada;
-private Calendar datasaida;
+private Date dataderegistro;
+private Date dataentrada;
+private Date datasaida;
 @OneToOne
 private CheckOut checkout;
 public CheckIn(){
     this.apartamento = new Apartamento();
     this.locatario = new Locatario();
-    this.dataderegistro = new GregorianCalendar();
-    this.datasaida = new GregorianCalendar();
-    this.dataentrada = new GregorianCalendar();
+    this.dataderegistro = new Date();
+    this.datasaida = new Date();
+    this.dataentrada = new Date();
 }
     /**
      * @return the id
@@ -119,42 +119,42 @@ public CheckIn(){
     /**
      * @return the dataderegistro
      */
-    public Calendar getDataderegistro() {
+    public Date getDataderegistro() {
         return dataderegistro;
     }
 
     /**
      * @param dataderegistro the dataderegistro to set
      */
-    public void setDataderegistro(Calendar dataderegistro) {
+    public void setDataderegistro(Date dataderegistro) {
         this.dataderegistro = dataderegistro;
     }
 
     /**
      * @return the dataentrada
      */
-    public Calendar getDataentrada() {
+    public Date getDataentrada() {
         return dataentrada;
     }
 
     /**
      * @param dataentrada the dataentrada to set
      */
-    public void setDataentrada(Calendar dataentrada) {
+    public void setDataentrada(Date dataentrada) {
         this.dataentrada = dataentrada;
     }
 
     /**
      * @return the datasaida
      */
-    public Calendar getDatasaida() {
+    public Date getDatasaida() {
         return datasaida;
     }
 
     /**
      * @param datasaida the datasaida to set
      */
-    public void setDatasaida(Calendar datasaida) {
+    public void setDatasaida(Date datasaida) {
         this.datasaida = datasaida;
     }
 

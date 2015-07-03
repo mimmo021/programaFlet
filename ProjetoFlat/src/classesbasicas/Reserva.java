@@ -1,22 +1,21 @@
 package classesbasicas;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import org.hibernate.annotations.ManyToAny;
 
 @Entity
 public class Reserva {
 @Id
 @GeneratedValue
 private int id;
-private Calendar dataregistro;
- private Calendar dataentrada;
- private Calendar datasaida;
+private Date dataregistro;
+ private Date dataentrada;
+ private Date datasaida;
 @ManyToOne
 private Apartamento apartamento;
 private Double valor;
@@ -26,9 +25,9 @@ private SituacaoReserva situacao;
 
 public Reserva(){
     this.apartamento = new Apartamento();
-    this.dataentrada = new GregorianCalendar();
-    this.dataregistro = new GregorianCalendar();
-    this.datasaida = new GregorianCalendar();
+    this.dataentrada = new Date();
+    this.dataregistro = new Date();
+    this.datasaida = new Date();
 }
     /**
      * @return the id
@@ -47,14 +46,14 @@ public Reserva(){
     /**
      * @return the dataregistro
      */
-    public Calendar getDataregistro() {
+    public Date getDataregistro() {
         return dataregistro;
     }
 
     /**
      * @param dataregistro the dataregistro to set
      */
-    public void setDataregistro(Calendar dataregistro) {
+    public void setDataregistro(Date dataregistro) {
         this.dataregistro = dataregistro;
     }
 
@@ -120,28 +119,28 @@ public Reserva(){
     /**
      * @return the dataentrada
      */
-    public Calendar getDataentrada() {
+    public Date getDataentrada() {
         return dataentrada;
     }
 
     /**
      * @param dataentrada the dataentrada to set
      */
-    public void setDataentrada(Calendar dataentrada) {
+    public void setDataentrada(Date dataentrada) {
         this.dataentrada = dataentrada;
     }
 
     /**
      * @return the datasaida
      */
-    public Calendar getDatasaida() {
+    public Date getDatasaida() {
         return datasaida;
     }
 
     /**
      * @param datasaida the datasaida to set
      */
-    public void setDatasaida(Calendar datasaida) {
+    public void setDatasaida(Date datasaida) {
         this.datasaida = datasaida;
     }
 

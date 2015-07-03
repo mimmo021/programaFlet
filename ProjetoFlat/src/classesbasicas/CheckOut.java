@@ -1,6 +1,7 @@
 package classesbasicas;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,11 +20,11 @@ private Double leiturasaida;
 private Double totalkwh;
 private Boolean hospedeacompanhouentrada;
 private Boolean hospedeacompanhousaida;
-private Calendar dataderegistro;
+private Date dataderegistro;
 
 public CheckOut(){
     this.checkin = new CheckIn();
-    this.dataderegistro = new GregorianCalendar();
+    this.dataderegistro = new Date();
 }
 
     /**
@@ -127,14 +128,14 @@ public CheckOut(){
     /**
      * @return the dataderegistro
      */
-    public Calendar getDataderegistro() {
+    public Date getDataderegistro() {
         return dataderegistro;
     }
 
     /**
      * @param dataderegistro the dataderegistro to set
      */
-    public void setDataderegistro(Calendar dataderegistro) {
+    public void setDataderegistro(Date dataderegistro) {
         this.dataderegistro = dataderegistro;
     }
 }
