@@ -5,16 +5,24 @@
  */
 package GUI;
 
+import classesbasicas.Locatario;
+import classesexception.LocatarioException;
+import classesexception.ProprietarioException;
+import classesfachada.Fachada;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+import util.Datas;
+
 /**
  *
- * @author mimmo
+ * @author SONY VAIO
  */
-public class GerenciaProprietario extends javax.swing.JFrame {
+public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
 
     /**
-     * Creates new form CadastroLocador
+     * Creates new form NovoAlterarLocatario
      */
-    public GerenciaProprietario() {
+    public TelaNovoAlterarProprietario() {
         initComponents();
     }
 
@@ -77,19 +85,15 @@ public class GerenciaProprietario extends javax.swing.JFrame {
         jTextFieldPlaca = new javax.swing.JTextField();
         jTextFieldPassaporte = new javax.swing.JTextField();
         jTextFieldDataRegistro = new javax.swing.JTextField();
-        jLabelTitulo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableProprietario = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonSalvar = new javax.swing.JButton();
+        jButtonAlterar = new javax.swing.JButton();
+        jButtonRetornar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         jLabelBarra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra2.png"))); // NOI18N
 
-        jPanelCadastroLocatario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Proprietário"));
+        jPanelCadastroLocatario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Locatário"));
 
         jLabelNome.setText("Nome Completo/ Full name:");
 
@@ -331,75 +335,93 @@ public class GerenciaProprietario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabelTitulo.setFont(new java.awt.Font("Razer Header Regular", 1, 24)); // NOI18N
-        jLabelTitulo.setText("Gerência Proprietário");
-
-        jTableProprietario.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Nome", "Telefone", "Celular", "E-mail"
+        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTableProprietario);
+        });
 
-        jButton1.setText("Novo");
+        jButtonAlterar.setText("Alterar");
 
-        jButton2.setText("Alterar");
-
-        jButton3.setText("Retornar");
+        jButtonRetornar.setText("Retornar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelBarra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabelBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelTitulo)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 834, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanelCadastroLocatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addComponent(jPanelCadastroLocatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonRetornar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabelBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelTitulo)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanelCadastroLocatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(jPanelCadastroLocatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton1)
-                        .addGap(16, 16, 16)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
+                        .addGap(60, 60, 60)
+                        .addComponent(jButtonSalvar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonAlterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonRetornar)
+                        .addGap(39, 39, 39))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        // TODO add your handling code here:
+        try{
+        Fachada fachada = new Fachada();
+        Locatario l = new Locatario();
+        l.setNome(jTextFieldNome.getText());
+        l.setEndereco(jTextFieldEndereco.getText());
+        l.setApto(jTextFieldApto.getText());
+        l.setNumero(jTextFieldNumero.getText());
+        l.setCidade(jTextFieldCidade.getText());
+        l.setBairro(jTextFieldBairro.getText());
+        l.setCep(jTextFieldCep.getText());
+        l.setIdade(Integer.parseInt((String)jTextFieldIdade.getText()));
+        l.setEstado(jTextFieldEstado.getText());
+        l.setProcedencia(jTextFieldProcedencia.getText());
+        l.setIdentidade(jTextFieldIdentidade.getText());
+        l.setOrgexp(jTextFieldOrgaoExp.getText());
+        l.setMotivoviagem(jTextFieldMotivo.getText());
+        l.setCpg(jTextFieldCpf.getText());
+        l.setEstadocivil(jTextFieldEstadoCivil.getText());
+        l.setCarro(jTextFieldCarro.getText());
+        l.setCarrocor(jTextFieldCor.getText());
+        l.setPlaca(jTextFieldPlaca.getText());
+        
+        l.setDataderegistro(Datas.criarData(jTextFieldDataRegistro.getText()));
+        
+        l.setTelefone(jTextFieldFone.getText());
+        l.setTelefone2(jTextFieldCelular.getText());
+        l.setEmail(jTextFieldEmail.getText());
+        l.setPassaporte(jTextFieldPassaporte.getText());
+        l.setResponsavelpagamento(jTextFieldResponsavelPag.getText());
+        
+        
+        fachada.saveLocatario(l);
+        }catch(LocatarioException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+                                         
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -418,18 +440,14 @@ public class GerenciaProprietario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GerenciaProprietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaNovoAlterarProprietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GerenciaProprietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaNovoAlterarProprietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GerenciaProprietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaNovoAlterarProprietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GerenciaProprietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaNovoAlterarProprietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -438,15 +456,15 @@ public class GerenciaProprietario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GerenciaProprietario().setVisible(true);
+                new TelaNovoAlterarProprietario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonAlterar;
+    private javax.swing.JButton jButtonRetornar;
+    private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabelApto;
     private javax.swing.JLabel jLabelBairro;
     private javax.swing.JLabel jLabelBarra;
@@ -472,10 +490,7 @@ public class GerenciaProprietario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPlaca;
     private javax.swing.JLabel jLabelProcedencia;
     private javax.swing.JLabel jLabelResponsavelPag;
-    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelCadastroLocatario;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableProprietario;
     private javax.swing.JTextField jTextFieldApto;
     private javax.swing.JTextField jTextFieldBairro;
     private javax.swing.JTextField jTextFieldCarro;

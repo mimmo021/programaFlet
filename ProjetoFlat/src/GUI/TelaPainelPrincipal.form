@@ -267,9 +267,9 @@
                       <Component id="jButtonLocador" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButtonLocatarios" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonApt" alignment="1" min="-2" pref="81" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jButtonProprietarios" max="32767" attributes="0"/>
+                      <Component id="jButtonApt" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -282,7 +282,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonReservas" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonCheckIn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonLocatarios" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonProprietarios" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -300,31 +300,52 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Check In"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCheckInActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonApt">
           <Properties>
             <Property name="text" type="java.lang.String" value="Apt&#xba;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAptActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonLocador">
           <Properties>
             <Property name="text" type="java.lang.String" value="Locador"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLocadorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonReservas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Reservas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonReservasActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonLocatarios">
+        <Component class="javax.swing.JButton" name="jButtonProprietarios">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Locat&#xe1;rios"/>
+            <Property name="text" type="java.lang.String" value="Propriet&#xe1;rios"/>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Propriet&#xe1;rios"/>
+          </AccessibilityProperties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonProprietariosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonCheckout">
           <Properties>
             <Property name="text" type="java.lang.String" value="Check Out"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCheckoutActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

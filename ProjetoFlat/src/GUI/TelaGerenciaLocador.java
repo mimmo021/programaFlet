@@ -6,6 +6,7 @@
 package GUI;
 
 
+import classesbasicas.Locatario;
 import classesbasicas.Proprietario;
 import classesfachada.Fachada;
 import java.util.ArrayList;
@@ -15,32 +16,31 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author SONY VAIO
  */
-public class GerenciaLocador extends javax.swing.JFrame {
+public class TelaGerenciaLocador extends javax.swing.JFrame {
 
     /**
      * Creates new form CaastroProprietario
      */
-    public GerenciaLocador() {
+    public TelaGerenciaLocador() {
         initComponents();
-        listarTabelaP();
+        listarTabelaLocador();
     }
-     public void listarTabelaP(){
+     public void listarTabelaLocador(){
        
 		Fachada f = new Fachada();
-		Proprietario e = new Proprietario();
-		ArrayList<Proprietario> listaProprietario;
-		listaProprietario = (ArrayList<Proprietario>) f.listallProprietario(e);
+		Locatario l = new Locatario();
+		ArrayList<Locatario> listaLocatario;
+		listaLocatario = (ArrayList<Locatario>) f.listallLocatario(l);
 
 		DefaultTableModel dtm = new DefaultTableModel();
 		dtm.setColumnIdentifiers(new String[] { "Nome", "Fone",
-				"Fone Comercial","Celular", "E-mail"});
-		for (int i = 0; i < listaProprietario.size(); i++) {
+				"Celular", "E-mail"});
+		for (int i = 0; i < listaLocatario.size(); i++) {
 			dtm.addRow(new String[] {// listaProprietario.get(i).getId() + "",
-					listaProprietario.get(i).getNome()+ "",
-					listaProprietario.get(i).getTelefone()+ "",
-					listaProprietario.get(i).getTelefone2()+ "",
-					listaProprietario.get(i).getTelefone3()+ "",
-					listaProprietario.get(i).getEmail()
+					listaLocatario.get(i).getNome()+ "",
+					listaLocatario.get(i).getTelefone()+ "",
+					listaLocatario.get(i).getTelefone2()+ "",
+					listaLocatario.get(i).getEmail()
                         });
 		}
 
@@ -91,6 +91,16 @@ public class GerenciaLocador extends javax.swing.JFrame {
         jButtonretornar.setText("Retornar");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Locador"));
+
+        jTextFieldNome.setEditable(false);
+
+        jTextFieldFone.setEditable(false);
+
+        jTextFieldFoneComercial.setEditable(false);
+
+        jTextFieldCelular.setEditable(false);
+
+        jTextFieldEmail.setEditable(false);
 
         jLabelNome.setText("Nome:");
 
@@ -207,6 +217,9 @@ public class GerenciaLocador extends javax.swing.JFrame {
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
+        TelaNovoAlterarLocador nloc = new  TelaNovoAlterarLocador();
+        this.setVisible(false);
+        nloc.setVisible(true);
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     /**
@@ -226,23 +239,22 @@ public class GerenciaLocador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GerenciaLocador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaLocador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GerenciaLocador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaLocador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GerenciaLocador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaLocador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GerenciaLocador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaLocador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GerenciaLocador().setVisible(true);
+                new TelaGerenciaLocador().setVisible(true);
             }
         });
     }

@@ -8,7 +8,6 @@ package GUI;
 import classesbasicas.Apartamento;
 import classesbasicas.Proprietario;
 import classesexception.ApartamentoException;
-import classesexception.ProprietarioException;
 import classesfachada.Fachada;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -20,13 +19,13 @@ import javax.swing.JOptionPane;
  *
  * @author SONY VAIO
  */
-public class NovoAlterarApt extends javax.swing.JFrame {
+public class TelaNovoAlterarApt extends javax.swing.JFrame {
 
     /**
-     * Creates new form NovoAlterarApt
+     * Creates new form TelaNovoAlterarApt
      */
     Apartamento p1 = new Apartamento();
-    public NovoAlterarApt(Apartamento p){
+    public TelaNovoAlterarApt(Apartamento p){
         initComponents();
         carregarProprietario();
         this.p1= p;
@@ -39,18 +38,18 @@ public class NovoAlterarApt extends javax.swing.JFrame {
         jComboBoxSituacao.setSelectedItem(p1.getSituacao());
         
     }
-    public NovoAlterarApt() {
+    public TelaNovoAlterarApt() {
         initComponents();
         carregarProprietario();
     }
     private void carregarProprietario() {
         Fachada fachada = new Fachada();
         Proprietario proprietario = new Proprietario();
-        ArrayList<Proprietario> listaUsuario;
-        listaUsuario = (ArrayList<Proprietario>) fachada.listallProprietario(proprietario);
+        ArrayList<Proprietario> listaProprietario;
+        listaProprietario = (ArrayList<Proprietario>) fachada.listallProprietario(proprietario);
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for (int i = 0; i < listaUsuario.size(); i++) {
-            modelo.addElement(listaUsuario.get(i).getNome());
+        for (int i = 0; i < listaProprietario.size(); i++) {
+            modelo.addElement(listaProprietario.get(i).getNome());
         }
         jComboBoxPropietario.setModel(modelo);
 	}
@@ -240,10 +239,10 @@ public class NovoAlterarApt extends javax.swing.JFrame {
         Fachada f = new Fachada();
         Apartamento a = new Apartamento();
         Proprietario p = new Proprietario();
-        ArrayList<Proprietario> listaProprietarios = new ArrayList<>();
-        p.setId(jComboBoxPropietario.getSelectedIndex()+1);
-        a.setProprietario(f.findProprietario(p));
        
+        p.setId(jComboBoxPropietario.getSelectedIndex()+1);
+        
+        a.setProprietario(f.findProprietario(p));
         a.setNumero(Integer.parseInt(jTextFieldApt.getText()));
         a.setNumerocelpe(jTextFieldCelpe.getText());
         a.setNumeronet(jTextFieldNet.getText());
@@ -265,7 +264,7 @@ public class NovoAlterarApt extends javax.swing.JFrame {
             f.saveApartamento(p1);
             
         } catch (ApartamentoException ex) {
-            Logger.getLogger(NovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
@@ -286,20 +285,21 @@ public class NovoAlterarApt extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NovoAlterarApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NovoAlterarApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NovoAlterarApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NovoAlterarApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NovoAlterarApt().setVisible(true);
+                new TelaNovoAlterarApt().setVisible(true);
             }
         });
     }

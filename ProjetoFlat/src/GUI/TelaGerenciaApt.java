@@ -6,29 +6,58 @@
 package GUI;
 
 import classesbasicas.Apartamento;
+import classesbasicas.CheckIn;
+import classesbasicas.Proprietario;
+import classesbasicas.Reserva;
 import classesfachada.Fachada;
 import java.util.ArrayList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author SONY VAIO
  */
-public class GerenciaApt extends javax.swing.JFrame {
+public class TelaGerenciaApt extends javax.swing.JFrame {
 
+    Apartamento apt = null;
+    ArrayList<Apartamento> listaApartamentoo;
+    ArrayList<Reserva> listaReserva;
+    ArrayList<CheckIn> listaCheckIn;
     /**
      * Creates new form CadastroApt
      */
-    public GerenciaApt() {
+    public TelaGerenciaApt() {
         initComponents();
         listarTabelaApt();
+        listarTabelaCheckIn();
+        listarTabelaReservas();
+        
+        jTableApt.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(listaApartamentoo != null && listaApartamentoo.size() > 0) {
+                    apt = listaApartamentoo.get(jTableApt.getSelectedRow());
+                    
+                    jComboBoxPropietario.setSelectedItem(apt.getProprietario().getNome());
+                    jTextFieldApt.setText(String.valueOf(apt.getNumero()));
+                    jTextFieldCelpe.setText(apt.getNumerocelpe());
+                    jTextFieldNet.setText(apt.getNumeronet());
+                    jComboBoxNQuartos.setSelectedItem(apt.getQuartos());
+                    jTextFieldVM.setText(String.valueOf(apt.getValorminimo()));
+                    jComboBoxSituacao.setSelectedItem(apt.getSituacao());
+                   
+                }
+            }
+        });
     }
     
      public void listarTabelaApt(){
        
 		Fachada f = new Fachada();
 		Apartamento e = new Apartamento();
-		ArrayList<Apartamento> listaApartamentoo;
+		
 		listaApartamentoo = (ArrayList<Apartamento>) f.listallApartamento(e);
 
 		DefaultTableModel dtm = new DefaultTableModel();
@@ -47,7 +76,54 @@ public class GerenciaApt extends javax.swing.JFrame {
 		jTableApt.setModel(dtm);
 	
     } 
+     public void listarTabelaReservas(){
+       
+		Fachada f = new Fachada();
+		Reserva e = new Reserva();
+		
+		listaReserva = (ArrayList<Reserva>) f.listallReserva(e);
 
+		DefaultTableModel dtm = new DefaultTableModel();
+		dtm.setColumnIdentifiers(new String[] { "Locatário", "Data de Entrada","Data de Saída",
+				"Situação"});
+		for (int i = 0; i < listaApartamentoo.size(); i++) {
+			dtm.addRow(new String[] { listaReserva.get(i).getId() + "",
+					listaReserva.get(i).getApartamento().getProprietario().getNome()+ "",
+					listaReserva.get(i).getDataentrada()+ "",
+					listaReserva.get(i).getDatasaida()+ "",
+					listaReserva.get(i).getSituacao()+ ""
+					
+                        });
+		}
+
+		jTableApt.setModel(dtm);
+	
+    } 
+     public void listarTabelaCheckIn(){
+       
+		Fachada f = new Fachada();
+		CheckIn e = new CheckIn();
+		
+		listaCheckIn = (ArrayList<CheckIn>) f.listallCheckIn(e);
+
+		DefaultTableModel dtm = new DefaultTableModel();
+		dtm.setColumnIdentifiers(new String[] { "Locatário", "Data de Entrada","Data de Saída",
+				"Situação"});
+		for (int i = 0; i < listaCheckIn.size(); i++) {
+			dtm.addRow(new String[] { listaCheckIn.get(i).getId() + "",
+					listaCheckIn.get(i).getLocatario().getNome()+ "",
+					listaCheckIn.get(i).getDataentrada()+ "",
+					listaCheckIn.get(i).getDatasaida()+ "",
+					listaCheckIn.get(i).getApartamento().getSituacao()+ ""
+					
+                        });
+		}
+
+		jTableApt.setModel(dtm);
+	
+    } 
+     
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,11 +178,19 @@ public class GerenciaApt extends javax.swing.JFrame {
 
         jLabelPropietario.setText("Propietário:");
 
+        jTextFieldApt.setEditable(false);
+
         jLabelApt.setText("Número Aptº:");
 
         jComboBoxNQuartos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabelVM.setText("Valor Mínimo:");
+
+        jTextFieldCelpe.setEditable(false);
+
+        jTextFieldNet.setEditable(false);
+
+        jTextFieldVM.setEditable(false);
 
         jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -173,6 +257,11 @@ public class GerenciaApt extends javax.swing.JFrame {
         );
 
         jButtonCadastrarSalvar.setText("Novo");
+        jButtonCadastrarSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarSalvarActionPerformed(evt);
+            }
+        });
 
         jTableReservas.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTableReservas.setModel(new javax.swing.table.DefaultTableModel(
@@ -283,11 +372,28 @@ public class GerenciaApt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAlterarActionPerformed
-       Apartamento p = new Apartamento();
+       Fachada fachada = new Fachada();
+       Apartamento a = new Apartamento();
+       Proprietario p = new Proprietario();
        
-        NovoAlterarApt a = new NovoAlterarApt(p);
-        a.setVisible(true);
+        p.setId(jComboBoxPropietario.getSelectedIndex()+1);
+                
+        a.setProprietario(fachada.findProprietario(p));
+        
+        
+        TelaNovoAlterarApt telaAlterarApt = new TelaNovoAlterarApt(a);
+        this.setVisible(false);
+        telaAlterarApt.setVisible(true);
+        
+        
     }//GEN-LAST:event_jToggleButtonAlterarActionPerformed
+
+    private void jButtonCadastrarSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarSalvarActionPerformed
+        // TODO add your handling code here:
+        TelaNovoAlterarApt napt = new TelaNovoAlterarApt();
+        this.setVisible(false);
+        napt.setVisible(true);
+    }//GEN-LAST:event_jButtonCadastrarSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,21 +412,23 @@ public class GerenciaApt extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GerenciaApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GerenciaApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GerenciaApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GerenciaApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaApt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GerenciaApt().setVisible(true);
+                new TelaGerenciaApt().setVisible(true);
             }
         });
     }

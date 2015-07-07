@@ -14,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mimmo
  */
-public class PainelPrincipal extends javax.swing.JFrame {
+public class TelaPainelPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form PainelPrincipal
      */
-    public PainelPrincipal() {
+    public TelaPainelPrincipal() {
         initComponents();
         listarTabelaP();
        
@@ -79,7 +79,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
         jButtonApt = new javax.swing.JButton();
         jButtonLocador = new javax.swing.JButton();
         jButtonReservas = new javax.swing.JButton();
-        jButtonLocatarios = new javax.swing.JButton();
+        jButtonProprietarios = new javax.swing.JButton();
         jButtonCheckout = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -159,16 +159,46 @@ public class PainelPrincipal extends javax.swing.JFrame {
         );
 
         jButtonCheckIn.setText("Check In");
+        jButtonCheckIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCheckInActionPerformed(evt);
+            }
+        });
 
         jButtonApt.setText("Aptº");
+        jButtonApt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAptActionPerformed(evt);
+            }
+        });
 
         jButtonLocador.setText("Locador");
+        jButtonLocador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLocadorActionPerformed(evt);
+            }
+        });
 
         jButtonReservas.setText("Reservas");
+        jButtonReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReservasActionPerformed(evt);
+            }
+        });
 
-        jButtonLocatarios.setText("Locatários");
+        jButtonProprietarios.setText("Proprietários");
+        jButtonProprietarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProprietariosActionPerformed(evt);
+            }
+        });
 
         jButtonCheckout.setText("Check Out");
+        jButtonCheckout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCheckoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -184,9 +214,9 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     .addComponent(jButtonReservas, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
                     .addComponent(jButtonLocador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonLocatarios, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonApt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonProprietarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonApt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -196,7 +226,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonReservas)
                     .addComponent(jButtonCheckIn)
-                    .addComponent(jButtonLocatarios))
+                    .addComponent(jButtonProprietarios))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonLocador)
@@ -204,6 +234,8 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     .addComponent(jButtonApt))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jButtonProprietarios.getAccessibleContext().setAccessibleName("Proprietários");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra2.png"))); // NOI18N
 
@@ -292,6 +324,46 @@ public class PainelPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonCheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckInActionPerformed
+        // TODO add your handling code here:
+        TelaGerenciaCheckIn tCheckIn = new TelaGerenciaCheckIn();
+        this.setVisible(false);
+        tCheckIn.setVisible(true);
+    }//GEN-LAST:event_jButtonCheckInActionPerformed
+
+    private void jButtonCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckoutActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButtonCheckoutActionPerformed
+
+    private void jButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReservasActionPerformed
+        // TODO add your handling code here:
+        TelaGerenciaReserva tRes = new TelaGerenciaReserva();
+        this.setVisible(false);
+        tRes.setVisible(true);
+    }//GEN-LAST:event_jButtonReservasActionPerformed
+
+    private void jButtonProprietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProprietariosActionPerformed
+        // TODO add your handling code here:
+        TelaGerenciaProprietario tPro = new TelaGerenciaProprietario();
+        this.setVisible(false);
+        tPro.setVisible(true);
+    }//GEN-LAST:event_jButtonProprietariosActionPerformed
+
+    private void jButtonLocadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocadorActionPerformed
+        // TODO add your handling code here:
+        TelaGerenciaLocador tLoc = new TelaGerenciaLocador();
+        this.setVisible(false);
+        tLoc.setVisible(true);
+    }//GEN-LAST:event_jButtonLocadorActionPerformed
+
+    private void jButtonAptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAptActionPerformed
+        // TODO add your handling code here:
+        TelaGerenciaApt tApt = new TelaGerenciaApt();
+        this.setVisible(false);
+        tApt.setVisible(true);
+    }//GEN-LAST:event_jButtonAptActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -309,21 +381,23 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PainelPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPainelPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PainelPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPainelPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PainelPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPainelPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PainelPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPainelPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PainelPrincipal().setVisible(true);
+                new TelaPainelPrincipal().setVisible(true);
             }
         });
     }
@@ -333,7 +407,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCheckIn;
     private javax.swing.JButton jButtonCheckout;
     private javax.swing.JButton jButtonLocador;
-    private javax.swing.JButton jButtonLocatarios;
+    private javax.swing.JButton jButtonProprietarios;
     private javax.swing.JButton jButtonReservas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

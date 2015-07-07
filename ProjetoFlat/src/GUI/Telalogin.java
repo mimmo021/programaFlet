@@ -4,17 +4,24 @@
  */
 package GUI;
 
+import classesbasicas.Login;
+import classesfachada.Fachada;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mimmo
  */
 public class Telalogin extends javax.swing.JFrame {
+Fachada f;
 
     /**
      * Creates new form Telalogin
      */
+    
     public Telalogin() {
         initComponents();
+        f = new Fachada();
     }
 
     /**
@@ -46,10 +53,9 @@ public class Telalogin extends javax.swing.JFrame {
         jLabelTitulo.setText("Login");
 
         jButtonLogin.setText("Login");
-
-        jTextFieldUserName.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUserNameActionPerformed(evt);
+                jButtonLoginActionPerformed(evt);
             }
         });
 
@@ -60,6 +66,11 @@ public class Telalogin extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra.png"))); // NOI18N
 
         jButtonNovoCadastro.setText("Novo Cadastro");
+        jButtonNovoCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoCadastroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,9 +133,29 @@ public class Telalogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserNameActionPerformed
-       // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldUserNameActionPerformed
+    private void jButtonNovoCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoCadastroActionPerformed
+        // TODO add your handling code here:
+        TelaNovoUsuario nu = new TelaNovoUsuario();
+        this.setVisible(false);
+        nu.setVisible(true);
+    }//GEN-LAST:event_jButtonNovoCadastroActionPerformed
+
+    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
+        // TODO add your handling code here:
+        if(jTextFieldUserName.getText()!= null && jTextFieldUserName.getText().trim().equals("")== false &&
+           jPasswordFieldPassWord.getPassword()!= null &&
+           jPasswordFieldPassWord.getPassword().toString().equals("")== false){
+            Login l = new Login();
+            l.setUsuario(jTextFieldUserName.getText());
+            l.setSenha(jPasswordFieldPassWord.getPassword().toString());
+            
+            f.findLogin(l);
+        }else{
+            JOptionPane.showMessageDialog(this,"Nome de Usuário ou Senha Inválidos","Erro",JOptionPane.ERROR_MESSAGE);
+        }
+        this.dispose();
+        
+    }//GEN-LAST:event_jButtonLoginActionPerformed
 
     /**
      * @param args the command line arguments

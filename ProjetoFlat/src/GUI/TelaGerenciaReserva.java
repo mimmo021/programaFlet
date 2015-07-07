@@ -14,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author SONY VAIO
  */
-public class GerenciaReserva extends javax.swing.JFrame {
+public class TelaGerenciaReserva extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroReserva
      */
-    public GerenciaReserva() {
+    public TelaGerenciaReserva() {
         initComponents();
         listarTabelaReserva();
     }
@@ -42,7 +42,7 @@ public class GerenciaReserva extends javax.swing.JFrame {
                         });
 		}
 
-		jTable1.setModel(dtm);
+		jTableReserva.setModel(dtm);
 	
     } 
 
@@ -55,6 +55,7 @@ public class GerenciaReserva extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupSimNaoTelaRes = new javax.swing.ButtonGroup();
         jLabelBarra = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabelDataEntrada = new javax.swing.JLabel();
@@ -78,7 +79,7 @@ public class GerenciaReserva extends javax.swing.JFrame {
         jButtonAlterar = new javax.swing.JButton();
         jButtonRetornar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableReserva = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,13 +103,27 @@ public class GerenciaReserva extends javax.swing.JFrame {
 
         jLabelDataSaida.setText("Data Saída:");
 
+        jTextFieldDataRegistro.setEditable(false);
+
+        jTextFieldDataEntrada.setEditable(false);
+
+        jTextFieldDataSaida.setEditable(false);
+
+        jTextFieldValor.setEditable(false);
+
         jComboBoxApt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jRadioButtonSim.setText("Sim");
+        jTextFieldValorCalcao.setEditable(false);
 
+        buttonGroupSimNaoTelaRes.add(jRadioButtonSim);
+        jRadioButtonSim.setText("Sim");
+        jRadioButtonSim.setEnabled(false);
+
+        buttonGroupSimNaoTelaRes.add(jRadioButtonNao);
         jRadioButtonNao.setText("Não");
+        jRadioButtonNao.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -192,12 +207,17 @@ public class GerenciaReserva extends javax.swing.JFrame {
         );
 
         jButtonNovo.setText("Novo");
+        jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoActionPerformed(evt);
+            }
+        });
 
         jButtonAlterar.setText("Alterar");
 
         jButtonRetornar.setText("Retornar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableReserva.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -208,7 +228,7 @@ public class GerenciaReserva extends javax.swing.JFrame {
                 "Data Entrada", "Data Saída", "Apt", "Situação"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableReserva);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,6 +269,13 @@ public class GerenciaReserva extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
+        // TODO add your handling code here:
+        TelaNovoAlterarReserva nRes = new TelaNovoAlterarReserva();
+        this.setVisible(false);
+        nRes.setVisible(true);
+    }//GEN-LAST:event_jButtonNovoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -266,26 +293,29 @@ public class GerenciaReserva extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GerenciaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GerenciaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GerenciaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GerenciaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GerenciaReserva().setVisible(true);
+                new TelaGerenciaReserva().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroupSimNaoTelaRes;
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonRetornar;
@@ -304,7 +334,7 @@ public class GerenciaReserva extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonNao;
     private javax.swing.JRadioButton jRadioButtonSim;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableReserva;
     private javax.swing.JTextField jTextFieldDataEntrada;
     private javax.swing.JTextField jTextFieldDataRegistro;
     private javax.swing.JTextField jTextFieldDataSaida;
