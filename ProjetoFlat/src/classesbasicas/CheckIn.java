@@ -19,7 +19,7 @@ private Double valortotaldiarias;
 @ManyToOne
 private Apartamento apartamento;
 @ManyToOne
-private Locatario locatario;
+private Locador locatario;
 private Date dataderegistro;
 private Date dataentrada;
 private Date datasaida;
@@ -27,7 +27,7 @@ private Date datasaida;
 private CheckOut checkout;
 public CheckIn(){
     this.apartamento = new Apartamento();
-    this.locatario = new Locatario();
+    this.locatario = new Locador();
     this.dataderegistro = new Date();
     this.datasaida = new Date();
     this.dataentrada = new Date();
@@ -105,14 +105,14 @@ public CheckIn(){
     /**
      * @return the locatario
      */
-    public Locatario getLocatario() {
+    public Locador getLocatario() {
         return locatario;
     }
 
     /**
      * @param locatario the locatario to set
      */
-    public void setLocatario(Locatario locatario) {
+    public void setLocatario(Locador locatario) {
         this.locatario = locatario;
     }
 

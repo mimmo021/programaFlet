@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Locatario {
+public class Locador {
 	@Id
 	@GeneratedValue
 	private int id;
@@ -45,7 +45,7 @@ public class Locatario {
 	private String placa;
         @OneToMany
         Collection<CheckIn> checkin;
-        public Locatario(){
+        public Locador(){
             this.checkin = new ArrayList<>();
             this.dataderegistro = new Date();
         }

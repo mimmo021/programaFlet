@@ -9,8 +9,8 @@ package classesexception;
  *
  * @author peppe
  */
-public class LocatarioException extends Exception {
-    public LocatarioException(String message){
+public class LocadorException extends Exception {
+    public LocadorException(String message){
         super(message);
     }
 }

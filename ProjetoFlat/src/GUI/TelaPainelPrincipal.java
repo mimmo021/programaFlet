@@ -27,24 +27,26 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
     public void listarTabelaP(){
        
 		Fachada f = new Fachada();
-		CheckIn e = new CheckIn();
+		CheckIn checkIn = new CheckIn();
 		ArrayList<CheckIn> listaCheckIno;
-		listaCheckIno = (ArrayList<CheckIn>) f.listallCheckIn(e);
-
-		DefaultTableModel dtm = new DefaultTableModel();
-		dtm.setColumnIdentifiers(new String[] { "Aptº", "Data Entrada",
-				"Data Saída","Locatario", "Situação"});
-		for (int i = 0; i < listaCheckIno.size(); i++) {
-			dtm.addRow(new String[] { listaCheckIno.get(i).getId() + "",
-					listaCheckIno.get(i).getApartamento().getNumero()+ "",
-					listaCheckIno.get(i).getDataentrada()+ "",
-					listaCheckIno.get(i).getDatasaida()+ "",
-					listaCheckIno.get(i).getLocatario().getNome()+ "",
-					listaCheckIno.get(i).getApartamento().getSituacao()
-                        });
-		}
-
-		jTablePrincipal.setModel(dtm);
+		      
+            listaCheckIno = (ArrayList<CheckIn>) f.listallCheckIn(checkIn);
+            
+            DefaultTableModel dtm = new DefaultTableModel();
+            dtm.setColumnIdentifiers(new String[]{"Aptº", "Data Entrada",
+                "Data Saída", "Locatario", "Situação"});
+            for (int i = 0; i < listaCheckIno.size(); i++) {
+                dtm.addRow(new String[]{listaCheckIno.get(i).getId() + "",
+                    listaCheckIno.get(i).getApartamento().getNumero() + "",
+                    listaCheckIno.get(i).getDataentrada() + "",
+                    listaCheckIno.get(i).getDatasaida() + "",
+                    listaCheckIno.get(i).getLocatario().getNome() + "",
+                    listaCheckIno.get(i).getApartamento().getSituacao()
+                });
+            }
+            
+            jTablePrincipal.setModel(dtm);
+        
 	
     } 
     
@@ -118,6 +120,11 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
                 "Aptº", "Data Entrada", "Data Saída", "Possui Reservas", "Situação"
             }
         ));
+        jTablePrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablePrincipalMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTablePrincipal);
 
         jLabelNQuartos.setText("Nº de Quartos:");
@@ -234,8 +241,6 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
                     .addComponent(jButtonApt))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jButtonProprietarios.getAccessibleContext().setAccessibleName("Proprietários");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra2.png"))); // NOI18N
 
@@ -364,6 +369,21 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         tApt.setVisible(true);
     }//GEN-LAST:event_jButtonAptActionPerformed
 
+    private void jTablePrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePrincipalMouseClicked
+        // TODO add your handling code here:
+        Fachada f = new Fachada();
+        CheckIn chekinSelecionado = new CheckIn();
+        chekinSelecionado.setId(jTablePrincipal.getSelectedRow()+1);
+        f.findCheckIn(chekinSelecionado);
+        
+        jTextFieldApt.setText(chekinSelecionado.getApartamento().getNumero()+"");
+        jTextFieldVM.setText(chekinSelecionado.getApartamento().getValorminimo()+"");
+        jTextFieldNQuartos.setText(chekinSelecionado.getApartamento().getQuartos()+"");
+        jTextFieldSituacao.setText(chekinSelecionado.getApartamento().getSituacao());
+        jTextFieldLocador.setText(chekinSelecionado.getApartamento().getProprietario().getNome());
+         
+    }//GEN-LAST:event_jTablePrincipalMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -391,8 +411,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+       
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

@@ -11,8 +11,7 @@ import classesbasicas.Proprietario;
 import classesbasicas.Reserva;
 import classesfachada.Fachada;
 import java.util.ArrayList;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,17 +23,18 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
     Apartamento apt = null;
     ArrayList<Apartamento> listaApartamentoo;
     ArrayList<Reserva> listaReserva;
-    ArrayList<CheckIn> listaCheckIn;
+    ArrayList<CheckIn> listaCheckIns;
     /**
      * Creates new form CadastroApt
      */
     public TelaGerenciaApt() {
         initComponents();
+        carregarProprietario();
         listarTabelaApt();
         listarTabelaCheckIn();
         listarTabelaReservas();
         
-        jTableApt.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        /*jTableApt.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(listaApartamentoo != null && listaApartamentoo.size() > 0) {
@@ -50,25 +50,37 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
                    
                 }
             }
-        });
+        });*/
     }
+    
+    private void carregarProprietario() {
+        Fachada fachada = new Fachada();
+        Proprietario proprietario = new Proprietario();
+        ArrayList<Proprietario> listaProprietario;
+        listaProprietario = (ArrayList<Proprietario>) fachada.listallProprietario(proprietario);
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (int i = 0; i < listaProprietario.size(); i++) {
+            modelo.addElement(listaProprietario.get(i).getNome());
+        }
+        jComboBoxPropietario.setModel(modelo);
+	}
     
      public void listarTabelaApt(){
        
 		Fachada f = new Fachada();
 		Apartamento e = new Apartamento();
-		
-		listaApartamentoo = (ArrayList<Apartamento>) f.listallApartamento(e);
-
+		ArrayList<Apartamento> listaApartamentos;
+		listaApartamentos = (ArrayList<Apartamento>) f.listallApartamento(e);
+                
 		DefaultTableModel dtm = new DefaultTableModel();
-		dtm.setColumnIdentifiers(new String[] { "Proprietario", "N°Apt","N°Quarto",
+		dtm.setColumnIdentifiers(new String[] { "Id","Proprietario", "N°Apt","N°Quarto",
 				"Situacao"});
-		for (int i = 0; i < listaApartamentoo.size(); i++) {
-			dtm.addRow(new String[] { listaApartamentoo.get(i).getId() + "",
-					listaApartamentoo.get(i).getProprietario().getNome()+ "",
-					listaApartamentoo.get(i).getNumero()+ "",
-					listaApartamentoo.get(i).getQuartos()+ "",
-					listaApartamentoo.get(i).getSituacao()+ ""
+		for (int i = 0; i < listaApartamentos.size(); i++) {
+			dtm.addRow(new String[] { listaApartamentos.get(i).getId() + "",
+					listaApartamentos.get(i).getProprietario().getNome()+ "",
+					listaApartamentos.get(i).getNumero()+ "",
+					listaApartamentos.get(i).getQuartos()+ "",
+					listaApartamentos.get(i).getSituacao()+ ""
 					
                         });
 		}
@@ -80,46 +92,46 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
        
 		Fachada f = new Fachada();
 		Reserva e = new Reserva();
-		
-		listaReserva = (ArrayList<Reserva>) f.listallReserva(e);
+		ArrayList<Reserva> listaReservas;
+		listaReservas = (ArrayList<Reserva>) f.listallReserva(e);
 
-		DefaultTableModel dtm = new DefaultTableModel();
-		dtm.setColumnIdentifiers(new String[] { "Locatário", "Data de Entrada","Data de Saída",
+		DefaultTableModel dtmr = new DefaultTableModel();
+		dtmr.setColumnIdentifiers(new String[] { "Id","Locatário", "Data de Entrada","Data de Saída",
 				"Situação"});
-		for (int i = 0; i < listaApartamentoo.size(); i++) {
-			dtm.addRow(new String[] { listaReserva.get(i).getId() + "",
-					listaReserva.get(i).getApartamento().getProprietario().getNome()+ "",
-					listaReserva.get(i).getDataentrada()+ "",
-					listaReserva.get(i).getDatasaida()+ "",
-					listaReserva.get(i).getSituacao()+ ""
+		for (int i = 0; i < listaReservas.size(); i++) {
+			dtmr.addRow(new String[] {listaReservas.get(i).getId() + "",
+					listaReservas.get(i).getApartamento().getProprietario().getNome()+ "",
+					listaReservas.get(i).getDataentrada()+ "",
+					listaReservas.get(i).getDatasaida()+ "",
+					listaReservas.get(i).getSituacao()+ ""
 					
                         });
 		}
 
-		jTableApt.setModel(dtm);
+		jTableReservas.setModel(dtmr);
 	
     } 
      public void listarTabelaCheckIn(){
        
 		Fachada f = new Fachada();
 		CheckIn e = new CheckIn();
-		
-		listaCheckIn = (ArrayList<CheckIn>) f.listallCheckIn(e);
+		ArrayList<CheckIn> listaCheckIns;
+		listaCheckIns = (ArrayList<CheckIn>) f.listallCheckIn(e);
 
-		DefaultTableModel dtm = new DefaultTableModel();
-		dtm.setColumnIdentifiers(new String[] { "Locatário", "Data de Entrada","Data de Saída",
+		DefaultTableModel dtmc = new DefaultTableModel();
+		dtmc.setColumnIdentifiers(new String[] { "id","Locatário", "Data de Entrada","Data de Saída",
 				"Situação"});
-		for (int i = 0; i < listaCheckIn.size(); i++) {
-			dtm.addRow(new String[] { listaCheckIn.get(i).getId() + "",
-					listaCheckIn.get(i).getLocatario().getNome()+ "",
-					listaCheckIn.get(i).getDataentrada()+ "",
-					listaCheckIn.get(i).getDatasaida()+ "",
-					listaCheckIn.get(i).getApartamento().getSituacao()+ ""
+		for (int i = 0; i < listaCheckIns.size(); i++) {
+			dtmc.addRow(new String[] { listaCheckIns.get(i).getId() + "",
+					listaCheckIns.get(i).getLocatario().getNome()+ "",
+					listaCheckIns.get(i).getDataentrada()+ "",
+					listaCheckIns.get(i).getDatasaida()+ "",
+					listaCheckIns.get(i).getApartamento().getSituacao()+ ""
 					
                         });
 		}
 
-		jTableApt.setModel(dtm);
+		jTableChecIn.setModel(dtmc);
 	
     } 
      
@@ -182,7 +194,8 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
 
         jLabelApt.setText("Número Aptº:");
 
-        jComboBoxNQuartos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxNQuartos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2" }));
+        jComboBoxNQuartos.setEnabled(false);
 
         jLabelVM.setText("Valor Mínimo:");
 
@@ -192,9 +205,11 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
 
         jTextFieldVM.setEditable(false);
 
-        jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vago", "Ocupado", "Reservado" }));
+        jComboBoxSituacao.setEnabled(false);
 
         jComboBoxPropietario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxPropietario.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -314,6 +329,11 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
                 "Propietario", "Nº do Apt", "Nº de Quartos", "Situação"
             }
         ));
+        jTableApt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableAptMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTableApt);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -370,18 +390,10 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+Apartamento aptSelecionado = new Apartamento();
     private void jToggleButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAlterarActionPerformed
-       Fachada fachada = new Fachada();
-       Apartamento a = new Apartamento();
-       Proprietario p = new Proprietario();
-       
-        p.setId(jComboBoxPropietario.getSelectedIndex()+1);
-                
-        a.setProprietario(fachada.findProprietario(p));
-        
-        
-        TelaNovoAlterarApt telaAlterarApt = new TelaNovoAlterarApt(a);
+    
+        TelaNovoAlterarApt telaAlterarApt = new TelaNovoAlterarApt(aptSelecionado);
         this.setVisible(false);
         telaAlterarApt.setVisible(true);
         
@@ -394,6 +406,28 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         this.setVisible(false);
         napt.setVisible(true);
     }//GEN-LAST:event_jButtonCadastrarSalvarActionPerformed
+
+    private void jTableAptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAptMouseClicked
+        // TODO add your handling code here:
+        
+       Fachada fachada = new Fachada();
+       Apartamento a = new Apartamento();
+       
+       int linha_selecionada = jTableApt.getSelectedRow();
+       a.setId(Integer.parseInt(jTableApt.getValueAt(linha_selecionada, 0).toString()));
+       
+       aptSelecionado=(fachada.findApartamento(a));
+       
+      jComboBoxPropietario.setSelectedItem(aptSelecionado.getProprietario().getNome());
+      jTextFieldApt.setText(aptSelecionado.getNumero()+"");
+      jTextFieldCelpe.setText(aptSelecionado.getNumerocelpe());
+      jTextFieldNet.setText(aptSelecionado.getNumeronet());
+      jComboBoxNQuartos.setSelectedItem(aptSelecionado.getQuartos()+"");
+      jTextFieldVM.setText(aptSelecionado.getValorminimo()+"");
+      jComboBoxSituacao.setSelectedItem(aptSelecionado.getSituacao());
+      
+                
+    }//GEN-LAST:event_jTableAptMouseClicked
 
     /**
      * @param args the command line arguments

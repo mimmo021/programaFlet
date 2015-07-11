@@ -8,21 +8,21 @@ package classesfachada;
 import classesbasicas.Apartamento;
 import classesbasicas.CheckIn;
 import classesbasicas.CheckOut;
-import classesbasicas.Locatario;
+import classesbasicas.Locador;
 import classesbasicas.Login;
 import classesbasicas.Proprietario;
 import classesbasicas.Reserva;
 import classesexception.ApartamentoException;
 import classesexception.CheckInException;
 import classesexception.CheckOutException;
-import classesexception.LocatarioException;
+import classesexception.LocadorException;
 import classesexception.LoginException;
 import classesexception.ProprietarioException;
 import classesexception.ReservaException;
 import classesnegocios.ApartamentoNegocios;
 import classesnegocios.CheckInNegocios;
 import classesnegocios.CheckOutNegocios;
-import classesnegocios.LocatarioNegocios;
+import classesnegocios.LocadorNegocios;
 import classesnegocios.LoginNegocios;
 import classesnegocios.ProprietarioNegocios;
 import classesnegocios.ReservaNegocios;
@@ -36,7 +36,7 @@ public class Fachada {
     private ApartamentoNegocios apartamentonegocios;
     private CheckInNegocios checkinnegocios;
     private CheckOutNegocios checkoutnegocios;
-    private LocatarioNegocios locatarionegocios;
+    private LocadorNegocios locatarionegocios;
     private LoginNegocios loginnegocios;
     private ProprietarioNegocios proprietarionegocios;
     private ReservaNegocios reservanegocios;
@@ -45,7 +45,7 @@ public class Fachada {
         this.apartamentonegocios = new ApartamentoNegocios();
         this.checkinnegocios = new CheckInNegocios();
         this.checkoutnegocios = new CheckOutNegocios();
-        this.locatarionegocios = new LocatarioNegocios();
+        this.locatarionegocios = new LocadorNegocios();
         this.loginnegocios = new LoginNegocios();
         this.proprietarionegocios = new ProprietarioNegocios();
         this.reservanegocios = new ReservaNegocios();
@@ -95,19 +95,19 @@ public class Fachada {
 	public List<CheckOut> listallCheckOut(CheckOut a) {
 		return checkoutnegocios.listall(a);
 	}
-        public void saveLocatario(Locatario a) throws LocatarioException {
+        public void saveLocador(Locador a) throws LocadorException {
 		locatarionegocios.save(a);
 	}
 
-	public void deleteLocatario(Locatario a) {
+	public void deleteLocador(Locador a) {
 		locatarionegocios.delete(a);
 	}
 
-	public Locatario findLocatario(Locatario a) {
+	public Locador findLocador(Locador a) {
 		return locatarionegocios.find(a);
 	}
 
-	public List<Locatario> listallLocatario(Locatario a) {
+	public List<Locador> listallLocador(Locador a) {
 		return locatarionegocios.listall(a);
 	}
         public void saveLogin(Login a) throws LoginException {

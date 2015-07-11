@@ -33,7 +33,7 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         jTextFieldApt.setText(String.valueOf(p1.getNumero()));
         jTextFieldCelpe.setText(p1.getNumerocelpe());
         jTextFieldNet.setText(p1.getNumeronet());
-        jComboBoxNQuartos.setSelectedItem(p1.getQuartos());
+        jComboBoxNQuartos.setSelectedItem(p1.getQuartos()+"");
         jTextFieldVM.setText(String.valueOf(p1.getValorminimo()));
         jComboBoxSituacao.setSelectedItem(p1.getSituacao());
         
@@ -119,27 +119,24 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelPropietario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxPropietario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelSituação)
-                            .addComponent(jLabelNQuartos)
-                            .addComponent(jLabelApt)
-                            .addComponent(jLabelCelpe)
-                            .addComponent(jLabelNet)
-                            .addComponent(jLabelVM))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldApt)
-                            .addComponent(jTextFieldCelpe)
-                            .addComponent(jTextFieldNet)
-                            .addComponent(jComboBoxNQuartos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldVM)
-                            .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelSituação)
+                    .addComponent(jLabelNQuartos)
+                    .addComponent(jLabelApt)
+                    .addComponent(jLabelCelpe)
+                    .addComponent(jLabelNet)
+                    .addComponent(jLabelVM)
+                    .addComponent(jLabelPropietario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextFieldApt)
+                        .addComponent(jTextFieldCelpe)
+                        .addComponent(jTextFieldNet)
+                        .addComponent(jComboBoxNQuartos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldVM)
+                        .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(

@@ -5,9 +5,11 @@
  */
 package GUI;
 
+import classesbasicas.Apartamento;
 import classesbasicas.Reserva;
 import classesfachada.Fachada;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,30 +23,45 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
      */
     public TelaGerenciaReserva() {
         initComponents();
+        carregarComboApt();
         listarTabelaReserva();
+        jButtonAlterar.setEnabled(false);
     }
-     public void listarTabelaReserva(){
-       
-		Fachada f = new Fachada();
-		Reserva e = new Reserva();
-		ArrayList<Reserva> listaReservao;
-		listaReservao = (ArrayList<Reserva>) f.listallReserva(e);
 
-		DefaultTableModel dtm = new DefaultTableModel();
-		dtm.setColumnIdentifiers(new String[] {  "Data Entrada",
-				"Data Saída","Apartamento", "Situação"});
-		for (int i = 0; i < listaReservao.size(); i++) {
-			dtm.addRow(new String[] { listaReservao.get(i).getId() + "",
-					listaReservao.get(i).getDataentrada()+ "",
-					listaReservao.get(i).getDatasaida()+ "",
-                                        listaReservao.get(i).getApartamento().getNumero()+ "",
-					listaReservao.get(i).getApartamento().getSituacao()
-                        });
-		}
+    private void carregarComboApt() {
+        Fachada fachada = new Fachada();
+        Apartamento apt = new Apartamento();
+        ArrayList<Apartamento> listaApartamento;
+        listaApartamento = (ArrayList<Apartamento>) fachada.listallApartamento(apt);
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (int i = 0; i < listaApartamento.size(); i++) {
+            modelo.addElement(listaApartamento.get(i).getNumero());
+        }
+        jComboBoxApt.setModel(modelo);
+    }
 
-		jTableReserva.setModel(dtm);
-	
-    } 
+    public void listarTabelaReserva() {
+
+        Fachada f = new Fachada();
+        Reserva e = new Reserva();
+        ArrayList<Reserva> listaReservas;
+        listaReservas = (ArrayList<Reserva>) f.listallReserva(e);
+
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.setColumnIdentifiers(new String[]{"Data Entrada",
+            "Data Saída", "Apartamento", "Situação"});
+        for (int i = 0; i < listaReservas.size(); i++) {
+            dtm.addRow(new String[]{listaReservas.get(i).getId() + "",
+                listaReservas.get(i).getDataentrada() + "",
+                listaReservas.get(i).getDatasaida() + "",
+                listaReservas.get(i).getApartamento().getNumero() + "",
+                listaReservas.get(i).getApartamento().getSituacao()
+            });
+        }
+
+        jTableReserva.setModel(dtm);
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -112,8 +129,10 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         jTextFieldValor.setEditable(false);
 
         jComboBoxApt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxApt.setEnabled(false);
 
-        jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ATIVO", "INATIVO" }));
+        jComboBoxSituacao.setEnabled(false);
 
         jTextFieldValorCalcao.setEditable(false);
 
@@ -130,42 +149,38 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelDataEntrada)
-                        .addGap(8, 8, 8)
-                        .addComponent(jTextFieldDataEntrada))
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabelDataRegistro))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelDataSaida)
                             .addComponent(jLabelApt)
                             .addComponent(jLabelValor)
                             .addComponent(jLabelSituacao)
-                            .addComponent(jLabelCalcao))
+                            .addComponent(jLabelCalcao)
+                            .addComponent(jLabelValorCalcao)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabelDataEntrada)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextFieldDataRegistro)
+                        .addComponent(jTextFieldDataEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxApt, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jRadioButtonSim)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldDataSaida)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxApt, 0, 101, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldValor)
-                                    .addComponent(jComboBoxSituacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelDataRegistro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldDataRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelValorCalcao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jRadioButtonSim)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButtonNao))
-                            .addComponent(jTextFieldValorCalcao, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jRadioButtonNao))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldValorCalcao, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldDataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,11 +214,11 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelValorCalcao)
                     .addComponent(jTextFieldValorCalcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelSituacao)
                     .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jButtonNovo.setText("Novo");
@@ -214,6 +229,11 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         });
 
         jButtonAlterar.setText("Alterar");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         jButtonRetornar.setText("Retornar");
 
@@ -228,6 +248,11 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
                 "Data Entrada", "Data Saída", "Apt", "Situação"
             }
         ));
+        jTableReserva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableReservaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableReserva);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -240,13 +265,13 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonRetornar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,20 +286,58 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
                         .addComponent(jButtonAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonRetornar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+ 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
         TelaNovoAlterarReserva nRes = new TelaNovoAlterarReserva();
         this.setVisible(false);
         nRes.setVisible(true);
     }//GEN-LAST:event_jButtonNovoActionPerformed
+    
+    
+    Reserva resSelecionado = new Reserva();
+    private void jTableReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableReservaMouseClicked
+        // TODO add your handling code here:
+
+        Fachada fachada = new Fachada();
+        Reserva r = new Reserva();
+
+        int linha_selecionada = jTableReserva.getSelectedRow();
+        r.setId(Integer.parseInt(jTableReserva.getValueAt(linha_selecionada, 0).toString()));
+
+        resSelecionado = (fachada.findReserva(r));
+
+        jTextFieldDataRegistro.setText(resSelecionado.getDataregistro() + "");
+        jTextFieldDataEntrada.setText(resSelecionado.getDataentrada() + "");
+        jTextFieldDataSaida.setText(resSelecionado.getDatasaida() + "");
+        jComboBoxApt.setSelectedItem(resSelecionado.getApartamento().getNumero());
+        jTextFieldValor.setText(resSelecionado.getValor() + "");
+        if (resSelecionado.getCalcao()) {
+            jRadioButtonSim.setEnabled(true);
+            jTextFieldValorCalcao.setText(resSelecionado.getValorcalcao() + "");
+
+        } else {
+            jRadioButtonSim.setEnabled(false);
+        }
+        jComboBoxSituacao.setSelectedItem(resSelecionado.getSituacao());
+        jButtonAlterar.setEnabled(true);
+
+    }//GEN-LAST:event_jTableReservaMouseClicked
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        // TODO add your handling code here:
+        TelaNovoAlterarReserva nRes = new TelaNovoAlterarReserva(resSelecionado);
+        this.setVisible(false);
+        nRes.setVisible(true);
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**
      * @param args the command line arguments

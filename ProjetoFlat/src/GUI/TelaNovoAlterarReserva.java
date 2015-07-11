@@ -6,13 +6,11 @@
 package GUI;
 
 import classesbasicas.Apartamento;
-import classesbasicas.Locatario;
-import classesbasicas.Proprietario;
 import classesbasicas.Reserva;
-import classesexception.LocatarioException;
 import classesexception.ReservaException;
 import classesfachada.Fachada;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import util.Datas;
@@ -26,12 +24,63 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
     /**
      * Creates new form TelaNovoAlterarReserva
      */
-    Reserva r1 = new Reserva();
+    //Reserva r1 = new Reserva();
     public TelaNovoAlterarReserva() {
         initComponents();
+        carregarComboApt();
         carregarApts();
+        //padrão = botão Radio "não" marcado
+        jRadioButtonNao.setSelected(true);
+        jRadioButtonNaoActionPerformed(null);
+        //data de registro
+        Date datareg;
+        datareg = Datas.obterTimestampAtual();
+        String dataRegT = Datas.formatarData(datareg, "dd/MM/yyyy");
+        jTextFieldDataRegistro.setText(dataRegT);
+        jTextFieldDataRegistro.setEnabled(false);
+
+//configurações dos botoes Salvar e Alterar
+        jButtonSalvar.setEnabled(true);
+        jButtonAlterar.setEnabled(false);
+
     }
-private void carregarApts() {
+
+    TelaNovoAlterarReserva(Reserva resSelecionado) {
+        initComponents();
+        carregarComboApt();
+        carregarApts();
+
+        jTextFieldDataRegistro.setText(resSelecionado.getDataregistro() + "");
+        jTextFieldDataEntrada.setText(resSelecionado.getDataentrada() + "");
+        jTextFieldDataSaida.setText(resSelecionado.getDatasaida() + "");
+        jComboBoxApt.setSelectedItem(resSelecionado.getApartamento().getNumero());
+        jTextFieldValor.setText(resSelecionado.getValor() + "");
+        if (resSelecionado.getCalcao()) {
+            jRadioButtonSim.setEnabled(true);
+            jTextFieldValorCalcao.setText(resSelecionado.getValorcalcao() + "");
+
+        } else {
+            jRadioButtonSim.setEnabled(false);
+        }
+        jComboBoxSituacao.setSelectedItem(resSelecionado.getSituacao());
+//configurações dos botoes Salvar e Alterar
+        jButtonSalvar.setEnabled(false);
+        jButtonAlterar.setEnabled(true);
+    }
+
+    private void carregarComboApt() {
+        Fachada fachada = new Fachada();
+        Apartamento apt = new Apartamento();
+        ArrayList<Apartamento> listaApartamento;
+        listaApartamento = (ArrayList<Apartamento>) fachada.listallApartamento(apt);
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (int i = 0; i < listaApartamento.size(); i++) {
+            modelo.addElement(listaApartamento.get(i).getNumero());
+        }
+        jComboBoxApt.setModel(modelo);
+    }
+
+    private void carregarApts() {
         Fachada fachada = new Fachada();
         Apartamento apto = new Apartamento();
         ArrayList<Apartamento> listaApto;
@@ -41,7 +90,8 @@ private void carregarApts() {
             modelo.addElement(listaApto.get(i).getNumero());
         }
         jComboBoxApt.setModel(modelo);
-	}
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,37 +172,30 @@ private void carregarApts() {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDataEntrada)
-                            .addComponent(jLabelDataRegistro)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDataSaida)
-                            .addComponent(jLabelApt)
-                            .addComponent(jLabelValor)
-                            .addComponent(jLabelSituacao)
-                            .addComponent(jLabelCalcao)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabelValorCalcao)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldValorCalcao, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDataEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                    .addComponent(jTextFieldDataRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jLabelDataEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                    .addComponent(jLabelDataRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelSituacao)
+                    .addComponent(jLabelValor)
+                    .addComponent(jLabelValorCalcao)
+                    .addComponent(jLabelCalcao)
+                    .addComponent(jLabelApt)
+                    .addComponent(jLabelDataSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jTextFieldDataEntrada, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldValorCalcao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jRadioButtonSim)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButtonNao))
-                    .addComponent(jComboBoxApt, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(jComboBoxApt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldDataSaida, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldDataRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +255,7 @@ private void carregarApts() {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,45 +283,46 @@ private void carregarApts() {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         // TODO add your handling code here:
-        try{
-        Fachada fachada = new Fachada();
-        Apartamento ap = new Apartamento();
-        Reserva r = new Reserva();
-       
-        ap.setId(jComboBoxApt.getSelectedIndex()+1);
-        r.setApartamento(fachada.findApartamento(ap));
-        
-        r.setDataregistro(Datas.criarData(jTextFieldDataRegistro.getText()));
-        r.setDataentrada(Datas.criarData(jTextFieldDataEntrada.getText()));
-        r.setDatasaida(Datas.criarData(jTextFieldDataSaida.getText()));
-    
-        r.setValor(Double.parseDouble(jTextFieldValor.getText()));
-        
-        if(jRadioButtonSim.isSelected()){
-            r.setCalcao(true);
-        }
-        if(jRadioButtonNao.isSelected()){
-            r.setCalcao(false);
-        }
-        
-        r.setValorcalcao(Double.parseDouble(jTextFieldValorCalcao.getText()));
-       
-        
-        
-        fachada.saveReserva(r);
-        }catch(ReservaException ex) {
+        try {
+            Fachada fachada = new Fachada();
+            Apartamento ap = new Apartamento();
+            Reserva r = new Reserva();
+
+            ap.setId(jComboBoxApt.getSelectedIndex() + 1);
+            r.setApartamento(fachada.findApartamento(ap));
+
+            r.setDataregistro(Datas.criarData(jTextFieldDataRegistro.getText()));
+            r.setDataentrada(Datas.criarData(jTextFieldDataEntrada.getText()));
+            r.setDatasaida(Datas.criarData(jTextFieldDataSaida.getText()));
+
+            r.setValor(Double.parseDouble(jTextFieldValor.getText()));
+
+            if (jRadioButtonSim.isSelected()) {
+                r.setCalcao(true);
+            }
+            if (jRadioButtonNao.isSelected()) {
+                r.setCalcao(false);
+            }
+
+            r.setValorcalcao(Double.parseDouble(jTextFieldValorCalcao.getText()));
+
+            fachada.saveReserva(r);
+
+        } catch (ReservaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jRadioButtonSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSimActionPerformed
         // TODO add your handling code here:
-         jRadioButtonNao.setSelected(false);
+        jTextFieldValorCalcao.setEnabled(true);
+        jTextFieldValorCalcao.setText("");
     }//GEN-LAST:event_jRadioButtonSimActionPerformed
 
     private void jRadioButtonNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNaoActionPerformed
         // TODO add your handling code here:
-        jRadioButtonSim.setSelected(false);
+        jTextFieldValorCalcao.setText("0,00");
+        jTextFieldValorCalcao.setEnabled(false);
     }//GEN-LAST:event_jRadioButtonNaoActionPerformed
 
     /**

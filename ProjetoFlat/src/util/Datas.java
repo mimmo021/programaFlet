@@ -78,13 +78,13 @@ public class Datas {
      
     /**
      * Criar uma data
-     * @param formatoData yyyy-MM-dd
+     * @param formatoData dd-MM-yyyy
      * @return
      */
     public static Date criarData(String dataFormatada){
         Date data = null;
         try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             data = format.parse(dataFormatada);
         } catch (ParseException e) {
             e.printStackTrace();
