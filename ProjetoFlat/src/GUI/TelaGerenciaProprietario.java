@@ -20,8 +20,10 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
     /**
      * Creates new form CaastroProprietario
      */
-    public TelaGerenciaProprietario() {
+    TelaPainelPrincipal tpp;
+    public TelaGerenciaProprietario(TelaPainelPrincipal tpp) {
         initComponents();
+        this.tpp = tpp;
         listarTabelaProprietario();
         
        
@@ -29,6 +31,10 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
     Fachada f = new Fachada();
     Proprietario e = new Proprietario();
     ArrayList<Proprietario> listaProprietario;
+
+    TelaGerenciaProprietario() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
      public void listarTabelaProprietario(){
        
@@ -36,11 +42,8 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
     Proprietario e = new Proprietario();
     ArrayList<Proprietario> listaProprietario;
          
-         
          listaProprietario = (ArrayList<Proprietario>) f.listallProprietario(e);
 		
-       
-       
 		DefaultTableModel dtm = new DefaultTableModel();
 		dtm.setColumnIdentifiers(new String[] {"Id", "Nome", "Fone",
 				"Fone Comercial","Celular", "E-mail"});
@@ -56,8 +59,6 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
 
 		jTableProprietario.setModel(dtm);
               
-                
-	
     } 
 
     /**
@@ -106,6 +107,11 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
         });
 
         jButtonretornar.setText("Retornar");
+        jButtonretornar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonretornarActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Proprietário"));
 
@@ -192,7 +198,6 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
             }
         ));
         jTableProprietario.setRequestFocusEnabled(false);
-        jTableProprietario.setRowSelectionAllowed(true);
         jTableProprietario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableProprietarioMouseClicked(evt);
@@ -269,10 +274,16 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
          TelaNovoAlterarProprietario nPro = new  TelaNovoAlterarProprietario(this.proSelecionado);
-         
         this.setVisible(false);
         nPro.setVisible(true);
     }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jButtonretornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonretornarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        tpp.setVisible(true);
+        tpp.listarTabelaP();
+    }//GEN-LAST:event_jButtonretornarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,8 +312,7 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
         
 
         /* Create and display the form */

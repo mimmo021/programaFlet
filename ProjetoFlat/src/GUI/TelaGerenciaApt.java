@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaGerenciaApt extends javax.swing.JFrame {
 
+   
     Apartamento apt = null;
     ArrayList<Apartamento> listaApartamentoo;
     ArrayList<Reserva> listaReserva;
@@ -27,30 +28,20 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
     /**
      * Creates new form CadastroApt
      */
-    public TelaGerenciaApt() {
+    TelaPainelPrincipal tpp;
+    public TelaGerenciaApt(TelaPainelPrincipal tpp) {
         initComponents();
+        this.tpp = tpp;
         carregarProprietario();
         listarTabelaApt();
         listarTabelaCheckIn();
         listarTabelaReservas();
         
-        /*jTableApt.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if(listaApartamentoo != null && listaApartamentoo.size() > 0) {
-                    apt = listaApartamentoo.get(jTableApt.getSelectedRow());
-                    
-                    jComboBoxPropietario.setSelectedItem(apt.getProprietario().getNome());
-                    jTextFieldApt.setText(String.valueOf(apt.getNumero()));
-                    jTextFieldCelpe.setText(apt.getNumerocelpe());
-                    jTextFieldNet.setText(apt.getNumeronet());
-                    jComboBoxNQuartos.setSelectedItem(apt.getQuartos());
-                    jTextFieldVM.setText(String.valueOf(apt.getValorminimo()));
-                    jComboBoxSituacao.setSelectedItem(apt.getSituacao());
-                   
-                }
-            }
-        });*/
+    }
+
+    public TelaGerenciaApt() {
+        
+    
     }
     
     private void carregarProprietario() {
@@ -172,6 +163,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         jTableChecIn = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableApt = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -336,6 +328,13 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTableApt);
 
+        jButton1.setText("Retornar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -352,7 +351,8 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jToggleButtonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonCadastrarSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonCadastrarSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabelReservas)
@@ -372,31 +372,36 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelCheckIn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonCadastrarSalvar)
                                 .addGap(5, 5, 5)
                                 .addComponent(jToggleButtonAlterar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonRemover))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelCheckIn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButtonRemover)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1))))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        getAccessibleContext().setAccessibleName("telaGerenciaApt");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 Apartamento aptSelecionado = new Apartamento();
     private void jToggleButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAlterarActionPerformed
     
-        TelaNovoAlterarApt telaAlterarApt = new TelaNovoAlterarApt(aptSelecionado);
-        this.setVisible(false);
+        TelaNovoAlterarApt telaAlterarApt = new TelaNovoAlterarApt(aptSelecionado );
+        this.setVisible(true);
+        this.setEnabled(false);
         telaAlterarApt.setVisible(true);
-        
         
     }//GEN-LAST:event_jToggleButtonAlterarActionPerformed
 
@@ -425,9 +430,16 @@ Apartamento aptSelecionado = new Apartamento();
       jComboBoxNQuartos.setSelectedItem(aptSelecionado.getQuartos()+"");
       jTextFieldVM.setText(aptSelecionado.getValorminimo()+"");
       jComboBoxSituacao.setSelectedItem(aptSelecionado.getSituacao());
-      
                 
     }//GEN-LAST:event_jTableAptMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        tpp.setVisible(true);
+        tpp.listarTabelaP();
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -456,8 +468,7 @@ Apartamento aptSelecionado = new Apartamento();
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -468,6 +479,7 @@ Apartamento aptSelecionado = new Apartamento();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCadastrarSalvar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JComboBox jComboBoxNQuartos;

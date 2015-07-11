@@ -331,7 +331,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
     private void jButtonCheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckInActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaCheckIn tCheckIn = new TelaGerenciaCheckIn();
+        TelaGerenciaCheckIn tCheckIn = new TelaGerenciaCheckIn(this);
         this.setVisible(false);
         tCheckIn.setVisible(true);
     }//GEN-LAST:event_jButtonCheckInActionPerformed
@@ -343,28 +343,28 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
     private void jButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReservasActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaReserva tRes = new TelaGerenciaReserva();
+        TelaGerenciaReserva tRes = new TelaGerenciaReserva(this);
         this.setVisible(false);
         tRes.setVisible(true);
     }//GEN-LAST:event_jButtonReservasActionPerformed
 
     private void jButtonProprietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProprietariosActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaProprietario tPro = new TelaGerenciaProprietario();
+        TelaGerenciaProprietario tPro = new TelaGerenciaProprietario(this);
         this.setVisible(false);
         tPro.setVisible(true);
     }//GEN-LAST:event_jButtonProprietariosActionPerformed
 
     private void jButtonLocadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocadorActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaLocador tLoc = new TelaGerenciaLocador();
+        TelaGerenciaLocador tLoc = new TelaGerenciaLocador(this);
         this.setVisible(false);
         tLoc.setVisible(true);
     }//GEN-LAST:event_jButtonLocadorActionPerformed
 
     private void jButtonAptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAptActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaApt tApt = new TelaGerenciaApt();
+        TelaGerenciaApt tApt = new TelaGerenciaApt(this);
         this.setVisible(false);
         tApt.setVisible(true);
     }//GEN-LAST:event_jButtonAptActionPerformed

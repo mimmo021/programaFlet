@@ -92,6 +92,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Retornar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonretornarActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
@@ -237,7 +240,6 @@
               </Table>
             </Property>
             <Property name="requestFocusEnabled" type="boolean" value="false"/>
-            <Property name="rowSelectionAllowed" type="boolean" value="true"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableProprietarioMouseClicked"/>

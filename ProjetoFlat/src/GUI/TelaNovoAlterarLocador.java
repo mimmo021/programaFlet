@@ -7,9 +7,7 @@ package GUI;
 
 import classesbasicas.Locador;
 import classesexception.LocadorException;
-import classesexception.ProprietarioException;
 import classesfachada.Fachada;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;

@@ -23,8 +23,8 @@ public class ProjetoFlat {
         //t.setVisible(true);
           
         
-        TelaGerenciaApt t = new TelaGerenciaApt();
-        t.setVisible(true);
+        //TelaGerenciaApt t = new TelaGerenciaApt();
+        //t.setVisible(true);
     }
     
 }

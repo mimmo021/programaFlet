@@ -13,8 +13,14 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
     /**
      * Creates new form CadastroImovel
      */
-    public TelaGerenciaCheckIn() {
+    TelaPainelPrincipal tpp;
+    public TelaGerenciaCheckIn(TelaPainelPrincipal tpp) {
         initComponents();
+        this.tpp = tpp;
+    }
+
+    private TelaGerenciaCheckIn() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -122,6 +128,11 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
         jButtonCadastrarNovoCliente.setText("Cadastrar Novo Cliente");
 
         jButtonRetornarPrincipal.setText("Retornar a Tela Principal");
+        jButtonRetornarPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRetornarPrincipalActionPerformed(evt);
+            }
+        });
 
         jPanel1DadosLocatario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Locatário"));
 
@@ -566,6 +577,13 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
     private void jCheckBox2NaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2NaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox2NaoActionPerformed
+
+    private void jButtonRetornarPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarPrincipalActionPerformed
+        // TODO add your handling code here:
+        tpp.setVisible(true);
+        tpp.listarTabelaP();
+        this.dispose();
+    }//GEN-LAST:event_jButtonRetornarPrincipalActionPerformed
 
     /**
      * @param args the command line arguments

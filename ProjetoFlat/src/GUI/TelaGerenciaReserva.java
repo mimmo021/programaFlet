@@ -21,11 +21,17 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
     /**
      * Creates new form CadastroReserva
      */
-    public TelaGerenciaReserva() {
+    TelaPainelPrincipal tpp;
+    public TelaGerenciaReserva(TelaPainelPrincipal tpp) {
         initComponents();
+        this.tpp = tpp;
         carregarComboApt();
         listarTabelaReserva();
         jButtonAlterar.setEnabled(false);
+    }
+
+    TelaGerenciaReserva() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void carregarComboApt() {
@@ -58,7 +64,6 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
                 listaReservas.get(i).getApartamento().getSituacao()
             });
         }
-
         jTableReserva.setModel(dtm);
 
     }
@@ -236,6 +241,11 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         });
 
         jButtonRetornar.setText("Retornar");
+        jButtonRetornar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRetornarActionPerformed(evt);
+            }
+        });
 
         jTableReserva.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -339,6 +349,13 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         nRes.setVisible(true);
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
+    private void jButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        tpp.setVisible(true);
+        tpp.listarTabelaP();
+    }//GEN-LAST:event_jButtonRetornarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -366,8 +383,7 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

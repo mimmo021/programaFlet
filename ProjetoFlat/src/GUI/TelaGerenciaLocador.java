@@ -19,9 +19,15 @@ public class TelaGerenciaLocador extends javax.swing.JFrame {
     /**
      * Creates new form CadastroLocador
      */
-    public TelaGerenciaLocador() {
+    TelaPainelPrincipal tpp;
+    public TelaGerenciaLocador(TelaPainelPrincipal tpp) {
         initComponents();
+        this.tpp = tpp;
         listarTabelaLocador();
+    }
+
+    TelaGerenciaLocador() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 public void listarTabelaLocador(){
        
@@ -44,11 +50,6 @@ public void listarTabelaLocador(){
 
 		jTableLocador.setModel(dtm);
     
-    
-    
-    
-		
-	
     } 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -505,7 +506,8 @@ public void listarTabelaLocador(){
     private void jButton3RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3RetornarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        
+        tpp.setVisible(true);
+        tpp.listarTabelaP();
         
     }//GEN-LAST:event_jButton3RetornarActionPerformed
 Locador locSelecionado = new Locador();
@@ -543,12 +545,7 @@ Locador locSelecionado = new Locador();
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
         
 
         /* Create and display the form */

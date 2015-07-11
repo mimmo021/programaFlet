@@ -190,6 +190,11 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         });
 
         jToggleButtonRetornar.setText("Retornar");
+        jToggleButtonRetornar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonRetornarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -267,6 +272,11 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(rootPane, "Apartamento Alterado com sucesso!");
     }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jToggleButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonRetornarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jToggleButtonRetornarActionPerformed
 
     /**
      * @param args the command line arguments
