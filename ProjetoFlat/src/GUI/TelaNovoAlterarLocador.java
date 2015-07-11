@@ -10,6 +10,8 @@ import classesexception.LocadorException;
 import classesexception.ProprietarioException;
 import classesfachada.Fachada;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import util.Datas;
 
@@ -24,6 +26,39 @@ public class TelaNovoAlterarLocador extends javax.swing.JFrame {
      */
     public TelaNovoAlterarLocador() {
         initComponents();
+    }
+
+    Locador locSelecionado = new Locador();
+
+    TelaNovoAlterarLocador(Locador loc) {
+        initComponents();
+        this.locSelecionado = loc;
+        jTextFieldNome.setText(loc.getNome());
+            jTextFieldEndereco.setText(loc.getEndereco());
+            jTextFieldApto.setText(loc.getApto());
+            jTextFieldNumero.setText(loc.getNumero());
+            jTextFieldCidade.setText(loc.getCidade());
+            jTextFieldBairro.setText(loc.getBairro());
+            jTextFieldCep.setText(loc.getCep());
+            jTextFieldIdade.setText(loc.getIdade()+"");
+            jTextFieldEstado.setText(loc.getEstado());
+            jTextFieldProcedencia.setText(loc.getProcedencia());
+            jTextFieldIdentidade.setText(loc.getIdentidade());
+            jTextFieldOrgaoExp.setText(loc.getOrgexp());
+            jTextFieldMotivo.setText(loc.getMotivoviagem());
+            jTextFieldCpf.setText(loc.getCpg());
+            jTextFieldEstadoCivil.setText(loc.getEstadocivil());
+            jTextFieldCarro.setText(loc.getCarro());
+            jTextFieldCor.setText(loc.getCarrocor());
+            jTextFieldPlaca.setText(loc.getPlaca());
+
+            jTextFieldDataRegistro.setText(loc.getDataderegistro().toString());
+
+            jTextFieldFone.setText(loc.getTelefone());
+            jTextFieldCelular.setText(loc.getTelefone2());
+            jTextFieldEmail.setText(loc.getEmail());
+            jTextFieldPassaporte.setText(loc.getPassaporte());
+            jTextFieldResponsavelPag.setText(loc.getResponsavelpagamento());
     }
 
     /**
@@ -345,6 +380,11 @@ public class TelaNovoAlterarLocador extends javax.swing.JFrame {
         });
 
         jButtonAlterar.setText("Alterar");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         jButtonRetornar.setText("Retornar");
         jButtonRetornar.addActionListener(new java.awt.event.ActionListener() {
@@ -392,48 +432,62 @@ public class TelaNovoAlterarLocador extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         // TODO add your handling code here:
-        try{
-        Fachada fachada = new Fachada();
-        Locador l = new Locador();
-        l.setNome(jTextFieldNome.getText());
-        l.setEndereco(jTextFieldEndereco.getText());
-        l.setApto(jTextFieldApto.getText());
-        l.setNumero(jTextFieldNumero.getText());
-        l.setCidade(jTextFieldCidade.getText());
-        l.setBairro(jTextFieldBairro.getText());
-        l.setCep(jTextFieldCep.getText());
-        l.setIdade(Integer.parseInt((String)jTextFieldIdade.getText()));
-        l.setEstado(jTextFieldEstado.getText());
-        l.setProcedencia(jTextFieldProcedencia.getText());
-        l.setIdentidade(jTextFieldIdentidade.getText());
-        l.setOrgexp(jTextFieldOrgaoExp.getText());
-        l.setMotivoviagem(jTextFieldMotivo.getText());
-        l.setCpg(jTextFieldCpf.getText());
-        l.setEstadocivil(jTextFieldEstadoCivil.getText());
-        l.setCarro(jTextFieldCarro.getText());
-        l.setCarrocor(jTextFieldCor.getText());
-        l.setPlaca(jTextFieldPlaca.getText());
-        
-        l.setDataderegistro(Datas.criarData(jTextFieldDataRegistro.getText()));
-        
-        l.setTelefone(jTextFieldFone.getText());
-        l.setTelefone2(jTextFieldCelular.getText());
-        l.setEmail(jTextFieldEmail.getText());
-        l.setPassaporte(jTextFieldPassaporte.getText());
-        l.setResponsavelpagamento(jTextFieldResponsavelPag.getText());
-        
-        
-        fachada.saveLocador(l);
-        }catch(LocadorException ex) {
+        try {
+            Fachada fachada = new Fachada();
+            Locador l = new Locador();
+            l.setNome(jTextFieldNome.getText());
+            l.setEndereco(jTextFieldEndereco.getText());
+            l.setApto(jTextFieldApto.getText());
+            l.setNumero(jTextFieldNumero.getText());
+            l.setCidade(jTextFieldCidade.getText());
+            l.setBairro(jTextFieldBairro.getText());
+            l.setCep(jTextFieldCep.getText());
+            l.setIdade(Integer.parseInt((String) jTextFieldIdade.getText()));
+            l.setEstado(jTextFieldEstado.getText());
+            l.setProcedencia(jTextFieldProcedencia.getText());
+            l.setIdentidade(jTextFieldIdentidade.getText());
+            l.setOrgexp(jTextFieldOrgaoExp.getText());
+            l.setMotivoviagem(jTextFieldMotivo.getText());
+            l.setCpg(jTextFieldCpf.getText());
+            l.setEstadocivil(jTextFieldEstadoCivil.getText());
+            l.setCarro(jTextFieldCarro.getText());
+            l.setCarrocor(jTextFieldCor.getText());
+            l.setPlaca(jTextFieldPlaca.getText());
+
+            l.setDataderegistro(Datas.criarData(jTextFieldDataRegistro.getText()));
+
+            l.setTelefone(jTextFieldFone.getText());
+            l.setTelefone2(jTextFieldCelular.getText());
+            l.setEmail(jTextFieldEmail.getText());
+            l.setPassaporte(jTextFieldPassaporte.getText());
+            l.setResponsavelpagamento(jTextFieldResponsavelPag.getText());
+
+            fachada.saveLocador(l);
+            
+        } catch (LocadorException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
-                                         
+        JOptionPane.showMessageDialog(rootPane, "Locador Salvo com sucesso!");
+
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButtonRetornarActionPerformed
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        // TODO add your handling code here:
+        try {
+            Fachada f = new Fachada();
+            locSelecionado = f.findLocador(locSelecionado);
+            f.saveLocador(locSelecionado);
+            
+        } catch (LocadorException ex) {
+            Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(rootPane, "Locador Alterado com sucesso!");
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -462,21 +516,7 @@ public class TelaNovoAlterarLocador extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
+       
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

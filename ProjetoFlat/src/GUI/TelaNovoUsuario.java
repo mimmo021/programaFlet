@@ -5,6 +5,13 @@
  */
 package GUI;
 
+import classesbasicas.Login;
+import classesexception.LoginException;
+import classesfachada.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author SONY VAIO
@@ -56,6 +63,11 @@ public class TelaNovoUsuario extends javax.swing.JFrame {
         });
 
         jButtonSalvarUsuario.setText("Salvar");
+        jButtonSalvarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarUsuarioActionPerformed(evt);
+            }
+        });
 
         jLabelTitulo.setFont(new java.awt.Font("Razer Header Regular", 1, 24)); // NOI18N
         jLabelTitulo.setText("Novo Usuário");
@@ -126,6 +138,25 @@ public class TelaNovoUsuario extends javax.swing.JFrame {
     private void jTextFieldNovoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNovoLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNovoLoginActionPerformed
+
+    private void jButtonSalvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarUsuarioActionPerformed
+        // TODO add your handling code here:
+        Fachada fachada = new Fachada();
+        Login novoLogin = new Login();
+
+        novoLogin.setUsuario(jTextFieldNovoLogin.getText());
+        String passText = new String(jPasswordFieldNovoPassWord.getPassword());
+        novoLogin.setSenha(passText);
+        
+        try {
+            fachada.saveLogin(novoLogin);
+            JOptionPane.showMessageDialog(rootPane, "Novo login Salvo com sucesso!");
+        } catch (LoginException ex) {
+            Logger.getLogger(TelaNovoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_jButtonSalvarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

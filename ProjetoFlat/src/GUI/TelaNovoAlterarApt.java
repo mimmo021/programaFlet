@@ -24,18 +24,18 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
     /**
      * Creates new form TelaNovoAlterarApt
      */
-    Apartamento p1 = new Apartamento();
-    public TelaNovoAlterarApt(Apartamento p){
+    Apartamento aptSelecionado = new Apartamento();
+    public TelaNovoAlterarApt(Apartamento apt){
         initComponents();
         carregarProprietario();
-        this.p1= p;
-        jComboBoxPropietario.setSelectedItem(p1.getProprietario().getNome());
-        jTextFieldApt.setText(String.valueOf(p1.getNumero()));
-        jTextFieldCelpe.setText(p1.getNumerocelpe());
-        jTextFieldNet.setText(p1.getNumeronet());
-        jComboBoxNQuartos.setSelectedItem(p1.getQuartos()+"");
-        jTextFieldVM.setText(String.valueOf(p1.getValorminimo()));
-        jComboBoxSituacao.setSelectedItem(p1.getSituacao());
+        this.aptSelecionado= apt;
+        jComboBoxPropietario.setSelectedItem(aptSelecionado.getProprietario().getNome());
+        jTextFieldApt.setText(String.valueOf(aptSelecionado.getNumero()));
+        jTextFieldCelpe.setText(aptSelecionado.getNumerocelpe());
+        jTextFieldNet.setText(aptSelecionado.getNumeronet());
+        jComboBoxNQuartos.setSelectedItem(aptSelecionado.getQuartos()+"");
+        jTextFieldVM.setText(String.valueOf(aptSelecionado.getValorminimo()));
+        jComboBoxSituacao.setSelectedItem(aptSelecionado.getSituacao());
         
     }
     public TelaNovoAlterarApt() {
@@ -248,21 +248,24 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         a.setSituacao((String) jComboBoxSituacao.getSelectedItem());
         try {
             f.saveApartamento(a);
+            
         } catch (ApartamentoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
+        JOptionPane.showMessageDialog(rootPane, "Apartamento Salvo com sucesso!");
         
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         try {
             Fachada f = new Fachada();
-            p1 = f.findApartamento(p1);
-            f.saveApartamento(p1);
+            aptSelecionado = f.findApartamento(aptSelecionado);
+            f.saveApartamento(aptSelecionado);
             
         } catch (ApartamentoException ex) {
             Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
         }
+        JOptionPane.showMessageDialog(rootPane, "Apartamento Alterado com sucesso!");
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**

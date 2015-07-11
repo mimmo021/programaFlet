@@ -8,6 +8,8 @@ package GUI;
 import classesbasicas.Proprietario;
 import classesexception.ProprietarioException;
 import classesfachada.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,21 +21,22 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
     /**
      * Creates new form NovoAlterarLocador
      */
+    Proprietario proSelecionado = new Proprietario();
+
     public TelaNovoAlterarProprietario() {
         initComponents();
     }
 
-   public TelaNovoAlterarProprietario(Proprietario p){
-       initComponents();
-       jTextFieldNome.setText(p.getNome());
-       jTextFieldFone.setText(p.getTelefone());
-       jTextFieldFoneComercial.setText(p.getTelefone2());
-       jTextFieldCelular.setText(p.getTelefone3());
-       jTextFieldEmail.setText(p.getEmail());
-               
-   }
+    public TelaNovoAlterarProprietario(Proprietario p) {
+        initComponents();
+        this.proSelecionado = p;
+        jTextFieldNome.setText(p.getNome());
+        jTextFieldFone.setText(p.getTelefone());
+        jTextFieldFoneComercial.setText(p.getTelefone2());
+        jTextFieldCelular.setText(p.getTelefone3());
+        jTextFieldEmail.setText(p.getEmail());
 
-   
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,6 +66,11 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButtonAlterar.setText("Alterar");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         jButtonretornar.setText("Retornar");
 
@@ -170,19 +178,34 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         // TODO add your handling code here:
-        try{
-        Fachada fachada = new Fachada();
-        Proprietario p = new Proprietario();
-        p.setNome(jTextFieldNome.getText());
-        p.setTelefone(jTextFieldFone.getText());
-        p.setTelefone2(jTextFieldFoneComercial.getText());
-        p.setTelefone3(jTextFieldCelular.getText());
-        p.setEmail(jTextFieldEmail.getText());
-        fachada.saveProprietario(p);
-        }catch(ProprietarioException ex) {
+        try {
+            Fachada fachada = new Fachada();
+            Proprietario p = new Proprietario();
+            p.setNome(jTextFieldNome.getText());
+            p.setTelefone(jTextFieldFone.getText());
+            p.setTelefone2(jTextFieldFoneComercial.getText());
+            p.setTelefone3(jTextFieldCelular.getText());
+            p.setEmail(jTextFieldEmail.getText());
+            fachada.saveProprietario(p);
+
+        } catch (ProprietarioException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
+        JOptionPane.showMessageDialog(rootPane, "Proprietário Salvo com sucesso!");
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        // TODO add your handling code here:
+        try {
+            Fachada f = new Fachada();
+            proSelecionado = f.findProprietario(proSelecionado);
+            f.saveProprietario(proSelecionado);
+
+        } catch (ProprietarioException ex) {
+            Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(rootPane, "Apartamento Alterado com sucesso!");
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**
      * @param args the command line arguments

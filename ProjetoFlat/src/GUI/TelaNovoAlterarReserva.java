@@ -11,6 +11,8 @@ import classesexception.ReservaException;
 import classesfachada.Fachada;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import util.Datas;
@@ -24,7 +26,7 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
     /**
      * Creates new form TelaNovoAlterarReserva
      */
-    //Reserva r1 = new Reserva();
+    Reserva resSelecionada = new Reserva();
     public TelaNovoAlterarReserva() {
         initComponents();
         carregarComboApt();
@@ -49,6 +51,7 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
         initComponents();
         carregarComboApt();
         carregarApts();
+        this.resSelecionada = resSelecionado;
 
         jTextFieldDataRegistro.setText(resSelecionado.getDataregistro() + "");
         jTextFieldDataEntrada.setText(resSelecionado.getDataentrada() + "");
@@ -239,6 +242,11 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
         jToggleButtonRetornar.setText("Retornar");
 
         jButtonAlterar.setText("Altera");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -307,10 +315,11 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
             r.setValorcalcao(Double.parseDouble(jTextFieldValorCalcao.getText()));
 
             fachada.saveReserva(r);
-
+            
         } catch (ReservaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
+        JOptionPane.showMessageDialog(rootPane, "Reserva Salva com sucesso!");
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jRadioButtonSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSimActionPerformed
@@ -324,6 +333,22 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
         jTextFieldValorCalcao.setText("0,00");
         jTextFieldValorCalcao.setEnabled(false);
     }//GEN-LAST:event_jRadioButtonNaoActionPerformed
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        // TODO add your handling code here:
+        try {
+            
+            Fachada f = new Fachada();
+            resSelecionada = f.findReserva(resSelecionada);
+            f.saveReserva(resSelecionada);
+            
+        } catch (ReservaException ex) {
+            Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(rootPane, "Reserva Alterada com sucesso!"); 
+     
+            
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**
      * @param args the command line arguments
