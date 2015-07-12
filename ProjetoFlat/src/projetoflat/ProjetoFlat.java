@@ -7,6 +7,8 @@ package projetoflat;
 
 import GUI.TelaGerenciaApt;
 import GUI.TelaGerenciaProprietario;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -19,9 +21,9 @@ public class ProjetoFlat {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //TelaGerenciaProprietario t = new TelaGerenciaProprietario();
-        //t.setVisible(true);
-          
+        EntityManagerFactory emf = Persistence
+				.createEntityManagerFactory("hibernateteste");
+		emf.close();
         
         //TelaGerenciaApt t = new TelaGerenciaApt();
         //t.setVisible(true);

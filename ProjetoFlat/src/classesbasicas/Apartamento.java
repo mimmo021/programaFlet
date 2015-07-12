@@ -19,8 +19,8 @@ public class Apartamento {
 	private double valorminimo;
         
 	@ManyToOne
-	private
-	Proprietario proprietario;
+	private	Proprietario proprietario;
+        
 	@Id
 	@GeneratedValue
 	private int id;

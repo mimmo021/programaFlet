@@ -5,8 +5,8 @@
  */
 package GUI;
 
-import classesbasicas.Locador;
-import classesexception.LocadorException;
+import classesbasicas.Locatario;
+import classesexception.LocatarioException;
 import classesfachada.Fachada;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,41 +22,49 @@ public class TelaNovoAlterarLocador extends javax.swing.JFrame {
     /**
      * Creates new form NovoAlterarLocatario
      */
-    public TelaNovoAlterarLocador() {
+    Locatario locSelecionado = new Locatario();
+    TelaGerenciaLocador tgl;
+    
+    public TelaNovoAlterarLocador(TelaGerenciaLocador tgl) {
         initComponents();
+        this.tgl = tgl;
     }
 
-    Locador locSelecionado = new Locador();
+    public TelaNovoAlterarLocador() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
-    TelaNovoAlterarLocador(Locador loc) {
+    }
+    
+    TelaNovoAlterarLocador(Locatario loc, TelaGerenciaLocador tgl) {
         initComponents();
+        this.tgl = tgl;
         this.locSelecionado = loc;
         jTextFieldNome.setText(loc.getNome());
-            jTextFieldEndereco.setText(loc.getEndereco());
-            jTextFieldApto.setText(loc.getApto());
-            jTextFieldNumero.setText(loc.getNumero());
-            jTextFieldCidade.setText(loc.getCidade());
-            jTextFieldBairro.setText(loc.getBairro());
-            jTextFieldCep.setText(loc.getCep());
-            jTextFieldIdade.setText(loc.getIdade()+"");
-            jTextFieldEstado.setText(loc.getEstado());
-            jTextFieldProcedencia.setText(loc.getProcedencia());
-            jTextFieldIdentidade.setText(loc.getIdentidade());
-            jTextFieldOrgaoExp.setText(loc.getOrgexp());
-            jTextFieldMotivo.setText(loc.getMotivoviagem());
-            jTextFieldCpf.setText(loc.getCpg());
-            jTextFieldEstadoCivil.setText(loc.getEstadocivil());
-            jTextFieldCarro.setText(loc.getCarro());
-            jTextFieldCor.setText(loc.getCarrocor());
-            jTextFieldPlaca.setText(loc.getPlaca());
+        jTextFieldEndereco.setText(loc.getEndereco());
+        jTextFieldApto.setText(loc.getApto());
+        jTextFieldNumero.setText(loc.getNumero());
+        jTextFieldCidade.setText(loc.getCidade());
+        jTextFieldBairro.setText(loc.getBairro());
+        jTextFieldCep.setText(loc.getCep());
+        jTextFieldIdade.setText(loc.getIdade() + "");
+        jTextFieldEstado.setText(loc.getEstado());
+        jTextFieldProcedencia.setText(loc.getProcedencia());
+        jTextFieldIdentidade.setText(loc.getIdentidade());
+        jTextFieldOrgaoExp.setText(loc.getOrgexp());
+        jTextFieldMotivo.setText(loc.getMotivoviagem());
+        jTextFieldCpf.setText(loc.getCpg());
+        jTextFieldEstadoCivil.setText(loc.getEstadocivil());
+        jTextFieldCarro.setText(loc.getCarro());
+        jTextFieldCor.setText(loc.getCarrocor());
+        jTextFieldPlaca.setText(loc.getPlaca());
 
-            jTextFieldDataRegistro.setText(loc.getDataderegistro().toString());
+        jTextFieldDataRegistro.setText(Datas.formatarData(loc.getDataderegistro(), "dd/MM/yyyy"));
 
-            jTextFieldFone.setText(loc.getTelefone());
-            jTextFieldCelular.setText(loc.getTelefone2());
-            jTextFieldEmail.setText(loc.getEmail());
-            jTextFieldPassaporte.setText(loc.getPassaporte());
-            jTextFieldResponsavelPag.setText(loc.getResponsavelpagamento());
+        jTextFieldFone.setText(loc.getTelefone());
+        jTextFieldCelular.setText(loc.getTelefone2());
+        jTextFieldEmail.setText(loc.getEmail());
+        jTextFieldPassaporte.setText(loc.getPassaporte());
+        jTextFieldResponsavelPag.setText(loc.getResponsavelpagamento());
     }
 
     /**
@@ -432,7 +440,7 @@ public class TelaNovoAlterarLocador extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Fachada fachada = new Fachada();
-            Locador l = new Locador();
+            Locatario l = new Locatario();
             l.setNome(jTextFieldNome.getText());
             l.setEndereco(jTextFieldEndereco.getText());
             l.setApto(jTextFieldApto.getText());
@@ -461,8 +469,8 @@ public class TelaNovoAlterarLocador extends javax.swing.JFrame {
             l.setResponsavelpagamento(jTextFieldResponsavelPag.getText());
 
             fachada.saveLocador(l);
-            
-        } catch (LocadorException ex) {
+
+        } catch (LocatarioException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
         JOptionPane.showMessageDialog(rootPane, "Locador Salvo com sucesso!");
@@ -471,6 +479,9 @@ public class TelaNovoAlterarLocador extends javax.swing.JFrame {
 
     private void jButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarActionPerformed
         // TODO add your handling code here:
+        tgl.setVisible(true);
+        tgl.listarTabelaLocador();
+
         this.dispose();
     }//GEN-LAST:event_jButtonRetornarActionPerformed
 
@@ -480,8 +491,8 @@ public class TelaNovoAlterarLocador extends javax.swing.JFrame {
             Fachada f = new Fachada();
             locSelecionado = f.findLocador(locSelecionado);
             f.saveLocador(locSelecionado);
-            
-        } catch (LocadorException ex) {
+
+        } catch (LocatarioException ex) {
             Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(rootPane, "Locador Alterado com sucesso!");
@@ -514,7 +525,7 @@ public class TelaNovoAlterarLocador extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-       
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

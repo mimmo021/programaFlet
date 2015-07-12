@@ -1,12 +1,11 @@
 package classesbasicas;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 @Entity
 public class CheckOut {
@@ -20,6 +19,7 @@ private Double leiturasaida;
 private Double totalkwh;
 private Boolean hospedeacompanhouentrada;
 private Boolean hospedeacompanhousaida;
+@Temporal(javax.persistence.TemporalType.DATE)
 private Date dataderegistro;
 
 public CheckOut(){

@@ -5,10 +5,11 @@
  */
 package GUI;
 
-import classesbasicas.Locador;
+import classesbasicas.Locatario;
 import classesfachada.Fachada;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import util.Datas;
 
 /**
  *
@@ -22,7 +23,7 @@ public class TelaGerenciaLocador extends javax.swing.JFrame {
     TelaPainelPrincipal tpp;
     public TelaGerenciaLocador(TelaPainelPrincipal tpp) {
         initComponents();
-        this.tpp = tpp;
+       this.tpp = tpp;
         listarTabelaLocador();
     }
 
@@ -32,15 +33,15 @@ public class TelaGerenciaLocador extends javax.swing.JFrame {
 public void listarTabelaLocador(){
        
     Fachada f = new Fachada();
-		Locador l = new Locador();
-		ArrayList<Locador> listaLocador;
-		listaLocador = (ArrayList<Locador>) f.listallLocador(l);
+		Locatario l = new Locatario();
+		ArrayList<Locatario> listaLocador;
+		listaLocador = (ArrayList<Locatario>) f.listallLocador(l);
 
 		DefaultTableModel dtm = new DefaultTableModel();
-		dtm.setColumnIdentifiers(new String[] { "Nome", "Fone",
+		dtm.setColumnIdentifiers(new String[] { "Id","Nome", "Fone",
 				"Celular", "E-mail"});
 		for (int i = 0; i < listaLocador.size(); i++) {
-			dtm.addRow(new String[] {// listaProprietario.get(i).getId() + "",
+			dtm.addRow(new String[] {listaLocador.get(i).getId() + "",
 					listaLocador.get(i).getNome()+ "",
 					listaLocador.get(i).getTelefone()+ "",
 					listaLocador.get(i).getTelefone2()+ "",
@@ -426,6 +427,11 @@ public void listarTabelaLocador(){
                 "Título 1", "Título 2", "Título 3", "Título 4"
             }
         ));
+        jTableLocador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableLocadorMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableLocador);
 
         jButtonNovo.setText("Novo");
@@ -498,9 +504,9 @@ public void listarTabelaLocador(){
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarLocador nPro = new TelaNovoAlterarLocador();
+        TelaNovoAlterarLocador nLoc = new TelaNovoAlterarLocador(this);
         this.setEnabled(false);
-        nPro.setVisible(true);
+        nLoc.setVisible(true);
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButton3RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3RetornarActionPerformed
@@ -510,13 +516,50 @@ public void listarTabelaLocador(){
         tpp.listarTabelaP();
         
     }//GEN-LAST:event_jButton3RetornarActionPerformed
-Locador locSelecionado = new Locador();
+Locatario locSelecionado = new Locatario();
     private void jButton2AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2AlterarActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarLocador nLoc = new TelaNovoAlterarLocador(locSelecionado);
-        this.setEnabled(false);
+        TelaNovoAlterarLocador nLoc = new TelaNovoAlterarLocador(locSelecionado, this);
+        this.setVisible(false);
         nLoc.setVisible(true);
     }//GEN-LAST:event_jButton2AlterarActionPerformed
+
+    private void jTableLocadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLocadorMouseClicked
+        // TODO add your handling code here:
+        Fachada fachada = new Fachada();
+        Locatario l = new Locatario();
+
+        int linha_selecionada = jTableLocador.getSelectedRow();
+        l.setId(Integer.parseInt(jTableLocador.getValueAt(linha_selecionada, 0).toString()));
+
+        locSelecionado = (fachada.findLocador(l));
+
+        jTextFieldNome.setText(locSelecionado.getNome());
+        jTextFieldEndereco.setText(locSelecionado.getEndereco());
+        jTextFieldApto.setText(locSelecionado.getApto());
+        jTextFieldNumero.setText(locSelecionado.getNumero());
+        jTextFieldCidade.setText(locSelecionado.getCidade());
+        jTextFieldBairro.setText(locSelecionado.getBairro());
+        jTextFieldCep.setText(locSelecionado.getCep());
+        jTextFieldIdade.setText(locSelecionado.getIdade()+"");
+        jTextFieldEstado.setText(locSelecionado.getEstado());
+        jTextFieldProcedencia.setText(locSelecionado.getProcedencia());
+        jTextFieldIdentidade.setText(locSelecionado.getIdentidade());
+        jTextFieldOrgaoExp.setText(locSelecionado.getOrgexp());
+        jTextFieldMotivo.setText(locSelecionado.getMotivoviagem());
+        jTextFieldCpf.setText(locSelecionado.getCpg());
+        jTextFieldEstadoCivil.setText(locSelecionado.getEstadocivil());
+        jTextFieldCarro.setText(locSelecionado.getCarro());
+        jTextFieldCor.setText(locSelecionado.getCarrocor());
+        jTextFieldPlaca.setText(locSelecionado.getPlaca());
+        jTextFieldFone.setText(locSelecionado.getTelefone());
+        jTextFieldCelular.setText(locSelecionado.getTelefone2());
+        jTextFieldEmail.setText(locSelecionado.getEmail());
+        jTextFieldPassaporte.setText(locSelecionado.getPassaporte());
+        jTextFieldDataRegistro.setText(Datas.formatarData(locSelecionado.getDataderegistro(), "dd/MM/yyyy"));     
+        jTextFieldResponsavelPag.setText(locSelecionado.getResponsavelpagamento());
+        
+    }//GEN-LAST:event_jTableLocadorMouseClicked
 
     /**
      * @param args the command line arguments

@@ -1,20 +1,22 @@
 package classesbasicas;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 @Entity
 public class Reserva {
 @Id
 @GeneratedValue
 private int id;
+@Temporal(javax.persistence.TemporalType.DATE)
 private Date dataregistro;
+@Temporal(javax.persistence.TemporalType.DATE)
  private Date dataentrada;
+@Temporal(javax.persistence.TemporalType.DATE)
  private Date datasaida;
 @ManyToOne
 private Apartamento apartamento;

@@ -20,7 +20,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaGerenciaApt extends javax.swing.JFrame {
 
-   
     Apartamento apt = null;
     ArrayList<Apartamento> listaApartamentoo;
     ArrayList<Reserva> listaReserva;
@@ -29,6 +28,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
      * Creates new form CadastroApt
      */
     TelaPainelPrincipal tpp;
+
     public TelaGerenciaApt(TelaPainelPrincipal tpp) {
         initComponents();
         this.tpp = tpp;
@@ -36,14 +36,13 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         listarTabelaApt();
         listarTabelaCheckIn();
         listarTabelaReservas();
-        
+
     }
 
     public TelaGerenciaApt() {
-        
-    
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     private void carregarProprietario() {
         Fachada fachada = new Fachada();
         Proprietario proprietario = new Proprietario();
@@ -54,79 +53,80 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
             modelo.addElement(listaProprietario.get(i).getNome());
         }
         jComboBoxPropietario.setModel(modelo);
-	}
-    
-     public void listarTabelaApt(){
-       
-		Fachada f = new Fachada();
-		Apartamento e = new Apartamento();
-		ArrayList<Apartamento> listaApartamentos;
-		listaApartamentos = (ArrayList<Apartamento>) f.listallApartamento(e);
-                
-		DefaultTableModel dtm = new DefaultTableModel();
-		dtm.setColumnIdentifiers(new String[] { "Id","Proprietario", "N°Apt","N°Quarto",
-				"Situacao"});
-		for (int i = 0; i < listaApartamentos.size(); i++) {
-			dtm.addRow(new String[] { listaApartamentos.get(i).getId() + "",
-					listaApartamentos.get(i).getProprietario().getNome()+ "",
-					listaApartamentos.get(i).getNumero()+ "",
-					listaApartamentos.get(i).getQuartos()+ "",
-					listaApartamentos.get(i).getSituacao()+ ""
-					
-                        });
-		}
+    }
 
-		jTableApt.setModel(dtm);
-	
-    } 
-     public void listarTabelaReservas(){
-       
-		Fachada f = new Fachada();
-		Reserva e = new Reserva();
-		ArrayList<Reserva> listaReservas;
-		listaReservas = (ArrayList<Reserva>) f.listallReserva(e);
+    public void listarTabelaApt() {
 
-		DefaultTableModel dtmr = new DefaultTableModel();
-		dtmr.setColumnIdentifiers(new String[] { "Id","Locatário", "Data de Entrada","Data de Saída",
-				"Situação"});
-		for (int i = 0; i < listaReservas.size(); i++) {
-			dtmr.addRow(new String[] {listaReservas.get(i).getId() + "",
-					listaReservas.get(i).getApartamento().getProprietario().getNome()+ "",
-					listaReservas.get(i).getDataentrada()+ "",
-					listaReservas.get(i).getDatasaida()+ "",
-					listaReservas.get(i).getSituacao()+ ""
-					
-                        });
-		}
+        Fachada f = new Fachada();
+        Apartamento e = new Apartamento();
+        ArrayList<Apartamento> listaApartamentos;
+        listaApartamentos = (ArrayList<Apartamento>) f.listallApartamento(e);
 
-		jTableReservas.setModel(dtmr);
-	
-    } 
-     public void listarTabelaCheckIn(){
-       
-		Fachada f = new Fachada();
-		CheckIn e = new CheckIn();
-		ArrayList<CheckIn> listaCheckIns;
-		listaCheckIns = (ArrayList<CheckIn>) f.listallCheckIn(e);
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.setColumnIdentifiers(new String[]{"Id", "Proprietario", "N°Apt", "N°Quarto",
+            "Situacao"});
+        for (int i = 0; i < listaApartamentos.size(); i++) {
+            dtm.addRow(new String[]{listaApartamentos.get(i).getId() + "",
+                listaApartamentos.get(i).getProprietario().getNome() + "",
+                listaApartamentos.get(i).getNumero() + "",
+                listaApartamentos.get(i).getQuartos() + "",
+                listaApartamentos.get(i).getSituacao() + ""
 
-		DefaultTableModel dtmc = new DefaultTableModel();
-		dtmc.setColumnIdentifiers(new String[] { "id","Locatário", "Data de Entrada","Data de Saída",
-				"Situação"});
-		for (int i = 0; i < listaCheckIns.size(); i++) {
-			dtmc.addRow(new String[] { listaCheckIns.get(i).getId() + "",
-					listaCheckIns.get(i).getLocatario().getNome()+ "",
-					listaCheckIns.get(i).getDataentrada()+ "",
-					listaCheckIns.get(i).getDatasaida()+ "",
-					listaCheckIns.get(i).getApartamento().getSituacao()+ ""
-					
-                        });
-		}
+            });
+        }
 
-		jTableChecIn.setModel(dtmc);
-	
-    } 
-     
-     
+        jTableApt.setModel(dtm);
+
+    }
+
+    public void listarTabelaReservas() {
+
+        Fachada f = new Fachada();
+        Reserva e = new Reserva();
+        ArrayList<Reserva> listaReservas;
+        listaReservas = (ArrayList<Reserva>) f.listallReserva(e);
+
+        DefaultTableModel dtmr = new DefaultTableModel();
+        dtmr.setColumnIdentifiers(new String[]{"Id", "Locatário", "Data de Entrada", "Data de Saída",
+            "Situação"});
+        for (int i = 0; i < listaReservas.size(); i++) {
+            dtmr.addRow(new String[]{listaReservas.get(i).getId() + "",
+                listaReservas.get(i).getApartamento().getProprietario().getNome() + "",
+                listaReservas.get(i).getDataentrada() + "",
+                listaReservas.get(i).getDatasaida() + "",
+                listaReservas.get(i).getSituacao() + ""
+
+            });
+        }
+
+        jTableReservas.setModel(dtmr);
+
+    }
+
+    public void listarTabelaCheckIn() {
+
+        Fachada f = new Fachada();
+        CheckIn e = new CheckIn();
+        ArrayList<CheckIn> listaCheckIns;
+        listaCheckIns = (ArrayList<CheckIn>) f.listallCheckIn(e);
+
+        DefaultTableModel dtmc = new DefaultTableModel();
+        dtmc.setColumnIdentifiers(new String[]{"id", "Locatário", "Data de Entrada", "Data de Saída",
+            "Situação"});
+        for (int i = 0; i < listaCheckIns.size(); i++) {
+            dtmc.addRow(new String[]{listaCheckIns.get(i).getId() + "",
+                listaCheckIns.get(i).getLocatario().getNome() + "",
+                listaCheckIns.get(i).getDataentrada() + "",
+                listaCheckIns.get(i).getDatasaida() + "",
+                listaCheckIns.get(i).getApartamento().getSituacao() + ""
+
+            });
+        }
+
+        jTableChecIn.setModel(dtmc);
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -397,45 +397,44 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 Apartamento aptSelecionado = new Apartamento();
     private void jToggleButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAlterarActionPerformed
-    
-        TelaNovoAlterarApt telaAlterarApt = new TelaNovoAlterarApt(aptSelecionado );
-        this.setVisible(true);
-        this.setEnabled(false);
-        telaAlterarApt.setVisible(true);
-        
+
+        TelaNovoAlterarApt telaAlterarApt = new TelaNovoAlterarApt(aptSelecionado, this);
+         this.setVisible(false);
+         telaAlterarApt.setVisible(true);
+
     }//GEN-LAST:event_jToggleButtonAlterarActionPerformed
 
     private void jButtonCadastrarSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarSalvarActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarApt napt = new TelaNovoAlterarApt();
+        TelaNovoAlterarApt napt = new TelaNovoAlterarApt(this);
         this.setVisible(false);
         napt.setVisible(true);
     }//GEN-LAST:event_jButtonCadastrarSalvarActionPerformed
 
     private void jTableAptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAptMouseClicked
         // TODO add your handling code here:
-        
-       Fachada fachada = new Fachada();
-       Apartamento a = new Apartamento();
-       
-       int linha_selecionada = jTableApt.getSelectedRow();
-       a.setId(Integer.parseInt(jTableApt.getValueAt(linha_selecionada, 0).toString()));
-       
-       aptSelecionado=(fachada.findApartamento(a));
-       
-      jComboBoxPropietario.setSelectedItem(aptSelecionado.getProprietario().getNome());
-      jTextFieldApt.setText(aptSelecionado.getNumero()+"");
-      jTextFieldCelpe.setText(aptSelecionado.getNumerocelpe());
-      jTextFieldNet.setText(aptSelecionado.getNumeronet());
-      jComboBoxNQuartos.setSelectedItem(aptSelecionado.getQuartos()+"");
-      jTextFieldVM.setText(aptSelecionado.getValorminimo()+"");
-      jComboBoxSituacao.setSelectedItem(aptSelecionado.getSituacao());
-                
+
+        Fachada fachada = new Fachada();
+        Apartamento a = new Apartamento();
+
+        int linha_selecionada = jTableApt.getSelectedRow();
+        a.setId(Integer.parseInt(jTableApt.getValueAt(linha_selecionada, 0).toString()));
+
+        aptSelecionado = (fachada.findApartamento(a));
+
+        jComboBoxPropietario.setSelectedItem(aptSelecionado.getProprietario().getNome());
+        jTextFieldApt.setText(aptSelecionado.getNumero() + "");
+        jTextFieldCelpe.setText(aptSelecionado.getNumerocelpe());
+        jTextFieldNet.setText(aptSelecionado.getNumeronet());
+        jComboBoxNQuartos.setSelectedItem(aptSelecionado.getQuartos() + "");
+        jTextFieldVM.setText(aptSelecionado.getValorminimo() + "");
+        jComboBoxSituacao.setSelectedItem(aptSelecionado.getSituacao());
+
     }//GEN-LAST:event_jTableAptMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+
         tpp.setVisible(true);
         tpp.listarTabelaP();
         this.dispose();
@@ -468,7 +467,7 @@ Apartamento aptSelecionado = new Apartamento();
         }
         //</editor-fold>
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

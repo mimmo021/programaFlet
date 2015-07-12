@@ -12,7 +12,10 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author mimmo
+ * @author mimmo 
+ Qual a diferença entre Locatario e Locatário ? 
+ Locatario é o proprietário do imóvel, geralmente representado por uma administradora.
+ O locatário é o que aluga o imóvel para moradia ou uso comercial.
  */
 public class TelaPainelPrincipal extends javax.swing.JFrame {
 
@@ -22,34 +25,33 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
     public TelaPainelPrincipal() {
         initComponents();
         listarTabelaP();
-       
+
     }
-    public void listarTabelaP(){
-       
-		Fachada f = new Fachada();
-		CheckIn checkIn = new CheckIn();
-		ArrayList<CheckIn> listaCheckIno;
-		      
-            listaCheckIno = (ArrayList<CheckIn>) f.listallCheckIn(checkIn);
-            
-            DefaultTableModel dtm = new DefaultTableModel();
-            dtm.setColumnIdentifiers(new String[]{"Aptº", "Data Entrada",
-                "Data Saída", "Locatario", "Situação"});
-            for (int i = 0; i < listaCheckIno.size(); i++) {
-                dtm.addRow(new String[]{listaCheckIno.get(i).getId() + "",
-                    listaCheckIno.get(i).getApartamento().getNumero() + "",
-                    listaCheckIno.get(i).getDataentrada() + "",
-                    listaCheckIno.get(i).getDatasaida() + "",
-                    listaCheckIno.get(i).getLocatario().getNome() + "",
-                    listaCheckIno.get(i).getApartamento().getSituacao()
-                });
-            }
-            
-            jTablePrincipal.setModel(dtm);
-        
-	
-    } 
-    
+
+    public void listarTabelaP() {
+
+        Fachada f = new Fachada();
+        CheckIn checkIn = new CheckIn();
+        ArrayList<CheckIn> listaCheckIno;
+
+        listaCheckIno = (ArrayList<CheckIn>) f.listallCheckIn(checkIn);
+
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.setColumnIdentifiers(new String[]{"Aptº", "Data Entrada",
+            "Data Saída", "Locatario", "Situação"});
+        for (int i = 0; i < listaCheckIno.size(); i++) {
+            dtm.addRow(new String[]{listaCheckIno.get(i).getId() + "",
+                listaCheckIno.get(i).getApartamento().getNumero() + "",
+                listaCheckIno.get(i).getDataentrada() + "",
+                listaCheckIno.get(i).getDatasaida() + "",
+                listaCheckIno.get(i).getLocatario().getNome() + "",
+                listaCheckIno.get(i).getApartamento().getSituacao()
+            });
+        }
+
+        jTablePrincipal.setModel(dtm);
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -338,7 +340,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
     private void jButtonCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckoutActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButtonCheckoutActionPerformed
 
     private void jButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReservasActionPerformed
@@ -353,6 +355,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         TelaGerenciaProprietario tPro = new TelaGerenciaProprietario(this);
         this.setVisible(false);
         tPro.setVisible(true);
+        
     }//GEN-LAST:event_jButtonProprietariosActionPerformed
 
     private void jButtonLocadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocadorActionPerformed
@@ -373,15 +376,15 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         Fachada f = new Fachada();
         CheckIn chekinSelecionado = new CheckIn();
-        chekinSelecionado.setId(jTablePrincipal.getSelectedRow()+1);
+        chekinSelecionado.setId(jTablePrincipal.getSelectedRow() + 1);
         f.findCheckIn(chekinSelecionado);
-        
-        jTextFieldApt.setText(chekinSelecionado.getApartamento().getNumero()+"");
-        jTextFieldVM.setText(chekinSelecionado.getApartamento().getValorminimo()+"");
-        jTextFieldNQuartos.setText(chekinSelecionado.getApartamento().getQuartos()+"");
+
+        jTextFieldApt.setText(chekinSelecionado.getApartamento().getNumero() + "");
+        jTextFieldVM.setText(chekinSelecionado.getApartamento().getValorminimo() + "");
+        jTextFieldNQuartos.setText(chekinSelecionado.getApartamento().getQuartos() + "");
         jTextFieldSituacao.setText(chekinSelecionado.getApartamento().getSituacao());
         jTextFieldLocador.setText(chekinSelecionado.getApartamento().getProprietario().getNome());
-         
+
     }//GEN-LAST:event_jTablePrincipalMouseClicked
 
     /**
@@ -411,7 +414,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-       
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

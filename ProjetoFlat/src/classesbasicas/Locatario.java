@@ -9,9 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 @Entity
-public class Locador {
+public class Locatario {
 	@Id
 	@GeneratedValue
 	private int id;
@@ -40,12 +41,14 @@ public class Locador {
 	private String estadocivil;
 	private String responsavelpagamento;
 	private String carro;
+        @Temporal(javax.persistence.TemporalType.DATE)
         private Date dataderegistro;
 	private String carrocor;
 	private String placa;
         @OneToMany
         Collection<CheckIn> checkin;
-        public Locador(){
+        
+        public Locatario(){
             this.checkin = new ArrayList<>();
             this.dataderegistro = new Date();
         }

@@ -12,7 +12,9 @@ package classesbasicas;
 public enum SituacaoReserva {
     ATIVO("ATIVO"),
     INATIVO("INATIVO");
+    
     private String situacao;
+    
     private SituacaoReserva(String sit){
         this.situacao = sit;
     }

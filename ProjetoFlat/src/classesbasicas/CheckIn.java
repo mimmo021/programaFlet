@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 @Entity
 public class CheckIn {
@@ -19,15 +20,18 @@ private Double valortotaldiarias;
 @ManyToOne
 private Apartamento apartamento;
 @ManyToOne
-private Locador locatario;
+private Locatario locatario;
+@Temporal(javax.persistence.TemporalType.DATE)
 private Date dataderegistro;
+@Temporal(javax.persistence.TemporalType.DATE)
 private Date dataentrada;
+@Temporal(javax.persistence.TemporalType.DATE)
 private Date datasaida;
 @OneToOne
 private CheckOut checkout;
 public CheckIn(){
     this.apartamento = new Apartamento();
-    this.locatario = new Locador();
+    this.locatario = new Locatario();
     this.dataderegistro = new Date();
     this.datasaida = new Date();
     this.dataentrada = new Date();
@@ -105,14 +109,14 @@ public CheckIn(){
     /**
      * @return the locatario
      */
-    public Locador getLocatario() {
+    public Locatario getLocatario() {
         return locatario;
     }
 
     /**
      * @param locatario the locatario to set
      */
-    public void setLocatario(Locador locatario) {
+    public void setLocatario(Locatario locatario) {
         this.locatario = locatario;
     }
 

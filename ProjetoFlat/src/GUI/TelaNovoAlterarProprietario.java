@@ -21,22 +21,33 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
     /**
      * Creates new form NovoAlterarLocador
      */
+    
+    
+    TelaGerenciaProprietario tgp;
     Proprietario proSelecionado = new Proprietario();
 
-    public TelaNovoAlterarProprietario() {
+    //<editor-fold defaultstate="collapsed" desc="Construtores da tela">
+    public TelaNovoAlterarProprietario(TelaGerenciaProprietario tgp) {
         initComponents();
+        this.tgp = tgp;
     }
-
-    public TelaNovoAlterarProprietario(Proprietario p) {
+    
+    public TelaNovoAlterarProprietario() {
+        
+    }
+    
+    public TelaNovoAlterarProprietario(Proprietario p, TelaGerenciaProprietario tgp) {
         initComponents();
         this.proSelecionado = p;
+        this.tgp = tgp;
         jTextFieldNome.setText(p.getNome());
         jTextFieldFone.setText(p.getTelefone());
         jTextFieldFoneComercial.setText(p.getTelefone2());
         jTextFieldCelular.setText(p.getTelefone3());
         jTextFieldEmail.setText(p.getEmail());
-
+        
     }
+//</editor-fold>
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,6 +84,11 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
         });
 
         jButtonretornar.setText("Retornar");
+        jButtonretornar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonretornarActionPerformed(evt);
+            }
+        });
 
         jPanelDadosLocador.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Locador"));
 
@@ -199,6 +215,13 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
         try {
             Fachada f = new Fachada();
             proSelecionado = f.findProprietario(proSelecionado);
+
+            proSelecionado.setNome(jTextFieldNome.getText());
+            proSelecionado.setTelefone(jTextFieldFone.getText());
+            proSelecionado.setTelefone2(jTextFieldFoneComercial.getText());
+            proSelecionado.setTelefone3(jTextFieldCelular.getText());
+            proSelecionado.setEmail(jTextFieldEmail.getText());
+
             f.saveProprietario(proSelecionado);
 
         } catch (ProprietarioException ex) {
@@ -206,6 +229,15 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(rootPane, "Apartamento Alterado com sucesso!");
     }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jButtonretornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonretornarActionPerformed
+        // TODO add your handling code here:
+        tgp.limparCampos();
+        tgp.listarTabelaProprietario();
+        tgp.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_jButtonretornarActionPerformed
 
     /**
      * @param args the command line arguments

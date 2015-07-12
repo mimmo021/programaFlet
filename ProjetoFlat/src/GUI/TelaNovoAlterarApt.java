@@ -25,23 +25,32 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
      * Creates new form TelaNovoAlterarApt
      */
     Apartamento aptSelecionado = new Apartamento();
-    public TelaNovoAlterarApt(Apartamento apt){
+    TelaGerenciaApt tga;
+
+    public TelaNovoAlterarApt(Apartamento apt, TelaGerenciaApt tga) {
         initComponents();
+        this.tga = tga;
         carregarProprietario();
-        this.aptSelecionado= apt;
+        this.aptSelecionado = apt;
         jComboBoxPropietario.setSelectedItem(aptSelecionado.getProprietario().getNome());
         jTextFieldApt.setText(String.valueOf(aptSelecionado.getNumero()));
         jTextFieldCelpe.setText(aptSelecionado.getNumerocelpe());
         jTextFieldNet.setText(aptSelecionado.getNumeronet());
-        jComboBoxNQuartos.setSelectedItem(aptSelecionado.getQuartos()+"");
+        jComboBoxNQuartos.setSelectedItem(aptSelecionado.getQuartos() + "");
         jTextFieldVM.setText(String.valueOf(aptSelecionado.getValorminimo()));
         jComboBoxSituacao.setSelectedItem(aptSelecionado.getSituacao());
-        
+
     }
-    public TelaNovoAlterarApt() {
+
+    public TelaNovoAlterarApt(TelaGerenciaApt tga) {
         initComponents();
         carregarProprietario();
     }
+
+    public TelaNovoAlterarApt() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private void carregarProprietario() {
         Fachada fachada = new Fachada();
         Proprietario proprietario = new Proprietario();
@@ -52,7 +61,7 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
             modelo.addElement(listaProprietario.get(i).getNome());
         }
         jComboBoxPropietario.setModel(modelo);
-	}
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -237,13 +246,13 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxSituacaoActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-                // TODO add your handling code here:
+        // TODO add your handling code here:
         Fachada f = new Fachada();
         Apartamento a = new Apartamento();
         Proprietario p = new Proprietario();
-       
-        p.setId(jComboBoxPropietario.getSelectedIndex()+1);
-        
+
+        p.setId(jComboBoxPropietario.getSelectedIndex() + 1);
+
         a.setProprietario(f.findProprietario(p));
         a.setNumero(Integer.parseInt(jTextFieldApt.getText()));
         a.setNumerocelpe(jTextFieldCelpe.getText());
@@ -253,20 +262,32 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         a.setSituacao((String) jComboBoxSituacao.getSelectedItem());
         try {
             f.saveApartamento(a);
-            
+
         } catch (ApartamentoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
         JOptionPane.showMessageDialog(rootPane, "Apartamento Salvo com sucesso!");
-        
+
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+
+        Fachada f = new Fachada();
+        aptSelecionado = f.findApartamento(aptSelecionado);
+        Proprietario p = new Proprietario();
+
+        p.setId(jComboBoxPropietario.getSelectedIndex()+1);
+
+        aptSelecionado.setProprietario(f.findProprietario(p));
+        aptSelecionado.setNumero(Integer.parseInt(jTextFieldApt.getText()));
+        aptSelecionado.setNumerocelpe(jTextFieldCelpe.getText());
+        aptSelecionado.setNumeronet(jTextFieldNet.getText());
+        aptSelecionado.setQuartos(Integer.parseInt((String) jComboBoxNQuartos.getSelectedItem()));
+        aptSelecionado.setValorminimo(Double.parseDouble(jTextFieldVM.getText()));
+        aptSelecionado.setSituacao((String) jComboBoxSituacao.getSelectedItem());
         try {
-            Fachada f = new Fachada();
-            aptSelecionado = f.findApartamento(aptSelecionado);
             f.saveApartamento(aptSelecionado);
-            
+
         } catch (ApartamentoException ex) {
             Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -275,7 +296,11 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
 
     private void jToggleButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonRetornarActionPerformed
         // TODO add your handling code here:
-        
+        tga.setVisible(true);
+        tga.listarTabelaApt();
+        tga.listarTabelaCheckIn();
+        tga.listarTabelaReservas();
+        this.dispose();
     }//GEN-LAST:event_jToggleButtonRetornarActionPerformed
 
     /**

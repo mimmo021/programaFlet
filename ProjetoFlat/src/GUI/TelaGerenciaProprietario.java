@@ -5,7 +5,6 @@
  */
 package GUI;
 
-
 import classesbasicas.Proprietario;
 import classesfachada.Fachada;
 import java.util.ArrayList;
@@ -21,46 +20,56 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
      * Creates new form CaastroProprietario
      */
     TelaPainelPrincipal tpp;
-    public TelaGerenciaProprietario(TelaPainelPrincipal tpp) {
-        initComponents();
-        this.tpp = tpp;
-        listarTabelaProprietario();
-        
-       
-    }
+    Proprietario proSelecionado = new Proprietario();
     Fachada f = new Fachada();
     Proprietario e = new Proprietario();
     ArrayList<Proprietario> listaProprietario;
 
-    TelaGerenciaProprietario() {
+    public TelaGerenciaProprietario(TelaPainelPrincipal tpp) {
+        initComponents();
+        this.tpp = tpp;
+        this.jButtonAlterar.setEnabled(false);
+        listarTabelaProprietario();
+    }
+
+    public TelaGerenciaProprietario() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-     public void listarTabelaProprietario(){
-       
-         Fachada f = new Fachada();
-    Proprietario e = new Proprietario();
-    ArrayList<Proprietario> listaProprietario;
-         
-         listaProprietario = (ArrayList<Proprietario>) f.listallProprietario(e);
-		
-		DefaultTableModel dtm = new DefaultTableModel();
-		dtm.setColumnIdentifiers(new String[] {"Id", "Nome", "Fone",
-				"Fone Comercial","Celular", "E-mail"});
-		for (int i = 0; i < listaProprietario.size(); i++) {
-			dtm.addRow(new String[] {listaProprietario.get(i).getId() + "",
-					listaProprietario.get(i).getNome()+ "",
-					listaProprietario.get(i).getTelefone()+ "",
-					listaProprietario.get(i).getTelefone2()+ "",
-					listaProprietario.get(i).getTelefone3()+ "",
-					listaProprietario.get(i).getEmail()
-                        });
-		}
 
-		jTableProprietario.setModel(dtm);
-              
-    } 
+    public void listarTabelaProprietario() {
 
+        Fachada f = new Fachada();
+        Proprietario e = new Proprietario();
+        ArrayList<Proprietario> listaProprietario;
+
+        listaProprietario = (ArrayList<Proprietario>) f.listallProprietario(e);
+
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.setColumnIdentifiers(new String[]{"Id", "Nome", "Fone",
+            "Fone Comercial", "Celular", "E-mail"});
+        for (int i = 0; i < listaProprietario.size(); i++) {
+            dtm.addRow(new String[]{listaProprietario.get(i).getId() + "",
+                listaProprietario.get(i).getNome() + "",
+                listaProprietario.get(i).getTelefone() + "",
+                listaProprietario.get(i).getTelefone2() + "",
+                listaProprietario.get(i).getTelefone3() + "",
+                listaProprietario.get(i).getEmail()
+            });
+        }
+
+        jTableProprietario.setModel(dtm);
+
+    }
+
+    public void limparCampos(){
+        jTextFieldNome.setText(null);
+        jTextFieldFone.setText(null);
+        jTextFieldFoneComercial.setText(null);
+        jTextFieldCelular.setText(null);
+        jTextFieldEmail.setText(null);
+        
+        jButtonAlterar.setEnabled(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -246,24 +255,22 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarProprietario nPro = new  TelaNovoAlterarProprietario();
+        TelaNovoAlterarProprietario nPro = new TelaNovoAlterarProprietario(this);
         this.setVisible(false);
         nPro.setVisible(true);
-        
+
     }//GEN-LAST:event_jButtonNovoActionPerformed
-    
-    
-    Proprietario proSelecionado = new Proprietario();
-    
+
     private void jTableProprietarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProprietarioMouseClicked
         // TODO add your handling code here:
+        this.jButtonAlterar.setEnabled(true);
         Fachada f = new Fachada();
         Proprietario p = new Proprietario();
         int linha_selecionada = jTableProprietario.getSelectedRow();
         p.setId(Integer.parseInt(jTableProprietario.getValueAt(linha_selecionada, 0).toString()));
-       
+
         proSelecionado = f.findProprietario(p);
-        
+
         jTextFieldNome.setText(proSelecionado.getNome());
         jTextFieldFone.setText(proSelecionado.getTelefone());
         jTextFieldFoneComercial.setText(proSelecionado.getTelefone2());
@@ -273,7 +280,7 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
-         TelaNovoAlterarProprietario nPro = new  TelaNovoAlterarProprietario(this.proSelecionado);
+        TelaNovoAlterarProprietario nPro = new TelaNovoAlterarProprietario(proSelecionado, this);
         this.setVisible(false);
         nPro.setVisible(true);
     }//GEN-LAST:event_jButtonAlterarActionPerformed
@@ -312,8 +319,6 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
-        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
