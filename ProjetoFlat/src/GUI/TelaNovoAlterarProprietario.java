@@ -21,8 +21,6 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
     /**
      * Creates new form NovoAlterarLocador
      */
-    
-    
     TelaGerenciaProprietario tgp;
     Proprietario proSelecionado = new Proprietario();
 
@@ -30,12 +28,13 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
     public TelaNovoAlterarProprietario(TelaGerenciaProprietario tgp) {
         initComponents();
         this.tgp = tgp;
+        this.jButtonAlterar.setEnabled(false);
     }
-    
+
     public TelaNovoAlterarProprietario() {
-        
+
     }
-    
+
     public TelaNovoAlterarProprietario(Proprietario p, TelaGerenciaProprietario tgp) {
         initComponents();
         this.proSelecionado = p;
@@ -45,7 +44,7 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
         jTextFieldFoneComercial.setText(p.getTelefone2());
         jTextFieldCelular.setText(p.getTelefone3());
         jTextFieldEmail.setText(p.getEmail());
-        
+        jButtonSalvar.setEnabled(false);
     }
 //</editor-fold>
 
@@ -192,6 +191,27 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void limparCamposDepoisDeSalvar() {
+        jTextFieldNome.setText(null);
+        jTextFieldFone.setText(null);
+        jTextFieldFoneComercial.setText(null);
+        jTextFieldCelular.setText(null);
+        jTextFieldEmail.setText(null);
+
+        //jButtonAlterar.setEnabled(false);
+    }
+
+    public void limparCamposDepoisDeAlterar() {
+        jTextFieldNome.setText(null);
+        jTextFieldFone.setText(null);
+        jTextFieldFoneComercial.setText(null);
+        jTextFieldCelular.setText(null);
+        jTextFieldEmail.setText(null);
+
+        jButtonAlterar.setEnabled(false);
+    }
+
+
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         // TODO add your handling code here:
         try {
@@ -202,7 +222,10 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
             p.setTelefone2(jTextFieldFoneComercial.getText());
             p.setTelefone3(jTextFieldCelular.getText());
             p.setEmail(jTextFieldEmail.getText());
+            
             fachada.saveProprietario(p);
+            
+            this.limparCamposDepoisDeSalvar();
 
         } catch (ProprietarioException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
@@ -223,6 +246,8 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
             proSelecionado.setEmail(jTextFieldEmail.getText());
 
             f.saveProprietario(proSelecionado);
+            
+            this.limparCamposDepoisDeAlterar();
 
         } catch (ProprietarioException ex) {
             Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
@@ -235,7 +260,7 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
         tgp.limparCampos();
         tgp.listarTabelaProprietario();
         tgp.setVisible(true);
-        
+
         this.dispose();
     }//GEN-LAST:event_jButtonretornarActionPerformed
 

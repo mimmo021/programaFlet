@@ -258,6 +258,7 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
         TelaNovoAlterarProprietario nPro = new TelaNovoAlterarProprietario(this);
         this.setVisible(false);
         nPro.setVisible(true);
+        
 
     }//GEN-LAST:event_jButtonNovoActionPerformed
 

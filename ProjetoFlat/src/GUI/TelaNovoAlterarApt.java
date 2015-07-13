@@ -27,11 +27,11 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
     Apartamento aptSelecionado = new Apartamento();
     TelaGerenciaApt tga;
 
-    public TelaNovoAlterarApt(Apartamento apt, TelaGerenciaApt tga) {
+    public TelaNovoAlterarApt(Apartamento aptSelecionado, TelaGerenciaApt tga) {
         initComponents();
         this.tga = tga;
         carregarProprietario();
-        this.aptSelecionado = apt;
+        this.aptSelecionado = aptSelecionado;
         jComboBoxPropietario.setSelectedItem(aptSelecionado.getProprietario().getNome());
         jTextFieldApt.setText(String.valueOf(aptSelecionado.getNumero()));
         jTextFieldCelpe.setText(aptSelecionado.getNumerocelpe());
@@ -40,15 +40,41 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         jTextFieldVM.setText(String.valueOf(aptSelecionado.getValorminimo()));
         jComboBoxSituacao.setSelectedItem(aptSelecionado.getSituacao());
 
+        this.jButtonSalvar.setEnabled(false);
     }
 
     public TelaNovoAlterarApt(TelaGerenciaApt tga) {
         initComponents();
+        this.tga = tga;
         carregarProprietario();
     }
 
     public TelaNovoAlterarApt() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void limparCamposDepoisDeSalvar() {
+        jComboBoxPropietario.setSelectedIndex(0);
+        jComboBoxNQuartos.setSelectedIndex(0);
+        jComboBoxSituacao.setSelectedIndex(0);
+        jTextFieldApt.setText(null);
+        jTextFieldCelpe.setText(null);
+        jTextFieldNet.setText(null);
+        jTextFieldVM.setText(null);
+
+    }
+
+    public void limparCamposDepoisDeAlterar() {
+        jComboBoxPropietario.setSelectedIndex(0);
+        jComboBoxNQuartos.setSelectedIndex(0);
+        jComboBoxSituacao.setSelectedIndex(0);
+        jTextFieldApt.setText(null);
+        jTextFieldCelpe.setText(null);
+        jTextFieldNet.setText(null);
+        jTextFieldVM.setText(null);
+
+        jButtonAlterar.setEnabled(false);
+
     }
 
     private void carregarProprietario() {
@@ -247,21 +273,24 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         // TODO add your handling code here:
-        Fachada f = new Fachada();
-        Apartamento a = new Apartamento();
-        Proprietario p = new Proprietario();
-
-        p.setId(jComboBoxPropietario.getSelectedIndex() + 1);
-
-        a.setProprietario(f.findProprietario(p));
-        a.setNumero(Integer.parseInt(jTextFieldApt.getText()));
-        a.setNumerocelpe(jTextFieldCelpe.getText());
-        a.setNumeronet(jTextFieldNet.getText());
-        a.setQuartos(Integer.parseInt((String) jComboBoxNQuartos.getSelectedItem()));
-        a.setValorminimo(Double.parseDouble(jTextFieldVM.getText()));
-        a.setSituacao((String) jComboBoxSituacao.getSelectedItem());
         try {
+            Fachada f = new Fachada();
+            Apartamento a = new Apartamento();
+            Proprietario p = new Proprietario();
+
+            p.setId(jComboBoxPropietario.getSelectedIndex() + 1);
+
+            a.setProprietario(f.findProprietario(p));
+            a.setNumero(Integer.parseInt(jTextFieldApt.getText()));
+            a.setNumerocelpe(jTextFieldCelpe.getText());
+            a.setNumeronet(jTextFieldNet.getText());
+            a.setQuartos(Integer.parseInt((String) jComboBoxNQuartos.getSelectedItem()));
+            a.setValorminimo(Double.parseDouble(jTextFieldVM.getText()));
+            a.setSituacao((String) jComboBoxSituacao.getSelectedItem());
+
             f.saveApartamento(a);
+
+            this.limparCamposDepoisDeSalvar();
 
         } catch (ApartamentoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
@@ -272,21 +301,24 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
 
-        Fachada f = new Fachada();
-        aptSelecionado = f.findApartamento(aptSelecionado);
-        Proprietario p = new Proprietario();
-
-        p.setId(jComboBoxPropietario.getSelectedIndex()+1);
-
-        aptSelecionado.setProprietario(f.findProprietario(p));
-        aptSelecionado.setNumero(Integer.parseInt(jTextFieldApt.getText()));
-        aptSelecionado.setNumerocelpe(jTextFieldCelpe.getText());
-        aptSelecionado.setNumeronet(jTextFieldNet.getText());
-        aptSelecionado.setQuartos(Integer.parseInt((String) jComboBoxNQuartos.getSelectedItem()));
-        aptSelecionado.setValorminimo(Double.parseDouble(jTextFieldVM.getText()));
-        aptSelecionado.setSituacao((String) jComboBoxSituacao.getSelectedItem());
         try {
+            Fachada f = new Fachada();
+            aptSelecionado = f.findApartamento(aptSelecionado);
+            Proprietario p = new Proprietario();
+
+            p.setId(jComboBoxPropietario.getSelectedIndex() + 1);
+
+            aptSelecionado.setProprietario(f.findProprietario(p));
+            aptSelecionado.setNumero(Integer.parseInt(jTextFieldApt.getText()));
+            aptSelecionado.setNumerocelpe(jTextFieldCelpe.getText());
+            aptSelecionado.setNumeronet(jTextFieldNet.getText());
+            aptSelecionado.setQuartos(Integer.parseInt((String) jComboBoxNQuartos.getSelectedItem()));
+            aptSelecionado.setValorminimo(Double.parseDouble(jTextFieldVM.getText()));
+            aptSelecionado.setSituacao((String) jComboBoxSituacao.getSelectedItem());
+
             f.saveApartamento(aptSelecionado);
+            
+            this.limparCamposDepoisDeAlterar();
 
         } catch (ApartamentoException ex) {
             Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
@@ -300,6 +332,8 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         tga.listarTabelaApt();
         tga.listarTabelaCheckIn();
         tga.listarTabelaReservas();
+        tga.limparCampos();
+        
         this.dispose();
     }//GEN-LAST:event_jToggleButtonRetornarActionPerformed
 
