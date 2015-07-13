@@ -81,7 +81,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButtonCheckIn = new javax.swing.JButton();
         jButtonApt = new javax.swing.JButton();
-        jButtonLocador = new javax.swing.JButton();
+        jButtonLocatario = new javax.swing.JButton();
         jButtonReservas = new javax.swing.JButton();
         jButtonProprietarios = new javax.swing.JButton();
         jButtonCheckout = new javax.swing.JButton();
@@ -181,10 +181,10 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButtonLocador.setText("Locador");
-        jButtonLocador.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLocatario.setText("Locatário");
+        jButtonLocatario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLocadorActionPerformed(evt);
+                jButtonLocatarioActionPerformed(evt);
             }
         });
 
@@ -221,7 +221,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonReservas, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                    .addComponent(jButtonLocador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonLocatario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonProprietarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -238,7 +238,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
                     .addComponent(jButtonProprietarios))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonLocador)
+                    .addComponent(jButtonLocatario)
                     .addComponent(jButtonCheckout)
                     .addComponent(jButtonApt))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -358,12 +358,12 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonProprietariosActionPerformed
 
-    private void jButtonLocadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocadorActionPerformed
+    private void jButtonLocatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocatarioActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaLocador tLoc = new TelaGerenciaLocador(this);
+        TelaGerenciaLocatario tLoc = new TelaGerenciaLocatario(this);
         this.setVisible(false);
         tLoc.setVisible(true);
-    }//GEN-LAST:event_jButtonLocadorActionPerformed
+    }//GEN-LAST:event_jButtonLocatarioActionPerformed
 
     private void jButtonAptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAptActionPerformed
         // TODO add your handling code here:
@@ -428,7 +428,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonApt;
     private javax.swing.JButton jButtonCheckIn;
     private javax.swing.JButton jButtonCheckout;
-    private javax.swing.JButton jButtonLocador;
+    private javax.swing.JButton jButtonLocatario;
     private javax.swing.JButton jButtonProprietarios;
     private javax.swing.JButton jButtonReservas;
     private javax.swing.JLabel jLabel1;

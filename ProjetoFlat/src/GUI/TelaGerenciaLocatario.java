@@ -15,43 +15,79 @@ import util.Datas;
  *
  * @author mimmo
  */
-public class TelaGerenciaLocador extends javax.swing.JFrame {
+public class TelaGerenciaLocatario extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroLocador
      */
     TelaPainelPrincipal tpp;
-    public TelaGerenciaLocador(TelaPainelPrincipal tpp) {
+    Locatario locSelecionado = new Locatario();
+    
+    public TelaGerenciaLocatario(TelaPainelPrincipal tpp) {
         initComponents();
-       this.tpp = tpp;
-        listarTabelaLocador();
+        this.tpp = tpp;
+        listarTabelaLocatario();
     }
-
-    TelaGerenciaLocador() {
+    
+    TelaGerenciaLocatario() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-public void listarTabelaLocador(){
-       
-    Fachada f = new Fachada();
-		Locatario l = new Locatario();
-		ArrayList<Locatario> listaLocador;
-		listaLocador = (ArrayList<Locatario>) f.listallLocador(l);
-
-		DefaultTableModel dtm = new DefaultTableModel();
-		dtm.setColumnIdentifiers(new String[] { "Id","Nome", "Fone",
-				"Celular", "E-mail"});
-		for (int i = 0; i < listaLocador.size(); i++) {
-			dtm.addRow(new String[] {listaLocador.get(i).getId() + "",
-					listaLocador.get(i).getNome()+ "",
-					listaLocador.get(i).getTelefone()+ "",
-					listaLocador.get(i).getTelefone2()+ "",
-					listaLocador.get(i).getEmail()
-                        });
-		}
-
-		jTableLocador.setModel(dtm);
     
-    } 
+    public void listarTabelaLocatario() {
+        
+        Fachada f = new Fachada();
+        Locatario l = new Locatario();
+        ArrayList<Locatario> listaLocatario;
+        listaLocatario = (ArrayList<Locatario>) f.listallLocatario(l);
+        
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.setColumnIdentifiers(new String[]{"Id", "Nome", "Fone",
+            "Celular", "E-mail"});
+        for (int i = 0; i < listaLocatario.size(); i++) {
+            dtm.addRow(new String[]{listaLocatario.get(i).getId() + "",
+                listaLocatario.get(i).getNome() + "",
+                listaLocatario.get(i).getTelefone() + "",
+                listaLocatario.get(i).getTelefone2() + "",
+                listaLocatario.get(i).getEmail()
+            });
+        }
+        
+        jTableLocatario.setModel(dtm);
+        
+    }
+    
+    public void limparCampos() {
+        jTextFieldNome.setText(null);
+        jTextFieldEndereco.setText(null);
+        jTextFieldApto.setText(null);
+        jTextFieldNumero.setText(null);
+        jTextFieldCidade.setText(null);
+        jTextFieldBairro.setText(null);
+        jTextFieldCep.setText(null);
+        jTextFieldIdade.setText(null);
+        jTextFieldEstado.setText(null);
+        jTextFieldProcedencia.setText(null);
+        jTextFieldIdentidade.setText(null);
+        jTextFieldOrgaoExp.setText(null);
+        jTextFieldMotivo.setText(null);
+        jTextFieldCpf.setText(null);
+        jTextFieldEstadoCivil.setText(null);
+        jTextFieldCarro.setText(null);
+        jTextFieldCor.setText(null);
+        jTextFieldPlaca.setText(null);
+        
+        jTextFieldDataRegistro.setText(null);
+        
+        jTextFieldFone.setText(null);
+        jTextFieldCelular.setText(null);
+        jTextFieldEmail.setText(null);
+        jTextFieldPassaporte.setText(null);
+        jTextFieldResponsavelPag.setText(null);
+        
+        this.jButton2Alterar.setEnabled(false);
+        
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,7 +149,7 @@ public void listarTabelaLocador(){
         jTextFieldDataRegistro = new javax.swing.JTextField();
         jLabelTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableLocador = new javax.swing.JTable();
+        jTableLocatario = new javax.swing.JTable();
         jButtonNovo = new javax.swing.JButton();
         jButton2Alterar = new javax.swing.JButton();
         jButton3Retornar = new javax.swing.JButton();
@@ -123,7 +159,7 @@ public void listarTabelaLocador(){
 
         jLabelBarra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra2.png"))); // NOI18N
 
-        jPanelCadastroLocatario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Locador"));
+        jPanelCadastroLocatario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Locatário"));
 
         jLabelNome.setText("Nome Completo/ Full name:");
 
@@ -414,9 +450,9 @@ public void listarTabelaLocador(){
         );
 
         jLabelTitulo.setFont(new java.awt.Font("Razer Header Regular", 1, 24)); // NOI18N
-        jLabelTitulo.setText("Gerência Locador");
+        jLabelTitulo.setText("Gerência Locatário");
 
-        jTableLocador.setModel(new javax.swing.table.DefaultTableModel(
+        jTableLocatario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -427,12 +463,12 @@ public void listarTabelaLocador(){
                 "Título 1", "Título 2", "Título 3", "Título 4"
             }
         ));
-        jTableLocador.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableLocatario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableLocadorMouseClicked(evt);
+                jTableLocatarioMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTableLocador);
+        jScrollPane1.setViewportView(jTableLocatario);
 
         jButtonNovo.setText("Novo");
         jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -504,36 +540,36 @@ public void listarTabelaLocador(){
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarLocador nLoc = new TelaNovoAlterarLocador(this);
-        this.setEnabled(false);
+        TelaNovoAlterarLocatario nLoc = new TelaNovoAlterarLocatario(this);
+        this.setVisible(false);
         nLoc.setVisible(true);
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButton3RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3RetornarActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        
         tpp.setVisible(true);
         tpp.listarTabelaP();
-        
+        this.dispose();
     }//GEN-LAST:event_jButton3RetornarActionPerformed
-Locatario locSelecionado = new Locatario();
+
     private void jButton2AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2AlterarActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarLocador nLoc = new TelaNovoAlterarLocador(locSelecionado, this);
+        TelaNovoAlterarLocatario nLoc = new TelaNovoAlterarLocatario(locSelecionado, this);
         this.setVisible(false);
         nLoc.setVisible(true);
     }//GEN-LAST:event_jButton2AlterarActionPerformed
 
-    private void jTableLocadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLocadorMouseClicked
+    private void jTableLocatarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLocatarioMouseClicked
         // TODO add your handling code here:
         Fachada fachada = new Fachada();
         Locatario l = new Locatario();
-
-        int linha_selecionada = jTableLocador.getSelectedRow();
-        l.setId(Integer.parseInt(jTableLocador.getValueAt(linha_selecionada, 0).toString()));
-
-        locSelecionado = (fachada.findLocador(l));
-
+        
+        int linha_selecionada = jTableLocatario.getSelectedRow();
+        l.setId(Integer.parseInt(jTableLocatario.getValueAt(linha_selecionada, 0).toString()));
+        
+        locSelecionado = (fachada.findLocatario(l));
+        
         jTextFieldNome.setText(locSelecionado.getNome());
         jTextFieldEndereco.setText(locSelecionado.getEndereco());
         jTextFieldApto.setText(locSelecionado.getApto());
@@ -541,7 +577,7 @@ Locatario locSelecionado = new Locatario();
         jTextFieldCidade.setText(locSelecionado.getCidade());
         jTextFieldBairro.setText(locSelecionado.getBairro());
         jTextFieldCep.setText(locSelecionado.getCep());
-        jTextFieldIdade.setText(locSelecionado.getIdade()+"");
+        jTextFieldIdade.setText(locSelecionado.getIdade() + "");
         jTextFieldEstado.setText(locSelecionado.getEstado());
         jTextFieldProcedencia.setText(locSelecionado.getProcedencia());
         jTextFieldIdentidade.setText(locSelecionado.getIdentidade());
@@ -556,10 +592,11 @@ Locatario locSelecionado = new Locatario();
         jTextFieldCelular.setText(locSelecionado.getTelefone2());
         jTextFieldEmail.setText(locSelecionado.getEmail());
         jTextFieldPassaporte.setText(locSelecionado.getPassaporte());
-        jTextFieldDataRegistro.setText(Datas.formatarData(locSelecionado.getDataderegistro(), "dd/MM/yyyy"));     
+        jTextFieldDataRegistro.setText(Datas.formatarData(locSelecionado.getDataderegistro(), "dd/MM/yyyy"));
         jTextFieldResponsavelPag.setText(locSelecionado.getResponsavelpagamento());
         
-    }//GEN-LAST:event_jTableLocadorMouseClicked
+        this.jButton2Alterar.setEnabled(true);
+    }//GEN-LAST:event_jTableLocatarioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -578,23 +615,20 @@ Locatario locSelecionado = new Locatario();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaGerenciaLocador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaLocatario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaGerenciaLocador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaLocatario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaGerenciaLocador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaLocatario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaGerenciaLocador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaLocatario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
-        
-        
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaGerenciaLocador().setVisible(true);
+                new TelaGerenciaLocatario().setVisible(true);
             }
         });
     }
@@ -631,7 +665,7 @@ Locatario locSelecionado = new Locatario();
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelCadastroLocatario;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableLocador;
+    private javax.swing.JTable jTableLocatario;
     private javax.swing.JTextField jTextFieldApto;
     private javax.swing.JTextField jTextFieldBairro;
     private javax.swing.JTextField jTextFieldCarro;

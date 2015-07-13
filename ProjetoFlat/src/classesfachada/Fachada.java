@@ -95,19 +95,19 @@ public class Fachada {
 	public List<CheckOut> listallCheckOut(CheckOut a) {
 		return checkoutnegocios.listall(a);
 	}
-        public void saveLocador(Locatario a) throws LocatarioException {
+        public void saveLocatario(Locatario a) throws LocatarioException {
 		locatarionegocios.save(a);
 	}
 
-	public void deleteLocador(Locatario a) {
+	public void deleteLocatario(Locatario a) {
 		locatarionegocios.delete(a);
 	}
 
-	public Locatario findLocador(Locatario a) {
+	public Locatario findLocatario(Locatario a) {
 		return locatarionegocios.find(a);
 	}
 
-	public List<Locatario> listallLocador(Locatario a) {
+	public List<Locatario> listallLocatario(Locatario a) {
 		return locatarionegocios.listall(a);
 	}
         public void saveLogin(Login a) throws LoginException {

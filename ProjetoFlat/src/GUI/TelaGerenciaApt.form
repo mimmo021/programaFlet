@@ -39,7 +39,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButtonRemover" max="32767" attributes="0"/>
-                          <Component id="jButtonCadastrarSalvar" pref="104" max="32767" attributes="0"/>
+                          <Component id="jButtonNovo" pref="104" max="32767" attributes="0"/>
                           <Component id="jButton1Retornar" max="32767" attributes="0"/>
                           <Component id="jButton1Alterar" max="32767" attributes="0"/>
                       </Group>
@@ -74,7 +74,7 @@
                               <Component id="jScrollPane2" min="-2" pref="103" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jButtonCadastrarSalvar" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonNovo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton1Alterar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
@@ -277,12 +277,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButtonCadastrarSalvar">
+    <Component class="javax.swing.JButton" name="jButtonNovo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Novo"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadastrarSalvarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNovoActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

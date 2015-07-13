@@ -27,8 +27,15 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
      * Creates new form TelaNovoAlterarReserva
      */
     Reserva resSelecionada = new Reserva();
+    TelaGerenciaReserva tgr;
+
     public TelaNovoAlterarReserva() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public TelaNovoAlterarReserva(TelaGerenciaReserva tgr) {
         initComponents();
+        this.tgr = tgr;
         carregarComboApt();
         carregarApts();
         //padrão = botão Radio "não" marcado
@@ -47,8 +54,9 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
 
     }
 
-    TelaNovoAlterarReserva(Reserva resSelecionado) {
+    public TelaNovoAlterarReserva(Reserva resSelecionado, TelaGerenciaReserva tgr) {
         initComponents();
+        this.tgr = tgr;
         carregarComboApt();
         carregarApts();
         this.resSelecionada = resSelecionado;
@@ -124,6 +132,8 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
         jTextFieldValorCalcao = new javax.swing.JTextField();
         jRadioButtonSim = new javax.swing.JRadioButton();
         jRadioButtonNao = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jToggleButtonRetornar = new javax.swing.JToggleButton();
         jButtonAlterar = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
@@ -170,6 +180,10 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("dd/MM/yyyy");
+
+        jLabel2.setText("dd/MM/yyyy");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -186,8 +200,7 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
                     .addComponent(jLabelApt)
                     .addComponent(jLabelDataSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextFieldDataEntrada, javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextFieldValorCalcao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,8 +209,15 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButtonNao))
                     .addComponent(jComboBoxApt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDataSaida, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldDataRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldDataRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldDataSaida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(jTextFieldDataEntrada, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -210,11 +230,13 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDataEntrada)
-                    .addComponent(jTextFieldDataEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldDataEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDataSaida)
-                    .addComponent(jTextFieldDataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldDataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelApt)
@@ -240,6 +262,11 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
         );
 
         jToggleButtonRetornar.setText("Retornar");
+        jToggleButtonRetornar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonRetornarActionPerformed(evt);
+            }
+        });
 
         jButtonAlterar.setText("Altera");
         jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -289,13 +316,57 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void limparCamposDepoisDeSalvar() {
+
+        Date datareg;
+        datareg = Datas.obterTimestampAtual();
+        String dataRegT = Datas.formatarData(datareg, "dd/MM/yyyy");
+        jTextFieldDataRegistro.setText(dataRegT);
+        jTextFieldDataEntrada.setText(null);
+        jTextFieldDataSaida.setText(null);
+
+        this.carregarComboApt();
+
+        jComboBoxApt.setSelectedIndex(0);
+        jTextFieldValor.setText(null);
+        jRadioButtonNao.setSelected(true);
+        jRadioButtonSim.setSelected(false);
+        jTextFieldValorCalcao.setText(null);
+        jComboBoxSituacao.setSelectedIndex(0);
+
+    }
+
+    public void limparCamposDepoisDeAlterar() {
+
+        Date datareg;
+        datareg = Datas.obterTimestampAtual();
+        String dataRegT = Datas.formatarData(datareg, "dd/MM/yyyy");
+        jTextFieldDataRegistro.setText(dataRegT);
+
+        jTextFieldDataEntrada.setText(null);
+        jTextFieldDataSaida.setText(null);
+
+        this.carregarComboApt();
+
+        jComboBoxApt.setSelectedIndex(0);
+        jTextFieldValor.setText(null);
+        jRadioButtonNao.setSelected(true);
+        jRadioButtonSim.setSelected(false);
+        jTextFieldValorCalcao.setText(null);
+        jComboBoxSituacao.setSelectedIndex(0);
+
+        jButtonAlterar.setEnabled(false);
+
+    }
+
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         // TODO add your handling code here:
         try {
             Fachada fachada = new Fachada();
-            Apartamento ap = new Apartamento();
             Reserva r = new Reserva();
-
+            
+            Apartamento ap = new Apartamento();
+            
             ap.setId(jComboBoxApt.getSelectedIndex() + 1);
             r.setApartamento(fachada.findApartamento(ap));
 
@@ -303,7 +374,8 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
             r.setDataentrada(Datas.criarData(jTextFieldDataEntrada.getText()));
             r.setDatasaida(Datas.criarData(jTextFieldDataSaida.getText()));
 
-            r.setValor(Double.parseDouble(jTextFieldValor.getText()));
+            Double valor = Double.parseDouble(jTextFieldValor.getText());
+            r.setValor(valor);
 
             if (jRadioButtonSim.isSelected()) {
                 r.setCalcao(true);
@@ -312,10 +384,12 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
                 r.setCalcao(false);
             }
 
-            r.setValorcalcao(Double.parseDouble(jTextFieldValorCalcao.getText()));
+            r.setValorcalcao(Double.valueOf(jTextFieldValorCalcao.getText()));
 
             fachada.saveReserva(r);
-            
+
+            this.limparCamposDepoisDeSalvar();
+
         } catch (ReservaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -337,18 +411,52 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
         try {
-            
+
             Fachada f = new Fachada();
             resSelecionada = f.findReserva(resSelecionada);
-            f.saveReserva(resSelecionada);
+
             
+            Apartamento ap = new Apartamento();
+            
+            ap.setId(jComboBoxApt.getSelectedIndex() + 1);
+            resSelecionada.setApartamento(f.findApartamento(ap));
+
+            resSelecionada.setDataregistro(Datas.criarData(jTextFieldDataRegistro.getText()));
+            resSelecionada.setDataentrada(Datas.criarData(jTextFieldDataEntrada.getText()));
+            resSelecionada.setDatasaida(Datas.criarData(jTextFieldDataSaida.getText()));
+
+            resSelecionada.setValor(Double.parseDouble(jTextFieldValor.getText()));
+
+            if (jRadioButtonSim.isSelected()) {
+                resSelecionada.setCalcao(true);
+            }
+            if (jRadioButtonNao.isSelected()) {
+                resSelecionada.setCalcao(false);
+            }
+
+            resSelecionada.setValorcalcao(Double.parseDouble(jTextFieldValorCalcao.getText()));
+
+            
+            f.saveReserva(resSelecionada);
+            this.limparCamposDepoisDeAlterar();
+
         } catch (ReservaException ex) {
             Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(rootPane, "Reserva Alterada com sucesso!"); 
-     
-            
+        JOptionPane.showMessageDialog(rootPane, "Reserva Alterada com sucesso!");
+
+
     }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jToggleButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonRetornarActionPerformed
+        // TODO add your handling code here:
+        tgr.setVisible(true);
+        tgr.listarTabelaReserva();
+
+        tgr.limparCampos();
+
+        this.dispose();
+    }//GEN-LAST:event_jToggleButtonRetornarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,6 +500,8 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox jComboBoxApt;
     private javax.swing.JComboBox jComboBoxSituacao;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelApt;
     private javax.swing.JLabel jLabelBarra;
     private javax.swing.JLabel jLabelCalcao;

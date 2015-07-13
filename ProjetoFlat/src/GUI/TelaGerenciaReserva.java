@@ -22,6 +22,8 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
      * Creates new form CadastroReserva
      */
     TelaPainelPrincipal tpp;
+    Reserva resSelecionada = new Reserva();
+
     public TelaGerenciaReserva(TelaPainelPrincipal tpp) {
         initComponents();
         this.tpp = tpp;
@@ -304,16 +306,33 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- 
+    public void limparCampos() {
+        jTextFieldDataRegistro.setText(null);
+        jTextFieldDataEntrada.setText(null);
+        jTextFieldDataSaida.setText(null);
+        
+        this.carregarComboApt();
+        
+        jComboBoxApt.setSelectedIndex(0);
+        jTextFieldValor.setText(null);
+        jRadioButtonNao.setSelected(true);
+        jRadioButtonSim.setSelected(false);
+        jTextFieldValorCalcao.setText(null);
+        jComboBoxSituacao.setSelectedIndex(0);
+        
+        
+        this.jButtonAlterar.setEnabled(false);
+        
+    }
+
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarReserva nRes = new TelaNovoAlterarReserva();
+        TelaNovoAlterarReserva nRes = new TelaNovoAlterarReserva(this);
         this.setVisible(false);
         nRes.setVisible(true);
     }//GEN-LAST:event_jButtonNovoActionPerformed
-    
-    
-    Reserva resSelecionado = new Reserva();
+
+
     private void jTableReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableReservaMouseClicked
         // TODO add your handling code here:
 
@@ -323,37 +342,39 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         int linha_selecionada = jTableReserva.getSelectedRow();
         r.setId(Integer.parseInt(jTableReserva.getValueAt(linha_selecionada, 0).toString()));
 
-        resSelecionado = (fachada.findReserva(r));
+        resSelecionada = (fachada.findReserva(r));
 
-        jTextFieldDataRegistro.setText(resSelecionado.getDataregistro() + "");
-        jTextFieldDataEntrada.setText(resSelecionado.getDataentrada() + "");
-        jTextFieldDataSaida.setText(resSelecionado.getDatasaida() + "");
-        jComboBoxApt.setSelectedItem(resSelecionado.getApartamento().getNumero());
-        jTextFieldValor.setText(resSelecionado.getValor() + "");
-        if (resSelecionado.getCalcao()) {
+        jTextFieldDataRegistro.setText(resSelecionada.getDataregistro() + "");
+        jTextFieldDataEntrada.setText(resSelecionada.getDataentrada() + "");
+        jTextFieldDataSaida.setText(resSelecionada.getDatasaida() + "");
+        jComboBoxApt.setSelectedItem(resSelecionada.getApartamento().getNumero());
+        jTextFieldValor.setText(String.valueOf(resSelecionada.getValor()));
+        if (resSelecionada.getCalcao()) {
             jRadioButtonSim.setEnabled(true);
-            jTextFieldValorCalcao.setText(resSelecionado.getValorcalcao() + "");
+            jTextFieldValorCalcao.setText(String.valueOf(resSelecionada.getValorcalcao()));
 
         } else {
             jRadioButtonSim.setEnabled(false);
         }
-        jComboBoxSituacao.setSelectedItem(resSelecionado.getSituacao());
-        jButtonAlterar.setEnabled(true);
+        jComboBoxSituacao.setSelectedItem(resSelecionada.getSituacao());
+        
+        this.jButtonAlterar.setEnabled(true);
 
     }//GEN-LAST:event_jTableReservaMouseClicked
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarReserva nRes = new TelaNovoAlterarReserva(resSelecionado);
+        TelaNovoAlterarReserva nRes = new TelaNovoAlterarReserva(resSelecionada,this);
         this.setVisible(false);
         nRes.setVisible(true);
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        
         tpp.setVisible(true);
         tpp.listarTabelaP();
+        this.dispose();
     }//GEN-LAST:event_jButtonRetornarActionPerformed
 
     /**
@@ -383,7 +404,7 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

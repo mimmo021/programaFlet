@@ -20,10 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaGerenciaApt extends javax.swing.JFrame {
 
-    Apartamento apt = null;
-    ArrayList<Apartamento> listaApartamentoo;
-    ArrayList<Reserva> listaReserva;
-    ArrayList<CheckIn> listaCheckIns;
+    
     /**
      * Creates new form CadastroApt
      */
@@ -169,7 +166,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         jTextFieldVM = new javax.swing.JTextField();
         jComboBoxSituacao = new javax.swing.JComboBox();
         jComboBoxPropietario = new javax.swing.JComboBox();
-        jButtonCadastrarSalvar = new javax.swing.JButton();
+        jButtonNovo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableReservas = new javax.swing.JTable();
         jButtonRemover = new javax.swing.JButton();
@@ -280,10 +277,10 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButtonCadastrarSalvar.setText("Novo");
-        jButtonCadastrarSalvar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNovo.setText("Novo");
+        jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCadastrarSalvarActionPerformed(evt);
+                jButtonNovoActionPerformed(evt);
             }
         });
 
@@ -367,7 +364,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonCadastrarSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                            .addComponent(jButtonNovo, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                             .addComponent(jButton1Retornar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1Alterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
@@ -395,7 +392,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonCadastrarSalvar)
+                                .addComponent(jButtonNovo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1Alterar)
                                 .addGap(5, 5, 5)
@@ -413,12 +410,12 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonCadastrarSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarSalvarActionPerformed
+    private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
         TelaNovoAlterarApt napt = new TelaNovoAlterarApt(this);
         this.setVisible(false);
         napt.setVisible(true);
-    }//GEN-LAST:event_jButtonCadastrarSalvarActionPerformed
+    }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jTableAptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAptMouseClicked
         // TODO add your handling code here:
@@ -498,7 +495,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1Alterar;
     private javax.swing.JButton jButton1Retornar;
-    private javax.swing.JButton jButtonCadastrarSalvar;
+    private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JComboBox jComboBoxNQuartos;
     private javax.swing.JComboBox jComboBoxPropietario;

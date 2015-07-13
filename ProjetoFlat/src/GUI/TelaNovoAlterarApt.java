@@ -36,7 +36,7 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         jTextFieldApt.setText(String.valueOf(aptSelecionado.getNumero()));
         jTextFieldCelpe.setText(aptSelecionado.getNumerocelpe());
         jTextFieldNet.setText(aptSelecionado.getNumeronet());
-        jComboBoxNQuartos.setSelectedItem(aptSelecionado.getQuartos() + "");
+        jComboBoxNQuartos.setSelectedItem(String.valueOf(aptSelecionado.getQuartos()));
         jTextFieldVM.setText(String.valueOf(aptSelecionado.getValorminimo()));
         jComboBoxSituacao.setSelectedItem(aptSelecionado.getSituacao());
 
@@ -47,6 +47,7 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         initComponents();
         this.tga = tga;
         carregarProprietario();
+        this.jButtonAlterar.setEnabled(false);
     }
 
     public TelaNovoAlterarApt() {
