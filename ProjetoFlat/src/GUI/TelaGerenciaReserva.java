@@ -11,6 +11,7 @@ import classesfachada.Fachada;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
+import util.Datas;
 
 /**
  *
@@ -27,13 +28,13 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
     public TelaGerenciaReserva(TelaPainelPrincipal tpp) {
         initComponents();
         this.tpp = tpp;
-        carregarComboApt();
-        listarTabelaReserva();
+        this.carregarComboApt();
+        this.listarTabelaReserva();
         jButtonAlterar.setEnabled(false);
     }
 
     TelaGerenciaReserva() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void carregarComboApt() {
@@ -56,7 +57,7 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         listaReservas = (ArrayList<Reserva>) f.listallReserva(e);
 
         DefaultTableModel dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(new String[]{"Data Entrada",
+        dtm.setColumnIdentifiers(new String[]{"id","Data Entrada",
             "Data Saída", "Apartamento", "Situação"});
         for (int i = 0; i < listaReservas.size(); i++) {
             dtm.addRow(new String[]{listaReservas.get(i).getId() + "",
@@ -344,19 +345,22 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
 
         resSelecionada = (fachada.findReserva(r));
 
-        jTextFieldDataRegistro.setText(resSelecionada.getDataregistro() + "");
-        jTextFieldDataEntrada.setText(resSelecionada.getDataentrada() + "");
-        jTextFieldDataSaida.setText(resSelecionada.getDatasaida() + "");
+        jTextFieldDataRegistro.setText(Datas.formatarData(resSelecionada.getDataregistro(), "dd/MM/yyyy"));
+        jTextFieldDataEntrada.setText(Datas.formatarData(resSelecionada.getDataentrada(), "dd/MM/yyyy"));
+        jTextFieldDataSaida.setText(Datas.formatarData(resSelecionada.getDatasaida(), "dd/MM/yyyy"));
         jComboBoxApt.setSelectedItem(resSelecionada.getApartamento().getNumero());
         jTextFieldValor.setText(String.valueOf(resSelecionada.getValor()));
         if (resSelecionada.getCalcao()) {
-            jRadioButtonSim.setEnabled(true);
+            jRadioButtonSim.setSelected(true);
             jTextFieldValorCalcao.setText(String.valueOf(resSelecionada.getValorcalcao()));
 
         } else {
-            jRadioButtonSim.setEnabled(false);
+            jRadioButtonSim.setSelected(false);
+            jRadioButtonNao.setSelected(true);
+            jTextFieldValorCalcao.setText("0.00");
+            jTextFieldValorCalcao.setEnabled(false);
         }
-        jComboBoxSituacao.setSelectedItem(resSelecionada.getSituacao());
+        jComboBoxSituacao.setSelectedItem(resSelecionada.getSituacao().getDescricao());
         
         this.jButtonAlterar.setEnabled(true);
 

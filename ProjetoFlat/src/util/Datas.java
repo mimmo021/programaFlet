@@ -78,7 +78,7 @@ public class Datas {
      
     /**
      * Criar uma data
-     * @param formatoData dd-MM-yyyy
+     * @param formatoData dd/MM/yyyy
      * @return
      */
     public static Date criarData(String dataFormatada){

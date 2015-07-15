@@ -7,6 +7,7 @@ package GUI;
 
 import classesbasicas.Apartamento;
 import classesbasicas.Reserva;
+import classesbasicas.SituacaoReserva;
 import classesexception.ReservaException;
 import classesfachada.Fachada;
 import java.util.ArrayList;
@@ -29,18 +30,22 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
     Reserva resSelecionada = new Reserva();
     TelaGerenciaReserva tgr;
 
+    ArrayList<Apartamento> listaApartamento;
+
     public TelaNovoAlterarReserva() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public TelaNovoAlterarReserva(TelaGerenciaReserva tgr) {
         initComponents();
         this.tgr = tgr;
         carregarComboApt();
-        carregarApts();
+
         //padrão = botão Radio "não" marcado
         jRadioButtonNao.setSelected(true);
-        jRadioButtonNaoActionPerformed(null);
+        jTextFieldValorCalcao.setText("0.00");
+        jTextFieldValorCalcao.setEnabled(false);
+
         //data de registro
         Date datareg;
         datareg = Datas.obterTimestampAtual();
@@ -58,22 +63,25 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
         initComponents();
         this.tgr = tgr;
         carregarComboApt();
-        carregarApts();
+        jTextFieldDataRegistro.setEnabled(false);
+
         this.resSelecionada = resSelecionado;
 
-        jTextFieldDataRegistro.setText(resSelecionado.getDataregistro() + "");
-        jTextFieldDataEntrada.setText(resSelecionado.getDataentrada() + "");
-        jTextFieldDataSaida.setText(resSelecionado.getDatasaida() + "");
+        jTextFieldDataRegistro.setText(Datas.formatarData(resSelecionado.getDataregistro()));
+        jTextFieldDataEntrada.setText(Datas.formatarData(resSelecionado.getDataentrada()));
+        jTextFieldDataSaida.setText(Datas.formatarData(resSelecionado.getDatasaida()));
         jComboBoxApt.setSelectedItem(resSelecionado.getApartamento().getNumero());
-        jTextFieldValor.setText(resSelecionado.getValor() + "");
+        jTextFieldValor.setText(resSelecionado.getValor().toString());
         if (resSelecionado.getCalcao()) {
-            jRadioButtonSim.setEnabled(true);
-            jTextFieldValorCalcao.setText(resSelecionado.getValorcalcao() + "");
+            jRadioButtonSim.setSelected(true);
+            jTextFieldValorCalcao.setText(resSelecionado.getValorcalcao().toString());
 
         } else {
-            jRadioButtonSim.setEnabled(false);
+            jRadioButtonNao.setSelected(true);
+            jTextFieldValorCalcao.setEnabled(false);
+            jTextFieldValorCalcao.setText("0.00");
         }
-        jComboBoxSituacao.setSelectedItem(resSelecionado.getSituacao());
+        jComboBoxSituacao.setSelectedItem(resSelecionado.getSituacao().getDescricao());
 //configurações dos botoes Salvar e Alterar
         jButtonSalvar.setEnabled(false);
         jButtonAlterar.setEnabled(true);
@@ -82,23 +90,10 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
     private void carregarComboApt() {
         Fachada fachada = new Fachada();
         Apartamento apt = new Apartamento();
-        ArrayList<Apartamento> listaApartamento;
         listaApartamento = (ArrayList<Apartamento>) fachada.listallApartamento(apt);
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < listaApartamento.size(); i++) {
             modelo.addElement(listaApartamento.get(i).getNumero());
-        }
-        jComboBoxApt.setModel(modelo);
-    }
-
-    private void carregarApts() {
-        Fachada fachada = new Fachada();
-        Apartamento apto = new Apartamento();
-        ArrayList<Apartamento> listaApto;
-        listaApto = (ArrayList<Apartamento>) fachada.listallApartamento(apto);
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for (int i = 0; i < listaApto.size(); i++) {
-            modelo.addElement(listaApto.get(i).getNumero());
         }
         jComboBoxApt.setModel(modelo);
     }
@@ -364,10 +359,10 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
         try {
             Fachada fachada = new Fachada();
             Reserva r = new Reserva();
-            
-            Apartamento ap = new Apartamento();
-            
-            ap.setId(jComboBoxApt.getSelectedIndex() + 1);
+
+            Apartamento ap;
+            ap = (listaApartamento.get(jComboBoxApt.getSelectedIndex()));
+
             r.setApartamento(fachada.findApartamento(ap));
 
             r.setDataregistro(Datas.criarData(jTextFieldDataRegistro.getText()));
@@ -379,12 +374,20 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
 
             if (jRadioButtonSim.isSelected()) {
                 r.setCalcao(true);
+                r.setValorcalcao(Double.parseDouble(jTextFieldValorCalcao.getText()));
             }
             if (jRadioButtonNao.isSelected()) {
                 r.setCalcao(false);
+                jTextFieldValorCalcao.setText("0.00");
+                jTextFieldValorCalcao.setEnabled(false);
             }
 
-            r.setValorcalcao(Double.valueOf(jTextFieldValorCalcao.getText()));
+            if (jComboBoxSituacao.getSelectedItem().toString().equalsIgnoreCase("ATIVO")) {
+                r.setSituacao(SituacaoReserva.ATIVO);
+
+            } else {
+                r.setSituacao(SituacaoReserva.INATIVO);
+            }
 
             fachada.saveReserva(r);
 
@@ -404,7 +407,8 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
 
     private void jRadioButtonNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNaoActionPerformed
         // TODO add your handling code here:
-        jTextFieldValorCalcao.setText("0,00");
+
+        jTextFieldValorCalcao.setText("0.00");
         jTextFieldValorCalcao.setEnabled(false);
     }//GEN-LAST:event_jRadioButtonNaoActionPerformed
 
@@ -415,10 +419,9 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
             Fachada f = new Fachada();
             resSelecionada = f.findReserva(resSelecionada);
 
-            
-            Apartamento ap = new Apartamento();
-            
-            ap.setId(jComboBoxApt.getSelectedIndex() + 1);
+            Apartamento ap;
+            ap = (listaApartamento.get(jComboBoxApt.getSelectedIndex()));
+
             resSelecionada.setApartamento(f.findApartamento(ap));
 
             resSelecionada.setDataregistro(Datas.criarData(jTextFieldDataRegistro.getText()));
@@ -429,13 +432,18 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
 
             if (jRadioButtonSim.isSelected()) {
                 resSelecionada.setCalcao(true);
+                resSelecionada.setValorcalcao(Double.parseDouble(jTextFieldValorCalcao.getText()));
             }
+
             if (jRadioButtonNao.isSelected()) {
                 resSelecionada.setCalcao(false);
             }
 
-            resSelecionada.setValorcalcao(Double.parseDouble(jTextFieldValorCalcao.getText()));
-
+            if (jComboBoxSituacao.getSelectedItem().toString().equalsIgnoreCase("ATIVO")) {
+                resSelecionada.setSituacao(SituacaoReserva.ATIVO);
+            } else if (jComboBoxSituacao.getSelectedItem().toString().equalsIgnoreCase("INATIVO")) {
+                resSelecionada.setSituacao(SituacaoReserva.INATIVO);
+            }
             
             f.saveReserva(resSelecionada);
             this.limparCamposDepoisDeAlterar();

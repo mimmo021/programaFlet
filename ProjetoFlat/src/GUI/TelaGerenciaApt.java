@@ -67,11 +67,11 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         dtm.setColumnIdentifiers(new String[]{"Id", "Proprietario", "N°Apt", "N°Quarto",
             "Situacao"});
         for (int i = 0; i < listaApartamentos.size(); i++) {
-            dtm.addRow(new String[]{listaApartamentos.get(i).getId() + "",
-                listaApartamentos.get(i).getProprietario().getNome() + "",
+            dtm.addRow(new String[]{listaApartamentos.get(i).getId()+"",
+                listaApartamentos.get(i).getProprietario().getNome(),
                 listaApartamentos.get(i).getNumero() + "",
-                listaApartamentos.get(i).getQuartos() + "",
-                listaApartamentos.get(i).getSituacao() + ""
+                listaApartamentos.get(i).getQuartos() +"",
+                listaApartamentos.get(i).getSituacao()
 
             });
         }
@@ -88,7 +88,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         listaReservas = (ArrayList<Reserva>) f.listallReserva(e);
 
         DefaultTableModel dtmr = new DefaultTableModel();
-        dtmr.setColumnIdentifiers(new String[]{"Id", "Locatário", "Data de Entrada", "Data de Saída",
+        dtmr.setColumnIdentifiers(new String[]{"Id", "Proprietário", "Data de Entrada", "Data de Saída",
             "Situação"});
         for (int i = 0; i < listaReservas.size(); i++) {
             dtmr.addRow(new String[]{listaReservas.get(i).getId() + "",

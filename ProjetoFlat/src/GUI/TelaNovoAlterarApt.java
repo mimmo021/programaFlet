@@ -26,13 +26,14 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
      */
     Apartamento aptSelecionado = new Apartamento();
     TelaGerenciaApt tga;
+    ArrayList<Proprietario> listaProprietario;
 
     public TelaNovoAlterarApt(Apartamento aptSelecionado, TelaGerenciaApt tga) {
         initComponents();
         this.tga = tga;
         carregarProprietario();
         this.aptSelecionado = aptSelecionado;
-        jComboBoxPropietario.setSelectedItem(aptSelecionado.getProprietario().getNome());
+        jComboBoxProprietario.setSelectedItem(aptSelecionado.getProprietario().getNome());
         jTextFieldApt.setText(String.valueOf(aptSelecionado.getNumero()));
         jTextFieldCelpe.setText(aptSelecionado.getNumerocelpe());
         jTextFieldNet.setText(aptSelecionado.getNumeronet());
@@ -55,7 +56,7 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
     }
 
     public void limparCamposDepoisDeSalvar() {
-        jComboBoxPropietario.setSelectedIndex(0);
+        jComboBoxProprietario.setSelectedIndex(0);
         jComboBoxNQuartos.setSelectedIndex(0);
         jComboBoxSituacao.setSelectedIndex(0);
         jTextFieldApt.setText(null);
@@ -66,7 +67,7 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
     }
 
     public void limparCamposDepoisDeAlterar() {
-        jComboBoxPropietario.setSelectedIndex(0);
+        jComboBoxProprietario.setSelectedIndex(0);
         jComboBoxNQuartos.setSelectedIndex(0);
         jComboBoxSituacao.setSelectedIndex(0);
         jTextFieldApt.setText(null);
@@ -81,13 +82,13 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
     private void carregarProprietario() {
         Fachada fachada = new Fachada();
         Proprietario proprietario = new Proprietario();
-        ArrayList<Proprietario> listaProprietario;
+        
         listaProprietario = (ArrayList<Proprietario>) fachada.listallProprietario(proprietario);
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < listaProprietario.size(); i++) {
             modelo.addElement(listaProprietario.get(i).getNome());
         }
-        jComboBoxPropietario.setModel(modelo);
+        jComboBoxProprietario.setModel(modelo);
     }
 
     /**
@@ -113,7 +114,7 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         jTextFieldNet = new javax.swing.JTextField();
         jTextFieldVM = new javax.swing.JTextField();
         jComboBoxSituacao = new javax.swing.JComboBox();
-        jComboBoxPropietario = new javax.swing.JComboBox();
+        jComboBoxProprietario = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jButtonSalvar = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
@@ -147,7 +148,7 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxPropietario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxProprietario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -165,7 +166,7 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
                     .addComponent(jLabelPropietario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jTextFieldApt)
                         .addComponent(jTextFieldCelpe)
@@ -181,7 +182,7 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPropietario)
-                    .addComponent(jComboBoxPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelApt)
@@ -277,9 +278,9 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         try {
             Fachada f = new Fachada();
             Apartamento a = new Apartamento();
-            Proprietario p = new Proprietario();
+            Proprietario p;
 
-            p.setId(jComboBoxPropietario.getSelectedIndex() + 1);
+            p=  listaProprietario.get(jComboBoxProprietario.getSelectedIndex());
 
             a.setProprietario(f.findProprietario(p));
             a.setNumero(Integer.parseInt(jTextFieldApt.getText()));
@@ -305,9 +306,9 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         try {
             Fachada f = new Fachada();
             aptSelecionado = f.findApartamento(aptSelecionado);
-            Proprietario p = new Proprietario();
+            Proprietario p;
 
-            p.setId(jComboBoxPropietario.getSelectedIndex() + 1);
+            p= listaProprietario.get(jComboBoxProprietario.getSelectedIndex());
 
             aptSelecionado.setProprietario(f.findProprietario(p));
             aptSelecionado.setNumero(Integer.parseInt(jTextFieldApt.getText()));
@@ -378,7 +379,7 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox jComboBoxNQuartos;
-    private javax.swing.JComboBox jComboBoxPropietario;
+    private javax.swing.JComboBox jComboBoxProprietario;
     private javax.swing.JComboBox jComboBoxSituacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelApt;
