@@ -94,30 +94,39 @@
                       <Component id="jLabelDataSaida" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="25" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jTextFieldValorCalcao" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
-                      <Component id="jComboBoxSituacao" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
-                      <Component id="jTextFieldValor" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jRadioButtonSim" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jComboBoxSituacao" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
+                              <Component id="jTextFieldValor" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jRadioButtonSim" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jRadioButtonNao" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jComboBoxApt" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
+                              <Component id="jTextFieldDataRegistro" min="-2" pref="340" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jTextFieldDataSaida" alignment="0" pref="250" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldDataEntrada" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jRadioButtonNao" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jComboBoxApt" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
-                      <Component id="jTextFieldDataRegistro" min="-2" pref="340" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jTextFieldDataSaida" alignment="0" pref="250" max="32767" attributes="0"/>
-                              <Component id="jTextFieldDataEntrada" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jTextFieldValorCalcao" min="-2" pref="102" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jFormattedTextField1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -161,6 +170,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelValorCalcao" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldValorCalcao" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -275,6 +285,11 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="text" type="java.lang.String" value="dd/MM/yyyy"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="  /  /    "/>
           </Properties>
         </Component>
       </SubComponents>

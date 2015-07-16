@@ -27,6 +27,7 @@ public class TelaGerenciaLocatario extends javax.swing.JFrame {
         initComponents();
         this.tpp = tpp;
         listarTabelaLocatario();
+        jButton2Alterar.setEnabled(false);
     }
     
     TelaGerenciaLocatario() {
@@ -562,6 +563,7 @@ public class TelaGerenciaLocatario extends javax.swing.JFrame {
 
     private void jTableLocatarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLocatarioMouseClicked
         // TODO add your handling code here:
+        
         Fachada fachada = new Fachada();
         Locatario l = new Locatario();
         
@@ -577,7 +579,7 @@ public class TelaGerenciaLocatario extends javax.swing.JFrame {
         jTextFieldCidade.setText(locSelecionado.getCidade());
         jTextFieldBairro.setText(locSelecionado.getBairro());
         jTextFieldCep.setText(locSelecionado.getCep());
-        jTextFieldIdade.setText(locSelecionado.getIdade() + "");
+        jTextFieldIdade.setText(String.valueOf(locSelecionado.getIdade()));
         jTextFieldEstado.setText(locSelecionado.getEstado());
         jTextFieldProcedencia.setText(locSelecionado.getProcedencia());
         jTextFieldIdentidade.setText(locSelecionado.getIdentidade());
