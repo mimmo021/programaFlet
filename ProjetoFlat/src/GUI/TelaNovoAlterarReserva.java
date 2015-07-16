@@ -7,7 +7,7 @@ package GUI;
 
 import classesbasicas.Apartamento;
 import classesbasicas.Reserva;
-import classesbasicas.SituacaoReserva;
+import classesbasicas.Situacao;
 import classesexception.ReservaException;
 import classesfachada.Fachada;
 import java.util.ArrayList;
@@ -393,10 +393,10 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
             }
 
             if (jComboBoxSituacao.getSelectedItem().toString().equalsIgnoreCase("ATIVO")) {
-                r.setSituacao(SituacaoReserva.ATIVO);
+                r.setSituacao(Situacao.ATIVO);
 
             } else {
-                r.setSituacao(SituacaoReserva.INATIVO);
+                r.setSituacao(Situacao.INATIVO);
             }
 
             fachada.saveReserva(r);
@@ -450,9 +450,9 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
             }
 
             if (jComboBoxSituacao.getSelectedItem().toString().equalsIgnoreCase("ATIVO")) {
-                resSelecionada.setSituacao(SituacaoReserva.ATIVO);
+                resSelecionada.setSituacao(Situacao.ATIVO);
             } else if (jComboBoxSituacao.getSelectedItem().toString().equalsIgnoreCase("INATIVO")) {
-                resSelecionada.setSituacao(SituacaoReserva.INATIVO);
+                resSelecionada.setSituacao(Situacao.INATIVO);
             }
             
             f.saveReserva(resSelecionada);

@@ -45,8 +45,9 @@ public class Locatario {
         private Date dataderegistro;
 	private String carrocor;
 	private String placa;
+        private Situacao situacao;
         @OneToMany
-        Collection<CheckIn> checkin;
+        private Collection<CheckIn> checkin;
         
         public Locatario(){
             this.checkin = new ArrayList<>();
@@ -261,6 +262,34 @@ public class Locatario {
      */
     public void setDataderegistro(Date dataderegistro) {
         this.dataderegistro = dataderegistro;
+    }
+
+    /**
+     * @return the situacao
+     */
+    public Situacao getSituacao() {
+        return situacao;
+    }
+
+    /**
+     * @param situacao the situacao to set
+     */
+    public void setSituacao(Situacao situacao) {
+        this.situacao = situacao;
+    }
+
+    /**
+     * @return the checkin
+     */
+    public Collection<CheckIn> getCheckin() {
+        return checkin;
+    }
+
+    /**
+     * @param checkin the checkin to set
+     */
+    public void setCheckin(Collection<CheckIn> checkin) {
+        this.checkin = checkin;
     }
 
 }

@@ -25,11 +25,17 @@ public class ApartamentoNegocios {
     }
     public void save(Apartamento a) throws ApartamentoException{
 	if(a.getNumerocelpe().equals("") || a.getNumerocelpe()== null){
-		throw new ApartamentoException("O campo nome esta vazio");
+		throw new ApartamentoException("O campo numero celpe esta vazio");
 	}
 	if(a.getNumeronet().equals("")|| a.getNumeronet()== null){
-		throw new ApartamentoException("O campo estilo esta vazio");
+		throw new ApartamentoException("O campo numero net esta vazio");
 	}
+        if(a.getNumero()==0){
+            throw new ApartamentoException("Numero do apt nao escolhido");
+        }
+        if(a.getValorminimo()==0){
+            throw new ApartamentoException("Valor minimo nao escolhido");
+        }
 	this.apartamentodao.save(a);
 }
 public Apartamento find(Apartamento a){

@@ -23,7 +23,7 @@ private Apartamento apartamento;
 private Double valor;
 private Boolean calcao;
 private Double valorcalcao;
-private SituacaoReserva situacao;
+private Situacao situacao;
 
 public Reserva(){
     this.apartamento = new Apartamento();
@@ -149,14 +149,14 @@ public Reserva(){
     /**
      * @return the situacao
      */
-    public SituacaoReserva getSituacao() {
+    public Situacao getSituacao() {
         return situacao;
     }
 
     /**
      * @param situacao the situacao to set
      */
-    public void setSituacao(SituacaoReserva situacao) {
+    public void setSituacao(Situacao situacao) {
         this.situacao = situacao;
     }
 

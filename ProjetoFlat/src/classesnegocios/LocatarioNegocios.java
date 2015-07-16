@@ -24,7 +24,15 @@ public class LocatarioNegocios {
         this.locadordao = new LocatarioDAO();
     }
     public void save(Locatario a) throws LocatarioException{
-	
+	if(a.getNome().equals("")|| (a.getNome()==null)){
+            throw new LocatarioException("O nome nao pode ser vazio");
+        }
+        if(a.getTelefone().equals("")|| (a.getTelefone()==null)){
+            throw new LocatarioException("O Telefone nao pode ser vazio");
+        }
+        if(a.getEmail().equals("")|| (a.getEmail()==null)){
+            throw new LocatarioException("O email nao pode ser vazio");
+        }
 	this.locadordao.save(a);
 }
 public Locatario find(Locatario a){
