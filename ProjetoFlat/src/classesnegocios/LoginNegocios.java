@@ -24,7 +24,12 @@ public class LoginNegocios {
         this.logindao = new LoginDAO();
     }
     public void save(Login a) throws LoginException{
-	
+	if(a.getSenha().equals("")||(a.getSenha()==null)){
+            throw new LoginException("A senha nao pode ser vazia");
+        }
+        if(a.getUsuario().equals("")||(a.getUsuario()==null)){
+            throw new LoginException("O usuario nao pode ser vazio");
+        }
 	this.logindao.save(a);
 }
 public Login find(Login a){

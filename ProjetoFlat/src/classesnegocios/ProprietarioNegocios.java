@@ -24,7 +24,15 @@ public class ProprietarioNegocios {
         this.proprietariodao = new ProprietarioDAO();
     }
     public void save(Proprietario a) throws ProprietarioException{
-	
+	if(a.getNome().equals("")|| (a.getNome()==null)){
+            throw new ProprietarioException("O nome nao pode ser vazio");
+        }
+        if(a.getTelefone().equals("")|| (a.getTelefone()==null)){
+            throw new ProprietarioException("O Telefone nao pode ser vazio");
+        }
+        if(a.getEmail().equals("")|| (a.getEmail()==null)){
+            throw new ProprietarioException("O email nao pode ser vazio");
+        }
 	this.proprietariodao.save(a);
 }
 public Proprietario find(Proprietario a){

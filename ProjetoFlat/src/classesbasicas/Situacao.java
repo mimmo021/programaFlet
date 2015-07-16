@@ -9,13 +9,13 @@ package classesbasicas;
  *
  * @author peppe
  */
-public enum SituacaoReserva {
+public enum Situacao {
     ATIVO("ATIVO"),
     INATIVO("INATIVO");
     
     private String situacao;
     
-    private SituacaoReserva(String sit){
+    private Situacao(String sit){
         this.situacao = sit;
     }
    public String getDescricao(){
