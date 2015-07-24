@@ -129,12 +129,16 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         jLabelDataSaida.setText("Data Saída:");
 
         jTextFieldDataRegistro.setEditable(false);
+        jTextFieldDataRegistro.setEnabled(false);
 
         jTextFieldDataEntrada.setEditable(false);
+        jTextFieldDataEntrada.setEnabled(false);
 
         jTextFieldDataSaida.setEditable(false);
+        jTextFieldDataSaida.setEnabled(false);
 
         jTextFieldValor.setEditable(false);
+        jTextFieldValor.setEnabled(false);
 
         jComboBoxApt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxApt.setEnabled(false);
@@ -143,6 +147,7 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         jComboBoxSituacao.setEnabled(false);
 
         jTextFieldValorCalcao.setEditable(false);
+        jTextFieldValorCalcao.setEnabled(false);
 
         buttonGroupSimNaoTelaRes.add(jRadioButtonSim);
         jRadioButtonSim.setText("Sim");
@@ -278,13 +283,13 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
+                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonRetornar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

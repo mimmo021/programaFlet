@@ -6,6 +6,7 @@
 package GUI;
 
 import classesbasicas.Proprietario;
+import classesbasicas.Situacao;
 import classesexception.ProprietarioException;
 import classesfachada.Fachada;
 import java.util.logging.Level;
@@ -44,6 +45,7 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
         jTextFieldFoneComercial.setText(p.getTelefone2());
         jTextFieldCelular.setText(p.getTelefone3());
         jTextFieldEmail.setText(p.getEmail());
+        jComboBox1SituacaoLocador.setSelectedItem(p.getSituacao().getDescricao());
         jButtonSalvar.setEnabled(false);
     }
 //</editor-fold>
@@ -70,6 +72,8 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
         jLabelFoneComercial = new javax.swing.JLabel();
         jLabelCelular = new javax.swing.JLabel();
         jLabelEmail = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox1SituacaoLocador = new javax.swing.JComboBox();
         jButtonSalvar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -89,7 +93,7 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
             }
         });
 
-        jPanelDadosLocador.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Locador"));
+        jPanelDadosLocador.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Proprietário"));
 
         jLabelNome.setText("Nome:");
 
@@ -101,25 +105,32 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
 
         jLabelEmail.setText("E-Mail:");
 
+        jLabel2.setText("Situação:");
+
+        jComboBox1SituacaoLocador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ATIVO", "INATIVO" }));
+
         javax.swing.GroupLayout jPanelDadosLocadorLayout = new javax.swing.GroupLayout(jPanelDadosLocador);
         jPanelDadosLocador.setLayout(jPanelDadosLocadorLayout);
         jPanelDadosLocadorLayout.setHorizontalGroup(
             jPanelDadosLocadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDadosLocadorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelDadosLocadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelFone, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelFoneComercial, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelNome, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelCelular, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGroup(jPanelDadosLocadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelFone)
+                    .addComponent(jLabelFoneComercial)
+                    .addComponent(jLabelEmail)
+                    .addComponent(jLabelNome)
+                    .addComponent(jLabelCelular)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(jPanelDadosLocadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldFone, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldFoneComercial, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldCelular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelDadosLocadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1SituacaoLocador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelDadosLocadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextFieldFone, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextFieldFoneComercial, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextFieldEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextFieldCelular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDadosLocadorLayout.setVerticalGroup(
@@ -145,7 +156,11 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
                 .addGroup(jPanelDadosLocadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelEmail)
                     .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelDadosLocadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox1SituacaoLocador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jButtonSalvar.setText("Salvar");
@@ -178,15 +193,17 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelDadosLocador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonAlterar)
                         .addGap(96, 96, 96)
-                        .addComponent(jButtonretornar)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                        .addComponent(jButtonretornar))
+                    .addComponent(jPanelDadosLocador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
+
+        jPanelDadosLocador.getAccessibleContext().setAccessibleName("Dados Proprietário");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -223,6 +240,13 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
             p.setTelefone3(jTextFieldCelular.getText());
             p.setEmail(jTextFieldEmail.getText());
             
+            if (jComboBox1SituacaoLocador.getSelectedItem().toString().equalsIgnoreCase("ATIVO")) {
+                p.setSituacao(Situacao.ATIVO);
+
+            } else {
+                p.setSituacao(Situacao.INATIVO);
+            }
+            
             fachada.saveProprietario(p);
             
             this.limparCamposDepoisDeSalvar();
@@ -245,6 +269,13 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
             proSelecionado.setTelefone3(jTextFieldCelular.getText());
             proSelecionado.setEmail(jTextFieldEmail.getText());
 
+            if (jComboBox1SituacaoLocador.getSelectedItem().toString().equalsIgnoreCase("ATIVO")) {
+                proSelecionado.setSituacao(Situacao.ATIVO);
+
+            } else {
+                proSelecionado.setSituacao(Situacao.INATIVO);
+            }
+            
             f.saveProprietario(proSelecionado);
             
             this.limparCamposDepoisDeAlterar();
@@ -304,7 +335,9 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonretornar;
+    private javax.swing.JComboBox jComboBox1SituacaoLocador;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCelular;
     private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelFone;

@@ -336,6 +336,7 @@
         <Component class="javax.swing.JTextField" name="jTextFieldNome">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelEndereco">
@@ -346,6 +347,7 @@
         <Component class="javax.swing.JTextField" name="jTextFieldEndereco">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelApto">
@@ -356,6 +358,7 @@
         <Component class="javax.swing.JTextField" name="jTextFieldApto">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelBairro">
@@ -366,6 +369,7 @@
         <Component class="javax.swing.JTextField" name="jTextFieldBairro">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCep">
@@ -376,6 +380,7 @@
         <Component class="javax.swing.JTextField" name="jTextFieldCep">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelFone">
@@ -386,6 +391,7 @@
         <Component class="javax.swing.JTextField" name="jTextFieldIdade">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCelular">
@@ -396,6 +402,7 @@
         <Component class="javax.swing.JTextField" name="jTextFieldCelular">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNumero">
@@ -406,6 +413,7 @@
         <Component class="javax.swing.JTextField" name="jTextFieldNumero">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCidade">
@@ -416,6 +424,7 @@
         <Component class="javax.swing.JTextField" name="jTextFieldCidade">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelEstado">
@@ -451,36 +460,43 @@
         <Component class="javax.swing.JTextField" name="jTextFieldEstado">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldProcedencia">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldIdentidade">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldMotivo">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEmail">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldOrgaoExp">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldResponsavelPag">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelPassaporte">
@@ -531,41 +547,49 @@
         <Component class="javax.swing.JTextField" name="jTextFieldCpf">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEstadoCivil">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldFone">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldCarro">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldCor">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldPlaca">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldPassaporte">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDataRegistro">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>

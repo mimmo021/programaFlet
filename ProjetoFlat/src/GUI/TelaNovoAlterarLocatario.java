@@ -25,7 +25,7 @@ public class TelaNovoAlterarLocatario extends javax.swing.JFrame {
      */
     Locatario locSelecionado = new Locatario();
     TelaGerenciaLocatario tgl;
-    
+    TelaGerenciaCheckIn tgck;
     public TelaNovoAlterarLocatario(TelaGerenciaLocatario tgl) {
         initComponents();
         this.tgl = tgl;
@@ -37,7 +37,18 @@ public class TelaNovoAlterarLocatario extends javax.swing.JFrame {
         this.jTextFieldDataRegistro.setText(dataRegT);
         this.jTextFieldDataRegistro.setEnabled(false);
     }
-
+    
+public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
+        initComponents();
+        this.tgck = tgck;
+        this.jButtonAlterar.setEnabled(false);
+        //data de registro
+        Date datareg;
+        datareg = Datas.obterTimestampAtual();
+        String dataRegT = Datas.formatarData(datareg, "dd/MM/yyyy");
+        this.jTextFieldDataRegistro.setText(dataRegT);
+        this.jTextFieldDataRegistro.setEnabled(false);
+    }
     public TelaNovoAlterarLocatario() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 

@@ -197,6 +197,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         jLabelPropietario.setText("Propietário:");
 
         jTextFieldApt.setEditable(false);
+        jTextFieldApt.setEnabled(false);
 
         jLabelApt.setText("Número Aptº:");
 
@@ -206,10 +207,13 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         jLabelVM.setText("Valor Mínimo:");
 
         jTextFieldCelpe.setEditable(false);
+        jTextFieldCelpe.setEnabled(false);
 
         jTextFieldNet.setEditable(false);
+        jTextFieldNet.setEnabled(false);
 
         jTextFieldVM.setEditable(false);
+        jTextFieldVM.setEnabled(false);
 
         jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vago", "Ocupado", "Reservado" }));
         jComboBoxSituacao.setEnabled(false);

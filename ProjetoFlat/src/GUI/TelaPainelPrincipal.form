@@ -30,7 +30,7 @@
           <Component id="jLabel2" min="-2" pref="792" max="-2" attributes="0"/>
           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
           <Group type="102" attributes="0">
-              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -45,20 +45,20 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabelNQuartos" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Component id="jTextFieldNQuartos" min="-2" pref="100" max="-2" attributes="0"/>
-                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="jLabelSituacao" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Component id="jTextFieldSituacao" min="-2" pref="196" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Component id="jTextFieldSituacao" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabelLocador" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Component id="jTextFieldLocador" min="-2" pref="400" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Component id="jTextFieldLocador" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -67,6 +67,7 @@
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

@@ -1,6 +1,5 @@
 package classesbasicas;
 
-import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +28,14 @@ private Date dataentrada;
 private Date datasaida;
 @OneToOne
 private CheckOut checkout;
+private String formaPagamento;
+private String LeituraEntrada;
+private String LeituraSaida;
+private String LeituraTotal;
+
+private boolean acompanhouLeituraEntrada;
+private boolean acompanhouLeituraSaida;
+
 public CheckIn(){
     this.apartamento = new Apartamento();
     this.locatario = new Locatario();
@@ -174,5 +181,89 @@ public CheckIn(){
      */
     public void setCheckout(CheckOut checkout) {
         this.checkout = checkout;
+    }
+
+    /**
+     * @return the formaPagamento
+     */
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    /**
+     * @param formaPagamento the formaPagamento to set
+     */
+    public void setFormaPagamento(String formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
+
+    /**
+     * @return the LeituraEntrada
+     */
+    public String getLeituraEntrada() {
+        return LeituraEntrada;
+    }
+
+    /**
+     * @param LeituraEntrada the LeituraEntrada to set
+     */
+    public void setLeituraEntrada(String LeituraEntrada) {
+        this.LeituraEntrada = LeituraEntrada;
+    }
+
+    /**
+     * @return the LeituraSaida
+     */
+    public String getLeituraSaida() {
+        return LeituraSaida;
+    }
+
+    /**
+     * @param LeituraSaida the LeituraSaida to set
+     */
+    public void setLeituraSaida(String LeituraSaida) {
+        this.LeituraSaida = LeituraSaida;
+    }
+
+    /**
+     * @return the LeituraTotal
+     */
+    public String getLeituraTotal() {
+        return LeituraTotal;
+    }
+
+    /**
+     * @param LeituraTotal the LeituraTotal to set
+     */
+    public void setLeituraTotal(String LeituraTotal) {
+        this.LeituraTotal = LeituraTotal;
+    }
+
+    /**
+     * @return the acompanhouLeituraEntrada
+     */
+    public boolean isAcompanhouLeituraEntrada() {
+        return acompanhouLeituraEntrada;
+    }
+
+    /**
+     * @param acompanhouLeituraEntrada the acompanhouLeituraEntrada to set
+     */
+    public void setAcompanhouLeituraEntrada(boolean acompanhouLeituraEntrada) {
+        this.acompanhouLeituraEntrada = acompanhouLeituraEntrada;
+    }
+
+    /**
+     * @return the acompanhouLeituraSaida
+     */
+    public boolean isAcompanhouLeituraSaida() {
+        return acompanhouLeituraSaida;
+    }
+
+    /**
+     * @param acompanhouLeituraSaida the acompanhouLeituraSaida to set
+     */
+    public void setAcompanhouLeituraSaida(boolean acompanhouLeituraSaida) {
+        this.acompanhouLeituraSaida = acompanhouLeituraSaida;
     }
 }

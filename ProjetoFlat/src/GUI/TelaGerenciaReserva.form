@@ -33,7 +33,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButtonRetornar" max="32767" attributes="0"/>
                           <Component id="jButtonAlterar" alignment="0" max="32767" attributes="0"/>
@@ -42,7 +42,7 @@
                   </Group>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -226,21 +226,25 @@
         <Component class="javax.swing.JTextField" name="jTextFieldDataRegistro">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDataEntrada">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDataSaida">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldValor">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBoxApt">
@@ -270,6 +274,7 @@
         <Component class="javax.swing.JTextField" name="jTextFieldValorCalcao">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioButtonSim">

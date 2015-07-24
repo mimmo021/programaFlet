@@ -125,14 +125,19 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Proprietário"));
 
         jTextFieldNome.setEditable(false);
+        jTextFieldNome.setEnabled(false);
 
         jTextFieldFone.setEditable(false);
+        jTextFieldFone.setEnabled(false);
 
         jTextFieldFoneComercial.setEditable(false);
+        jTextFieldFoneComercial.setEnabled(false);
 
         jTextFieldCelular.setEditable(false);
+        jTextFieldCelular.setEnabled(false);
 
         jTextFieldEmail.setEditable(false);
+        jTextFieldEmail.setEnabled(false);
 
         jLabelNome.setText("Nome:");
 

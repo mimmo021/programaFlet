@@ -165,38 +165,47 @@ public class TelaGerenciaLocatario extends javax.swing.JFrame {
         jLabelNome.setText("Nome Completo/ Full name:");
 
         jTextFieldNome.setEditable(false);
+        jTextFieldNome.setEnabled(false);
 
         jLabelEndereco.setText("Endereço residencial/ Full adress:");
 
         jTextFieldEndereco.setEditable(false);
+        jTextFieldEndereco.setEnabled(false);
 
         jLabelApto.setText("Aptº:");
 
         jTextFieldApto.setEditable(false);
+        jTextFieldApto.setEnabled(false);
 
         jLabelBairro.setText("Bairro:");
 
         jTextFieldBairro.setEditable(false);
+        jTextFieldBairro.setEnabled(false);
 
         jLabelCep.setText("CEP:");
 
         jTextFieldCep.setEditable(false);
+        jTextFieldCep.setEnabled(false);
 
         jLabelFone.setText("Fone/ Phone:");
 
         jTextFieldIdade.setEditable(false);
+        jTextFieldIdade.setEnabled(false);
 
         jLabelCelular.setText("Celular:");
 
         jTextFieldCelular.setEditable(false);
+        jTextFieldCelular.setEnabled(false);
 
         jLabelNumero.setText("Número:");
 
         jTextFieldNumero.setEditable(false);
+        jTextFieldNumero.setEnabled(false);
 
         jLabelCidade.setText("Cidade:");
 
         jTextFieldCidade.setEditable(false);
+        jTextFieldCidade.setEnabled(false);
 
         jLabelEstado.setText("Estado:");
 
@@ -211,18 +220,25 @@ public class TelaGerenciaLocatario extends javax.swing.JFrame {
         jLabelOrgaoExp.setText("Orgão Exp:");
 
         jTextFieldEstado.setEditable(false);
+        jTextFieldEstado.setEnabled(false);
 
         jTextFieldProcedencia.setEditable(false);
+        jTextFieldProcedencia.setEnabled(false);
 
         jTextFieldIdentidade.setEditable(false);
+        jTextFieldIdentidade.setEnabled(false);
 
         jTextFieldMotivo.setEditable(false);
+        jTextFieldMotivo.setEnabled(false);
 
         jTextFieldEmail.setEditable(false);
+        jTextFieldEmail.setEnabled(false);
 
         jTextFieldOrgaoExp.setEditable(false);
+        jTextFieldOrgaoExp.setEnabled(false);
 
         jTextFieldResponsavelPag.setEditable(false);
+        jTextFieldResponsavelPag.setEnabled(false);
 
         jLabelPassaporte.setText("Passaporte:");
 
@@ -243,20 +259,28 @@ public class TelaGerenciaLocatario extends javax.swing.JFrame {
         jLabelResponsavelPag.setText("Responsável Pelo Pagamento:");
 
         jTextFieldCpf.setEditable(false);
+        jTextFieldCpf.setEnabled(false);
 
         jTextFieldEstadoCivil.setEditable(false);
+        jTextFieldEstadoCivil.setEnabled(false);
 
         jTextFieldFone.setEditable(false);
+        jTextFieldFone.setEnabled(false);
 
         jTextFieldCarro.setEditable(false);
+        jTextFieldCarro.setEnabled(false);
 
         jTextFieldCor.setEditable(false);
+        jTextFieldCor.setEnabled(false);
 
         jTextFieldPlaca.setEditable(false);
+        jTextFieldPlaca.setEnabled(false);
 
         jTextFieldPassaporte.setEditable(false);
+        jTextFieldPassaporte.setEnabled(false);
 
         jTextFieldDataRegistro.setEditable(false);
+        jTextFieldDataRegistro.setEnabled(false);
 
         javax.swing.GroupLayout jPanelCadastroLocatarioLayout = new javax.swing.GroupLayout(jPanelCadastroLocatario);
         jPanelCadastroLocatario.setLayout(jPanelCadastroLocatarioLayout);
