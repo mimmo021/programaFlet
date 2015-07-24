@@ -825,12 +825,7 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
 
     private void jComboBoxAptosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxAptosItemStateChanged
         // TODO add your handling code here:
-        Fachada f = new Fachada();
-        Apartamento a;
-
-        a = listaApartamento.get(jComboBoxAptos.getSelectedIndex());
-
-        aptSelecionado = f.findApartamento(a);
+       
     }//GEN-LAST:event_jComboBoxAptosItemStateChanged
 
     private void jButtonregistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonregistrarEntradaActionPerformed
@@ -838,8 +833,8 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
         try {
             Fachada fachada = new Fachada();
             CheckIn c = new CheckIn();
-
-            c.setApartamento(aptSelecionado);
+            Apartamento a = listaApartamento.get(jComboBoxAptos.getSelectedIndex());
+            c.setApartamento(a);
             c.setLocatario(cpfSelecionado);
 
             //datas
