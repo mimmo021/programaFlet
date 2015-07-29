@@ -19,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaPainelPrincipal extends javax.swing.JFrame {
 
+    
+    CheckIn chekinSelecionado= new CheckIn();
     /**
      * Creates new form PainelPrincipal
      */
@@ -37,7 +39,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         listaCheckIno = (ArrayList<CheckIn>) f.listallCheckIn(checkIn);
 
         DefaultTableModel dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(new String[]{"Aptº", "Data Entrada",
+        dtm.setColumnIdentifiers(new String[]{"Id","Aptº", "Data Entrada",
             "Data Saída", "Locatario", "Situação"});
         for (int i = 0; i < listaCheckIno.size(); i++) {
             dtm.addRow(new String[]{listaCheckIno.get(i).getId() + "",
@@ -377,10 +379,13 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
     private void jTablePrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePrincipalMouseClicked
         // TODO add your handling code here:
         Fachada f = new Fachada();
-        CheckIn chekinSelecionado = new CheckIn();
-        chekinSelecionado.setId(jTablePrincipal.getSelectedRow() + 1);
-        f.findCheckIn(chekinSelecionado);
+       CheckIn c = new CheckIn();
 
+        int linha_selecionada = jTablePrincipal.getSelectedRow();
+        c.setId(Integer.parseInt(jTablePrincipal.getValueAt(linha_selecionada, 0).toString()));
+
+        chekinSelecionado = (f.findCheckIn(c));
+       
         jTextFieldApt.setText(chekinSelecionado.getApartamento().getNumero() + "");
         jTextFieldVM.setText(chekinSelecionado.getApartamento().getValorminimo() + "");
         jTextFieldNQuartos.setText(chekinSelecionado.getApartamento().getQuartos() + "");
