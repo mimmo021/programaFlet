@@ -249,11 +249,11 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
             fachada.saveProprietario(p);
             
             this.limparCamposDepoisDeSalvar();
-
+             JOptionPane.showMessageDialog(rootPane, "Proprietário Salvo com sucesso!");
         } catch (ProprietarioException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
-        JOptionPane.showMessageDialog(rootPane, "Proprietário Salvo com sucesso!");
+       
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
@@ -278,11 +278,11 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
             f.saveProprietario(proSelecionado);
             
             this.limparCamposDepoisDeAlterar();
-
+            JOptionPane.showMessageDialog(rootPane, "Proprietario Alterado com sucesso!");
         } catch (ProprietarioException ex) {
             Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(rootPane, "Apartamento Alterado com sucesso!");
+        
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonretornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonretornarActionPerformed
