@@ -130,7 +130,7 @@ Fachada f;
 
         jLabelLogin.getAccessibleContext().setAccessibleDescription("");
 
-        pack();
+        setSize(new java.awt.Dimension(356, 205));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
