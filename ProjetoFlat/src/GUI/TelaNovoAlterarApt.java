@@ -294,11 +294,12 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
             f.saveApartamento(a);
 
             this.limparCamposDepoisDeSalvar();
-
+            
+            JOptionPane.showMessageDialog(rootPane, "Apartamento Salvo com sucesso!");
         } catch (ApartamentoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
-        JOptionPane.showMessageDialog(rootPane, "Apartamento Salvo com sucesso!");
+        
 
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -323,10 +324,11 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
             
             this.limparCamposDepoisDeAlterar();
 
+            JOptionPane.showMessageDialog(rootPane, "Apartamento Alterado com sucesso!");
         } catch (ApartamentoException ex) {
-            Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex.getMessage());
         }
-        JOptionPane.showMessageDialog(rootPane, "Apartamento Alterado com sucesso!");
+        
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jToggleButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonRetornarActionPerformed

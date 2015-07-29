@@ -251,7 +251,7 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
             this.limparCamposDepoisDeSalvar();
              JOptionPane.showMessageDialog(rootPane, "Proprietário Salvo com sucesso!");
         } catch (ProprietarioException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
        
     }//GEN-LAST:event_jButtonSalvarActionPerformed

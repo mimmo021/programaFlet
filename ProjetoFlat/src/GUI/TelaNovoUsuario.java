@@ -153,7 +153,7 @@ public class TelaNovoUsuario extends javax.swing.JFrame {
             fachada.saveLogin(novoLogin);
             JOptionPane.showMessageDialog(rootPane, "Novo login Salvo com sucesso!");
         } catch (LoginException ex) {
-            Logger.getLogger(TelaNovoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaNovoUsuario.class.getName()).log(Level.SEVERE, null, ex.getMessage());
         }
         
         

@@ -609,10 +609,11 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
             f.saveLocatario(locSelecionado);
             this.limparCamposDepoisDeAlterar();
 
+            JOptionPane.showMessageDialog(rootPane, "Locatário Alterado com sucesso!");
         } catch (LocatarioException ex) {
-            Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex.getMessage());
         }
-        JOptionPane.showMessageDialog(rootPane, "Locatário Alterado com sucesso!");
+        
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**

@@ -403,11 +403,13 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
             fachada.saveReserva(r);
 
             this.limparCamposDepoisDeSalvar();
+            
+            JOptionPane.showMessageDialog(rootPane, "Reserva Salva com sucesso!");
 
         } catch (ReservaException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
-        JOptionPane.showMessageDialog(rootPane, "Reserva Salva com sucesso!");
+        
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jRadioButtonSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSimActionPerformed
@@ -459,10 +461,12 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
             f.saveReserva(resSelecionada);
             this.limparCamposDepoisDeAlterar();
 
+            JOptionPane.showMessageDialog(rootPane, "Reserva Alterada com sucesso!");
+            
         } catch (ReservaException ex) {
-            Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex.getMessage());
         }
-        JOptionPane.showMessageDialog(rootPane, "Reserva Alterada com sucesso!");
+        
 
 
     }//GEN-LAST:event_jButtonAlterarActionPerformed
