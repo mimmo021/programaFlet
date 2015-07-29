@@ -203,9 +203,8 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jPanelDadosLocador.getAccessibleContext().setAccessibleName("Dados Proprietário");
-
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     public void limparCamposDepoisDeSalvar() {

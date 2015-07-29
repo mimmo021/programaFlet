@@ -456,6 +456,7 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     public void limparCamposDepoisDeSalvar() {
@@ -555,11 +556,11 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
             fachada.saveLocatario(l);
             
             this.limparCamposDepoisDeSalvar();
-
+            JOptionPane.showMessageDialog(rootPane, "Locatário Salvo com sucesso!");
         } catch (LocatarioException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
-        JOptionPane.showMessageDialog(rootPane, "Locatário Salvo com sucesso!");
+        
 
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 

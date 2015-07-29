@@ -412,6 +412,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         getAccessibleContext().setAccessibleName("telaGerenciaApt");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
