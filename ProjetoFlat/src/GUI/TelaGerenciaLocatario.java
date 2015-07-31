@@ -20,19 +20,17 @@ public class TelaGerenciaLocatario extends javax.swing.JFrame {
     /**
      * Creates new form CadastroLocador
      */
-    TelaPainelPrincipal tpp;
+    
     Locatario locSelecionado = new Locatario();
     
-    public TelaGerenciaLocatario(TelaPainelPrincipal tpp) {
+    public TelaGerenciaLocatario() {
         initComponents();
-        this.tpp = tpp;
+        
         listarTabelaLocatario();
         jButton2Alterar.setEnabled(false);
     }
     
-    TelaGerenciaLocatario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
     public void listarTabelaLocatario() {
         
@@ -573,7 +571,7 @@ public class TelaGerenciaLocatario extends javax.swing.JFrame {
 
     private void jButton3RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3RetornarActionPerformed
         // TODO add your handling code here:
-        
+        TelaPainelPrincipal tpp = new TelaPainelPrincipal();
         tpp.setVisible(true);
         tpp.listarTabelaP();
         this.dispose();

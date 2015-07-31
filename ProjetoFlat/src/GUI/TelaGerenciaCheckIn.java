@@ -24,17 +24,17 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
     /**
      * Creates new form CadastroImovel
      */
-    TelaPainelPrincipal tpp;
+    
     ArrayList<Locatario> listaLocatario;
     ArrayList<Apartamento> listaApartamento;
     Locatario cpfSelecionado;
     Apartamento aptSelecionado;
 
-    public TelaGerenciaCheckIn(TelaPainelPrincipal tpp) {
+    public TelaGerenciaCheckIn() {
         initComponents();
         carregarComboApt();
         carregarComboCpfLocatario();
-        this.tpp = tpp;
+        
 
         //data de Entrada
         Date datareg;
@@ -45,9 +45,7 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
 
     }
 
-    private TelaGerenciaCheckIn() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     private void carregarComboApt() {
         Fachada fachada = new Fachada();
@@ -387,10 +385,16 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
 
         jLabelCPF.setText("CPF Nº");
 
+        jComboBoxCPF.setEditable(true);
         jComboBoxCPF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxCPF.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxCPFItemStateChanged(evt);
+            }
+        });
+        jComboBoxCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCPFActionPerformed(evt);
             }
         });
 
@@ -773,8 +777,9 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
     
     private void jButtonRetornarPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarPrincipalActionPerformed
         // TODO add your handling code here:
+        TelaPainelPrincipal tpp = new TelaPainelPrincipal();
         tpp.setVisible(true);
-        tpp.listarTabelaP();
+        
         this.dispose();
     }//GEN-LAST:event_jButtonRetornarPrincipalActionPerformed
 
@@ -884,6 +889,10 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "CheckIn Registrado com sucesso!");
 
     }//GEN-LAST:event_jButtonregistrarEntradaActionPerformed
+
+    private void jComboBoxCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxCPFActionPerformed
 
     /**
      * @param args the command line arguments

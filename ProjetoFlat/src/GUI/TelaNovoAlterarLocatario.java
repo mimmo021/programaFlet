@@ -566,6 +566,9 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
 
     private void jButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarActionPerformed
         // TODO add your handling code here:
+        if(tgl == null){
+           this.dispose();
+        }
         tgl.setVisible(true);
         tgl.listarTabelaLocatario();
         tgl.limparCampos();

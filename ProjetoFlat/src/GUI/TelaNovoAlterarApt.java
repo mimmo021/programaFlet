@@ -25,12 +25,12 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
      * Creates new form TelaNovoAlterarApt
      */
     Apartamento aptSelecionado = new Apartamento();
-    TelaGerenciaApt tga;
+    
     ArrayList<Proprietario> listaProprietario;
 
-    public TelaNovoAlterarApt(Apartamento aptSelecionado, TelaGerenciaApt tga) {
+    public TelaNovoAlterarApt(Apartamento aptSelecionado) {
         initComponents();
-        this.tga = tga;
+        
         carregarProprietario();
         this.aptSelecionado = aptSelecionado;
         jComboBoxProprietario.setSelectedItem(aptSelecionado.getProprietario().getNome());
@@ -44,16 +44,13 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         this.jButtonSalvar.setEnabled(false);
     }
 
-    public TelaNovoAlterarApt(TelaGerenciaApt tga) {
+    public TelaNovoAlterarApt() {
         initComponents();
-        this.tga = tga;
-        carregarProprietario();
+         carregarProprietario();
         this.jButtonAlterar.setEnabled(false);
     }
 
-    public TelaNovoAlterarApt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 
     public void limparCamposDepoisDeSalvar() {
         jComboBoxProprietario.setSelectedIndex(0);
@@ -333,12 +330,9 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
 
     private void jToggleButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonRetornarActionPerformed
         // TODO add your handling code here:
-        tga.setVisible(true);
-        tga.listarTabelaApt();
-        tga.listarTabelaCheckIn();
-        tga.listarTabelaReservas();
-        tga.limparCampos();
-        
+       
+        TelaGerenciaApt form = new TelaGerenciaApt();
+        form.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jToggleButtonRetornarActionPerformed
 

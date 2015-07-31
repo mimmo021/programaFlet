@@ -30,6 +30,8 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
         initComponents();
         this.tgp = tgp;
         this.jButtonAlterar.setEnabled(false);
+        this.jLabel2.setVisible(false);
+        this.jComboBox1SituacaoLocador.setVisible(false);
     }
 
     public TelaNovoAlterarProprietario() {

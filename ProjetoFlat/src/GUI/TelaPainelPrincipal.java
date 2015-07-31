@@ -337,7 +337,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
     private void jButtonCheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckInActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaCheckIn tCheckIn = new TelaGerenciaCheckIn(this);
+        TelaGerenciaCheckIn tCheckIn = new TelaGerenciaCheckIn();
         this.setVisible(false);
         tCheckIn.setVisible(true);
     }//GEN-LAST:event_jButtonCheckInActionPerformed
@@ -349,9 +349,10 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
     private void jButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReservasActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaReserva tRes = new TelaGerenciaReserva(this);
-        this.setVisible(false);
+        TelaGerenciaReserva tRes = new TelaGerenciaReserva();
+        
         tRes.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonReservasActionPerformed
 
     private void jButtonProprietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProprietariosActionPerformed
@@ -364,16 +365,18 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
     private void jButtonLocatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocatarioActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaLocatario tLoc = new TelaGerenciaLocatario(this);
-        this.setVisible(false);
+        TelaGerenciaLocatario tLoc = new TelaGerenciaLocatario();
+        
         tLoc.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonLocatarioActionPerformed
 
     private void jButtonAptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAptActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaApt tApt = new TelaGerenciaApt(this);
-        this.setVisible(false);
+        TelaGerenciaApt tApt = new TelaGerenciaApt();
+        
         tApt.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonAptActionPerformed
 
     private void jTablePrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePrincipalMouseClicked

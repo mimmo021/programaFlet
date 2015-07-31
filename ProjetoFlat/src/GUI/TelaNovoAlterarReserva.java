@@ -40,6 +40,8 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
         initComponents();
         this.tgr = tgr;
         carregarComboApt();
+        jLabelSituacao.setVisible(false);
+        jComboBoxSituacao.setVisible(false);
 
         //padrão = botão Radio "não" marcado
         jRadioButtonNao.setSelected(true);

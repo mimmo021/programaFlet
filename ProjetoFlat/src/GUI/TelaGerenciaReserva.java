@@ -22,20 +22,18 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
     /**
      * Creates new form CadastroReserva
      */
-    TelaPainelPrincipal tpp;
+    
     Reserva resSelecionada = new Reserva();
 
-    public TelaGerenciaReserva(TelaPainelPrincipal tpp) {
+    public TelaGerenciaReserva() {
         initComponents();
-        this.tpp = tpp;
+        
         this.carregarComboApt();
         this.listarTabelaReserva();
         jButtonAlterar.setEnabled(false);
     }
 
-    TelaGerenciaReserva() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     private void carregarComboApt() {
         Fachada fachada = new Fachada();
@@ -381,9 +379,9 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
 
     private void jButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarActionPerformed
         // TODO add your handling code here:
-        
+        TelaPainelPrincipal tpp = new TelaPainelPrincipal();
         tpp.setVisible(true);
-        tpp.listarTabelaP();
+        
         this.dispose();
     }//GEN-LAST:event_jButtonRetornarActionPerformed
 

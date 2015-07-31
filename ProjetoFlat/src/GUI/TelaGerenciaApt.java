@@ -27,9 +27,9 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
     TelaPainelPrincipal tpp;
     Apartamento aptSelecionado = new Apartamento();
 
-    public TelaGerenciaApt(TelaPainelPrincipal tpp) {
+    public TelaGerenciaApt() {
         initComponents();
-        this.tpp = tpp;
+        
         carregarProprietario();
         listarTabelaApt();
         listarTabelaCheckIn();
@@ -40,9 +40,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
 
     }
 
-    public TelaGerenciaApt() {
-        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     private void carregarProprietario() {
         Fachada fachada = new Fachada();
@@ -181,6 +179,11 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra2.png"))); // NOI18N
 
@@ -417,9 +420,9 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarApt napt = new TelaNovoAlterarApt(this);
-        this.setVisible(false);
-        napt.setVisible(true);
+        TelaNovoAlterarApt napt = new TelaNovoAlterarApt();
+        napt.setVisible(rootPaneCheckingEnabled);
+        this.dispose();
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jTableAptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAptMouseClicked
@@ -455,10 +458,16 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
 
     private void jButton1AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1AlterarActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarApt napt = new TelaNovoAlterarApt(aptSelecionado, this);
+        TelaNovoAlterarApt napt = new TelaNovoAlterarApt(aptSelecionado);
         this.setVisible(false);
         napt.setVisible(true);
     }//GEN-LAST:event_jButton1AlterarActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        listarTabelaApt();
+        listarTabelaCheckIn();
+        listarTabelaReservas();
+    }//GEN-LAST:event_formFocusGained
 
     /**
      * @param args the command line arguments
