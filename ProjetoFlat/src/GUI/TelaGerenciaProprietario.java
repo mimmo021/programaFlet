@@ -19,22 +19,20 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
     /**
      * Creates new form CaastroProprietario
      */
-    TelaPainelPrincipal tpp;
+    
     Proprietario proSelecionado = new Proprietario();
     Fachada f = new Fachada();
     Proprietario e = new Proprietario();
     ArrayList<Proprietario> listaProprietario;
 
-    public TelaGerenciaProprietario(TelaPainelPrincipal tpp) {
+    public TelaGerenciaProprietario() {
         initComponents();
-        this.tpp = tpp;
+      
         this.jButtonAlterar.setEnabled(false);
         listarTabelaProprietario();
     }
 
-    public TelaGerenciaProprietario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     public void listarTabelaProprietario() {
 
@@ -261,7 +259,7 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarProprietario nPro = new TelaNovoAlterarProprietario(this);
+        TelaNovoAlterarProprietario nPro = new TelaNovoAlterarProprietario();
         this.setVisible(false);
         nPro.setVisible(true);
         
@@ -287,16 +285,16 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarProprietario nPro = new TelaNovoAlterarProprietario(proSelecionado, this);
+        TelaNovoAlterarProprietario nPro = new TelaNovoAlterarProprietario(proSelecionado);
         this.setVisible(false);
         nPro.setVisible(true);
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonretornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonretornarActionPerformed
-        // TODO add your handling code here:
+      TelaPainelPrincipal tpp = new TelaPainelPrincipal();
         this.dispose();
         tpp.setVisible(true);
-        tpp.listarTabelaP();
+        
     }//GEN-LAST:event_jButtonretornarActionPerformed
 
     /**

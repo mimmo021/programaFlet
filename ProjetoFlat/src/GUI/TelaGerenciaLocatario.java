@@ -564,7 +564,7 @@ public class TelaGerenciaLocatario extends javax.swing.JFrame {
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarLocatario nLoc = new TelaNovoAlterarLocatario(this);
+        TelaNovoAlterarLocatario nLoc = new TelaNovoAlterarLocatario();
         this.setVisible(false);
         nLoc.setVisible(true);
     }//GEN-LAST:event_jButtonNovoActionPerformed

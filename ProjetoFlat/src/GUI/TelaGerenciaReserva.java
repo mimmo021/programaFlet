@@ -105,6 +105,11 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         jTableReserva = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         jLabelBarra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra2.png"))); // NOI18N
 
@@ -332,7 +337,7 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarReserva nRes = new TelaNovoAlterarReserva(this);
+        TelaNovoAlterarReserva nRes = new TelaNovoAlterarReserva();
         this.setVisible(false);
         nRes.setVisible(true);
     }//GEN-LAST:event_jButtonNovoActionPerformed
@@ -372,7 +377,7 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarReserva nRes = new TelaNovoAlterarReserva(resSelecionada,this);
+        TelaNovoAlterarReserva nRes = new TelaNovoAlterarReserva(resSelecionada);
         this.setVisible(false);
         nRes.setVisible(true);
     }//GEN-LAST:event_jButtonAlterarActionPerformed
@@ -384,6 +389,11 @@ public class TelaGerenciaReserva extends javax.swing.JFrame {
         
         this.dispose();
     }//GEN-LAST:event_jButtonRetornarActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        this.carregarComboApt();
+        this.listarTabelaReserva();
+    }//GEN-LAST:event_formFocusGained
 
     /**
      * @param args the command line arguments

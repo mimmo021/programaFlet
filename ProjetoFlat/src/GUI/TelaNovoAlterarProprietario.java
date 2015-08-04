@@ -22,26 +22,23 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
     /**
      * Creates new form NovoAlterarLocador
      */
-    TelaGerenciaProprietario tgp;
+    
     Proprietario proSelecionado = new Proprietario();
 
     //<editor-fold defaultstate="collapsed" desc="Construtores da tela">
-    public TelaNovoAlterarProprietario(TelaGerenciaProprietario tgp) {
+    public TelaNovoAlterarProprietario() {
         initComponents();
-        this.tgp = tgp;
+        
         this.jButtonAlterar.setEnabled(false);
         this.jLabel2.setVisible(false);
         this.jComboBox1SituacaoLocador.setVisible(false);
     }
 
-    public TelaNovoAlterarProprietario() {
-
-    }
-
-    public TelaNovoAlterarProprietario(Proprietario p, TelaGerenciaProprietario tgp) {
+   
+    public TelaNovoAlterarProprietario(Proprietario p) {
         initComponents();
         this.proSelecionado = p;
-        this.tgp = tgp;
+        
         jTextFieldNome.setText(p.getNome());
         jTextFieldFone.setText(p.getTelefone());
         jTextFieldFoneComercial.setText(p.getTelefone2());
@@ -289,8 +286,8 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
 
     private void jButtonretornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonretornarActionPerformed
         // TODO add your handling code here:
-        tgp.limparCampos();
-        tgp.listarTabelaProprietario();
+       TelaGerenciaProprietario tgp = new TelaGerenciaProprietario();
+
         tgp.setVisible(true);
 
         this.dispose();

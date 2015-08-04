@@ -357,7 +357,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
     private void jButtonProprietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProprietariosActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaProprietario tPro = new TelaGerenciaProprietario(this);
+        TelaGerenciaProprietario tPro = new TelaGerenciaProprietario();
         this.setVisible(false);
         tPro.setVisible(true);
         

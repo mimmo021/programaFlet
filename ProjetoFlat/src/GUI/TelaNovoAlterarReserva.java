@@ -28,17 +28,15 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
      * Creates new form TelaNovoAlterarReserva
      */
     Reserva resSelecionada = new Reserva();
-    TelaGerenciaReserva tgr;
+    
 
     ArrayList<Apartamento> listaApartamento;
 
-    public TelaNovoAlterarReserva() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 
-    public TelaNovoAlterarReserva(TelaGerenciaReserva tgr) {
+    public TelaNovoAlterarReserva() {
         initComponents();
-        this.tgr = tgr;
+        
         carregarComboApt();
         jLabelSituacao.setVisible(false);
         jComboBoxSituacao.setVisible(false);
@@ -61,9 +59,9 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
 
     }
 
-    public TelaNovoAlterarReserva(Reserva resSelecionado, TelaGerenciaReserva tgr) {
+    public TelaNovoAlterarReserva(Reserva resSelecionado) {
         initComponents();
-        this.tgr = tgr;
+       
         carregarComboApt();
         jTextFieldDataRegistro.setEnabled(false);
 
@@ -475,10 +473,9 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
 
     private void jToggleButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonRetornarActionPerformed
         // TODO add your handling code here:
+        TelaGerenciaReserva tgr = new TelaGerenciaReserva();
         tgr.setVisible(true);
-        tgr.listarTabelaReserva();
-
-        tgr.limparCampos();
+        
 
         this.dispose();
     }//GEN-LAST:event_jToggleButtonRetornarActionPerformed

@@ -421,7 +421,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
         TelaNovoAlterarApt napt = new TelaNovoAlterarApt();
-        napt.setVisible(rootPaneCheckingEnabled);
+        napt.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
