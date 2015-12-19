@@ -148,14 +148,14 @@ public class TelaNovoAlterarLocatario extends javax.swing.JFrame {
         jTextFieldEstadoCivil = new javax.swing.JTextField();
         jTextFieldFone = new javax.swing.JTextField();
         jTextFieldCarro = new javax.swing.JTextField();
+        jTextFieldCor = new javax.swing.JTextField();
+        jTextFieldPlaca = new javax.swing.JTextField();
         try{  
             javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("UUU-####");  
-            jTextFieldCarro = new javax.swing.JFormattedTextField(data);  
+            jTextFieldPlaca = new javax.swing.JFormattedTextField(data);  
         }  
         catch (Exception e){  
         }
-        jTextFieldCor = new javax.swing.JTextField();
-        jTextFieldPlaca = new javax.swing.JTextField();
         jTextFieldPassaporte = new javax.swing.JTextField();
         jTextFieldDataRegistro = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
@@ -558,11 +558,12 @@ public class TelaNovoAlterarLocatario extends javax.swing.JFrame {
             }
             l.setEstadocivil(jTextFieldEstadoCivil.getText());
             l.setCarro(jTextFieldCarro.getText());
-            if(l.getCarro().equals("   -    ")){
-               l.setCarro("");
-            }
+           
             l.setCarrocor(jTextFieldCor.getText());
             l.setPlaca(jTextFieldPlaca.getText());
+             if(l.getPlaca().equals("   -    ")){
+               l.setPlaca("");
+            }
             Date datareg = new Date();
             l.setDataderegistro(datareg);
 

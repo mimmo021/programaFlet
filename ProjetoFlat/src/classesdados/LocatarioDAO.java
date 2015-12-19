@@ -11,8 +11,8 @@ public String pesquisarPlaca(String placa) {
         Query consulta = em.createNativeQuery("select locatario.nome \n" +
             "from locatario, checkin\n" +
             "where locatario.id = checkin.locatario_id\n" +
-            "and locatario.carro = :carro \n" +
-            "and checkin.datacheckout is null").setParameter("carro", placa);
+            "and locatario.placa = :placa \n" +
+            "and checkin.datacheckout is null").setParameter("placa", placa);
 
        String retorno;
        try{
