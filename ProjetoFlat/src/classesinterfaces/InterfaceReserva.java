@@ -1,5 +1,7 @@
 package classesinterfaces;
 
-public interface InterfaceReserva extends InterfaceGeneric{
 
+
+public interface InterfaceReserva extends InterfaceGeneric{
+   
 }

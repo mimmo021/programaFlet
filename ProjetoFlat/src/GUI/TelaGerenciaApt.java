@@ -7,6 +7,7 @@ package GUI;
 
 import classesbasicas.Apartamento;
 import classesbasicas.CheckIn;
+import classesbasicas.Login;
 import classesbasicas.Proprietario;
 import classesbasicas.Reserva;
 import classesfachada.Fachada;
@@ -20,24 +21,26 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaGerenciaApt extends javax.swing.JFrame {
 
-    
+    Login login;
     /**
      * Creates new form CadastroApt
      */
-    TelaPainelPrincipal tpp;
+    
     Apartamento aptSelecionado = new Apartamento();
 
-    public TelaGerenciaApt() {
+    public TelaGerenciaApt(Login l) {
         initComponents();
-        
+        login = l;
         carregarProprietario();
         listarTabelaApt();
-        listarTabelaCheckIn();
-        listarTabelaReservas();
+        
 
         this.jButton1Alterar.setEnabled(false);
         this.jButtonRemover.setEnabled(false);
 
+    }
+    public TelaGerenciaApt(){
+        
     }
 
    
@@ -78,7 +81,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
 
     }
 
-    public void listarTabelaReservas() {
+    public void listarTabelaReservas(Apartamento apt) {
 
         Fachada f = new Fachada();
         Reserva e = new Reserva();
@@ -87,22 +90,23 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
 
         DefaultTableModel dtmr = new DefaultTableModel();
         dtmr.setColumnIdentifiers(new String[]{"Id", "Proprietário", "Data de Entrada", "Data de Saída",
-            "Situação"});
+            "Locatario"});
         for (int i = 0; i < listaReservas.size(); i++) {
+            if(listaReservas.get(i).getApartamento().getId() == apt.getId()){
             dtmr.addRow(new String[]{listaReservas.get(i).getId() + "",
                 listaReservas.get(i).getApartamento().getProprietario().getNome() + "",
                 listaReservas.get(i).getDataentrada() + "",
                 listaReservas.get(i).getDatasaida() + "",
-                listaReservas.get(i).getSituacao() + ""
+                listaReservas.get(i).getLocatario().getNome()
 
             });
         }
 
         jTableReservas.setModel(dtmr);
-
+        }
     }
 
-    public void listarTabelaCheckIn() {
+    public void listarTabelaCheckIn(Apartamento apt) {
 
         Fachada f = new Fachada();
         CheckIn e = new CheckIn();
@@ -113,6 +117,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         dtmc.setColumnIdentifiers(new String[]{"id", "Locatário", "Data de Entrada", "Data de Saída",
             "Situação"});
         for (int i = 0; i < listaCheckIns.size(); i++) {
+            if(listaCheckIns.get(i).getApartamento().getId() == apt.getId()){
             dtmc.addRow(new String[]{listaCheckIns.get(i).getId() + "",
                 listaCheckIns.get(i).getLocatario().getNome() + "",
                 listaCheckIns.get(i).getDataentrada() + "",
@@ -125,7 +130,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         jTableChecIn.setModel(dtmc);
 
     }
-
+    }
     public void limparCampos() {
         jComboBoxPropietario.setSelectedIndex(0);
         jComboBoxNQuartos.setSelectedIndex(0);
@@ -420,7 +425,7 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarApt napt = new TelaNovoAlterarApt();
+        TelaNovoAlterarApt napt = new TelaNovoAlterarApt(login);
         napt.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonNovoActionPerformed
@@ -443,30 +448,29 @@ public class TelaGerenciaApt extends javax.swing.JFrame {
         jComboBoxNQuartos.setSelectedItem(aptSelecionado.getQuartos() + "");
         jTextFieldVM.setText(aptSelecionado.getValorminimo() + "");
         jComboBoxSituacao.setSelectedItem(aptSelecionado.getSituacao());
-
+        listarTabelaCheckIn(aptSelecionado);
+        listarTabelaReservas(aptSelecionado);
         this.jButton1Alterar.setEnabled(true);
 
     }//GEN-LAST:event_jTableAptMouseClicked
 
     private void jButton1RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1RetornarActionPerformed
         // TODO add your handling code here:
-
+        TelaPainelPrincipal tpp = new TelaPainelPrincipal(login);
         tpp.setVisible(true);
-        tpp.listarTabelaP();
-        this.dispose();
+         this.dispose();
     }//GEN-LAST:event_jButton1RetornarActionPerformed
 
     private void jButton1AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1AlterarActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarApt napt = new TelaNovoAlterarApt(aptSelecionado);
+        TelaNovoAlterarApt napt = new TelaNovoAlterarApt(aptSelecionado,login);
         this.setVisible(false);
         napt.setVisible(true);
     }//GEN-LAST:event_jButton1AlterarActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         listarTabelaApt();
-        listarTabelaCheckIn();
-        listarTabelaReservas();
+      
     }//GEN-LAST:event_formFocusGained
 
     /**

@@ -5,8 +5,8 @@
  */
 package GUI;
 
+import classesbasicas.Login;
 import classesbasicas.Proprietario;
-import classesbasicas.Situacao;
 import classesexception.ProprietarioException;
 import classesfachada.Fachada;
 import java.util.logging.Level;
@@ -24,28 +24,31 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
      */
     
     Proprietario proSelecionado = new Proprietario();
-
+    Login login;
     //<editor-fold defaultstate="collapsed" desc="Construtores da tela">
-    public TelaNovoAlterarProprietario() {
+    public TelaNovoAlterarProprietario(Login l) {
         initComponents();
-        
+        this.login = l;
         this.jButtonAlterar.setEnabled(false);
         this.jLabel2.setVisible(false);
         this.jComboBox1SituacaoLocador.setVisible(false);
     }
 
    
-    public TelaNovoAlterarProprietario(Proprietario p) {
+    public TelaNovoAlterarProprietario(Proprietario p, Login l) {
         initComponents();
         this.proSelecionado = p;
-        
+        this.login = l;
         jTextFieldNome.setText(p.getNome());
         jTextFieldFone.setText(p.getTelefone());
         jTextFieldFoneComercial.setText(p.getTelefone2());
         jTextFieldCelular.setText(p.getTelefone3());
         jTextFieldEmail.setText(p.getEmail());
-        jComboBox1SituacaoLocador.setSelectedItem(p.getSituacao().getDescricao());
+        jComboBox1SituacaoLocador.setSelectedItem(p.getSituacao());
         jButtonSalvar.setEnabled(false);
+    }
+    public TelaNovoAlterarProprietario(){
+        
     }
 //</editor-fold>
 
@@ -94,15 +97,15 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
 
         jPanelDadosLocador.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Proprietário"));
 
-        jLabelNome.setText("Nome:");
+        jLabelNome.setText("* Nome:");
 
-        jLabelFone.setText("Fone:");
+        jLabelFone.setText("* Fone:");
 
         jLabelFoneComercial.setText("Fone comercial:");
 
         jLabelCelular.setText("Celular:");
 
-        jLabelEmail.setText("E-Mail:");
+        jLabelEmail.setText("* E-Mail:");
 
         jLabel2.setText("Situação:");
 
@@ -239,10 +242,10 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
             p.setEmail(jTextFieldEmail.getText());
             
             if (jComboBox1SituacaoLocador.getSelectedItem().toString().equalsIgnoreCase("ATIVO")) {
-                p.setSituacao(Situacao.ATIVO);
+                p.setSituacao("ATIVO");
 
             } else {
-                p.setSituacao(Situacao.INATIVO);
+                p.setSituacao("INATIVO");
             }
             
             fachada.saveProprietario(p);
@@ -268,10 +271,10 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
             proSelecionado.setEmail(jTextFieldEmail.getText());
 
             if (jComboBox1SituacaoLocador.getSelectedItem().toString().equalsIgnoreCase("ATIVO")) {
-                proSelecionado.setSituacao(Situacao.ATIVO);
+                proSelecionado.setSituacao("ATIVO");
 
             } else {
-                proSelecionado.setSituacao(Situacao.INATIVO);
+                proSelecionado.setSituacao("INATIVO");
             }
             
             f.saveProprietario(proSelecionado);
@@ -286,7 +289,7 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
 
     private void jButtonretornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonretornarActionPerformed
         // TODO add your handling code here:
-       TelaGerenciaProprietario tgp = new TelaGerenciaProprietario();
+       TelaGerenciaProprietario tgp = new TelaGerenciaProprietario(login);
 
         tgp.setVisible(true);
 

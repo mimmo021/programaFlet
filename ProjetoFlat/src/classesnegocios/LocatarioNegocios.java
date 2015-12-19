@@ -33,6 +33,9 @@ public class LocatarioNegocios {
         if(a.getEmail().equals("")|| (a.getEmail()==null)){
             throw new LocatarioException("O email nao pode ser vazio");
         }
+        if(a.getCpf().equals("")){
+            throw new LocatarioException("O CPF nao pode ser vazio");
+        }
 	this.locadordao.save(a);
 }
 public Locatario find(Locatario a){
@@ -50,6 +53,9 @@ public List<Locatario> listall(Locatario a){
 		listaLocatario.add(attraction);
 	}
         return listaLocatario;
+}
+public String pesquisarPlaca(String placa) {
+    return this.locadordao.pesquisarPlaca(placa);
 }
     
 }

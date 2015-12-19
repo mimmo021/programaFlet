@@ -48,5 +48,7 @@ public List<Login> listall(Login a){
 	}
         return listaLogin;
 }
-    
+  public int acesso(String usuario, String senha) {
+      return this.logindao.acesso(usuario, senha);
+  }   
 }

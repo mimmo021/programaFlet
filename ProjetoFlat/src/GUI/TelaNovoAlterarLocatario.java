@@ -6,8 +6,10 @@
 package GUI;
 
 import classesbasicas.Locatario;
+import classesbasicas.Login;
 import classesexception.LocatarioException;
 import classesfachada.Fachada;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,11 +26,11 @@ public class TelaNovoAlterarLocatario extends javax.swing.JFrame {
      * Creates new form NovoAlterarLocatario
      */
     Locatario locSelecionado = new Locatario();
-    TelaGerenciaLocatario tgl;
-    TelaGerenciaCheckIn tgck;
-    public TelaNovoAlterarLocatario(TelaGerenciaLocatario tgl) {
+    
+   Login login;
+    public TelaNovoAlterarLocatario(Login l) {
         initComponents();
-        this.tgl = tgl;
+        this.login = l;
         this.jButtonAlterar.setEnabled(false);
         //data de registro
         Date datareg;
@@ -36,27 +38,17 @@ public class TelaNovoAlterarLocatario extends javax.swing.JFrame {
         String dataRegT = Datas.formatarData(datareg, "dd/MM/yyyy");
         this.jTextFieldDataRegistro.setText(dataRegT);
         this.jTextFieldDataRegistro.setEnabled(false);
+    }
+    public TelaNovoAlterarLocatario(){
+        
     }
     
-public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
-        initComponents();
-        this.tgck = tgck;
-        this.jButtonAlterar.setEnabled(false);
-        //data de registro
-        Date datareg;
-        datareg = Datas.obterTimestampAtual();
-        String dataRegT = Datas.formatarData(datareg, "dd/MM/yyyy");
-        this.jTextFieldDataRegistro.setText(dataRegT);
-        this.jTextFieldDataRegistro.setEnabled(false);
-    }
-    public TelaNovoAlterarLocatario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
-    }
     
-    TelaNovoAlterarLocatario(Locatario loc, TelaGerenciaLocatario tgl) {
+    
+    TelaNovoAlterarLocatario(Locatario loc, Login l) {
         initComponents();
-        this.tgl = tgl;
+        this.login = l;
         this.locSelecionado = loc;
         jTextFieldNome.setText(loc.getNome());
         jTextFieldEndereco.setText(loc.getEndereco());
@@ -71,7 +63,7 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
         jTextFieldIdentidade.setText(loc.getIdentidade());
         jTextFieldOrgaoExp.setText(loc.getOrgexp());
         jTextFieldMotivo.setText(loc.getMotivoviagem());
-        jTextFieldCpf.setText(loc.getCpg());
+        jTextFieldCpf.setText(loc.getCpf());
         jTextFieldEstadoCivil.setText(loc.getEstadocivil());
         jTextFieldCarro.setText(loc.getCarro());
         jTextFieldCor.setText(loc.getCarrocor());
@@ -110,6 +102,12 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
         jTextFieldBairro = new javax.swing.JTextField();
         jLabelCep = new javax.swing.JLabel();
         jTextFieldCep = new javax.swing.JTextField();
+        try{  
+            javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("#####-###");  
+            jTextFieldCep = new javax.swing.JFormattedTextField(data);  
+        }  
+        catch (Exception e){  
+        }
         jLabelFone = new javax.swing.JLabel();
         jTextFieldIdade = new javax.swing.JTextField();
         jLabelCelular = new javax.swing.JLabel();
@@ -141,9 +139,21 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
         jLabelDataRegistro = new javax.swing.JLabel();
         jLabelResponsavelPag = new javax.swing.JLabel();
         jTextFieldCpf = new javax.swing.JTextField();
+        try{  
+            javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("###.###.###-##");  
+            jTextFieldCpf = new javax.swing.JFormattedTextField(data);  
+        }  
+        catch (Exception e){  
+        }
         jTextFieldEstadoCivil = new javax.swing.JTextField();
         jTextFieldFone = new javax.swing.JTextField();
         jTextFieldCarro = new javax.swing.JTextField();
+        try{  
+            javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("UUU-####");  
+            jTextFieldCarro = new javax.swing.JFormattedTextField(data);  
+        }  
+        catch (Exception e){  
+        }
         jTextFieldCor = new javax.swing.JTextField();
         jTextFieldPlaca = new javax.swing.JTextField();
         jTextFieldPassaporte = new javax.swing.JTextField();
@@ -158,7 +168,7 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
 
         jPanelCadastroLocatario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Locatário"));
 
-        jLabelNome.setText("Nome Completo/ Full name:");
+        jLabelNome.setText("* Nome Completo/ Full name:");
 
         jLabelEndereco.setText("Endereço residencial/ Full adress:");
 
@@ -168,7 +178,7 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
 
         jLabelCep.setText("CEP:");
 
-        jLabelFone.setText("Fone/ Phone:");
+        jLabelFone.setText("* Fone/ Phone:");
 
         jLabelCelular.setText("Celular:");
 
@@ -182,7 +192,7 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
 
         jLabelMotivo.setText("Motivo da Viagem:");
 
-        jLabelEmail.setText("E-mail:");
+        jLabelEmail.setText("* E-mail:");
 
         jLabelIdentidade.setText("Identidade:");
 
@@ -190,7 +200,7 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
 
         jLabelPassaporte.setText("Passaporte:");
 
-        jLabelCpf.setText("CPF:");
+        jLabelCpf.setText("* CPF:");
 
         jLabelEstadoCivil.setText("Estado Civil:");
 
@@ -533,19 +543,28 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
             l.setCidade(jTextFieldCidade.getText());
             l.setBairro(jTextFieldBairro.getText());
             l.setCep(jTextFieldCep.getText());
-            l.setIdade(Integer.parseInt((String) jTextFieldIdade.getText()));
+            if(l.getCep().equals("     -   ")){
+                l.setCep("");
+            }
+            l.setIdade(jTextFieldIdade.getText());
             l.setEstado(jTextFieldEstado.getText());
             l.setProcedencia(jTextFieldProcedencia.getText());
             l.setIdentidade(jTextFieldIdentidade.getText());
             l.setOrgexp(jTextFieldOrgaoExp.getText());
             l.setMotivoviagem(jTextFieldMotivo.getText());
-            l.setCpg(jTextFieldCpf.getText());
+            l.setCpf(jTextFieldCpf.getText());
+            if(l.getCpf().equals("   .   .   -  ")){
+                l.setCpf("");
+            }
             l.setEstadocivil(jTextFieldEstadoCivil.getText());
             l.setCarro(jTextFieldCarro.getText());
+            if(l.getCarro().equals("   -    ")){
+               l.setCarro("");
+            }
             l.setCarrocor(jTextFieldCor.getText());
             l.setPlaca(jTextFieldPlaca.getText());
-
-            l.setDataderegistro(Datas.criarData(jTextFieldDataRegistro.getText()));
+            Date datareg = new Date();
+            l.setDataderegistro(datareg);
 
             l.setTelefone(jTextFieldFone.getText());
             l.setTelefone2(jTextFieldCelular.getText());
@@ -566,13 +585,8 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
 
     private void jButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarActionPerformed
         // TODO add your handling code here:
-        if(tgl == null){
-           this.dispose();
-        }
+        TelaGerenciaLocatario tgl = new TelaGerenciaLocatario(login);
         tgl.setVisible(true);
-        tgl.listarTabelaLocatario();
-        tgl.limparCampos();
-
         this.dispose();
     }//GEN-LAST:event_jButtonRetornarActionPerformed
 
@@ -589,15 +603,21 @@ public TelaNovoAlterarLocatario(TelaGerenciaCheckIn tgck) {
             locSelecionado.setCidade(jTextFieldCidade.getText());
             locSelecionado.setBairro(jTextFieldBairro.getText());
             locSelecionado.setCep(jTextFieldCep.getText());
-            locSelecionado.setIdade(Integer.parseInt((String) jTextFieldIdade.getText()));
+                  if(locSelecionado.getCep().equals("     -   ")){
+                locSelecionado.setCep("");
+            }
+            locSelecionado.setIdade(jTextFieldIdade.getText());
             locSelecionado.setEstado(jTextFieldEstado.getText());
             locSelecionado.setProcedencia(jTextFieldProcedencia.getText());
             locSelecionado.setIdentidade(jTextFieldIdentidade.getText());
             locSelecionado.setOrgexp(jTextFieldOrgaoExp.getText());
             locSelecionado.setMotivoviagem(jTextFieldMotivo.getText());
-            locSelecionado.setCpg(jTextFieldCpf.getText());
+            locSelecionado.setCpf(jTextFieldCpf.getText());
             locSelecionado.setEstadocivil(jTextFieldEstadoCivil.getText());
             locSelecionado.setCarro(jTextFieldCarro.getText());
+             if(locSelecionado.getCarro().equals("   -    ")){
+               locSelecionado.setCarro("");
+            }
             locSelecionado.setCarrocor(jTextFieldCor.getText());
             locSelecionado.setPlaca(jTextFieldPlaca.getText());
 

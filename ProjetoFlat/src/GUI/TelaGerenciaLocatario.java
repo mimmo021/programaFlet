@@ -6,6 +6,7 @@
 package GUI;
 
 import classesbasicas.Locatario;
+import classesbasicas.Login;
 import classesfachada.Fachada;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -22,12 +23,15 @@ public class TelaGerenciaLocatario extends javax.swing.JFrame {
      */
     
     Locatario locSelecionado = new Locatario();
-    
-    public TelaGerenciaLocatario() {
+    Login login;
+    public TelaGerenciaLocatario(Login l) {
         initComponents();
-        
+        this.login = l;
         listarTabelaLocatario();
         jButton2Alterar.setEnabled(false);
+    }
+    public TelaGerenciaLocatario(){
+        
     }
     
     
@@ -564,14 +568,15 @@ public class TelaGerenciaLocatario extends javax.swing.JFrame {
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarLocatario nLoc = new TelaNovoAlterarLocatario();
-        this.setVisible(false);
+        TelaNovoAlterarLocatario nLoc = new TelaNovoAlterarLocatario(login);
+        
         nLoc.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButton3RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3RetornarActionPerformed
         // TODO add your handling code here:
-        TelaPainelPrincipal tpp = new TelaPainelPrincipal();
+        TelaPainelPrincipal tpp = new TelaPainelPrincipal(login);
         tpp.setVisible(true);
         tpp.listarTabelaP();
         this.dispose();
@@ -579,9 +584,10 @@ public class TelaGerenciaLocatario extends javax.swing.JFrame {
 
     private void jButton2AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2AlterarActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarLocatario nLoc = new TelaNovoAlterarLocatario(locSelecionado, this);
-        this.setVisible(false);
+        TelaNovoAlterarLocatario nLoc = new TelaNovoAlterarLocatario(locSelecionado,login);
+        
         nLoc.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2AlterarActionPerformed
 
     private void jTableLocatarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLocatarioMouseClicked
@@ -608,7 +614,7 @@ public class TelaGerenciaLocatario extends javax.swing.JFrame {
         jTextFieldIdentidade.setText(locSelecionado.getIdentidade());
         jTextFieldOrgaoExp.setText(locSelecionado.getOrgexp());
         jTextFieldMotivo.setText(locSelecionado.getMotivoviagem());
-        jTextFieldCpf.setText(locSelecionado.getCpg());
+        jTextFieldCpf.setText(locSelecionado.getCpf());
         jTextFieldEstadoCivil.setText(locSelecionado.getEstadocivil());
         jTextFieldCarro.setText(locSelecionado.getCarro());
         jTextFieldCor.setText(locSelecionado.getCarrocor());

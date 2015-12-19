@@ -81,20 +81,17 @@
                           <Component id="jPanel1Carro" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanelDados" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButtonCadastrarNovoCliente" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelTitulo" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jLabelTitulo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="410" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelapt" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabelApto" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabelApto" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jComboBoxAptos" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <Component id="jLabelaptnome" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabelapt" min="-2" pref="116" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -112,10 +109,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelApto" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBoxAptos" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonCadastrarNovoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelaptnome" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="jPanel1DadosLocatario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel1Carro" min="-2" max="-2" attributes="0"/>
@@ -212,6 +208,8 @@
                                   <Component id="jLabelDataSaida" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jTextFieldDataSaida" min="-2" pref="142" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jLabel1DataRegistro" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -233,6 +231,7 @@
                               <Component id="jTextFieldDataSaida" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1DataRegistro" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextField1DataDeRegistro" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -296,14 +295,8 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextFieldLeituraSaida">
-                  <Properties>
-                    <Property name="enabled" type="boolean" value="false"/>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextFieldTotalKw">
-                  <Properties>
-                    <Property name="enabled" type="boolean" value="false"/>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2Acompanhou">
                   <Properties>
@@ -311,6 +304,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextFieldLeituraEntrada">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelValorTotal">
                   <Properties>
@@ -328,7 +324,6 @@
                       <ComponentRef name="buttonGroup2leituraSaida"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="N&#xe3;o"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="jCheckBox2Nao">
@@ -337,6 +332,7 @@
                       <ComponentRef name="buttonGroup1leituraEntrada"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="N&#xe3;o"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelValorMensal">
@@ -350,6 +346,7 @@
                       <ComponentRef name="buttonGroup1leituraEntrada"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Sim"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="jCheckBox3Sim">
@@ -358,7 +355,6 @@
                       <ComponentRef name="buttonGroup2leituraSaida"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Sim"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelFormaDePagamento">
@@ -412,6 +408,11 @@
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JLabel" name="jLabel1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="dd/mm/YYYY"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel1DadosLocatario">
@@ -445,8 +446,8 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabelCPF" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jComboBoxCPF" min="-2" pref="139" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabelcpfnome" min="-2" pref="116" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="jLabelNome" min="-2" pref="131" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jTextFieldNomeCompleto" max="32767" attributes="0"/>
@@ -525,9 +526,9 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabelCPF" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBoxCPF" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelNome" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextFieldNomeCompleto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelcpfnome" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -726,24 +727,6 @@
                     <Property name="text" type="java.lang.String" value="CPF N&#xba;"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBoxCPF">
-                  <Properties>
-                    <Property name="editable" type="boolean" value="true"/>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxCPFItemStateChanged"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxCPFActionPerformed"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jComboBoxCPFKeyPressed"/>
-                  </Events>
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabelEstCivil">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Est. Civil / Marital Status:"/>
@@ -772,6 +755,11 @@
                 <Component class="javax.swing.JLabel" name="jLabelResponsavel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Respons&#xe1;vel pelo Pagamento / Responsabile for payment:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelcpfnome">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="jLabel1"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -898,30 +886,6 @@
                 <Property name="text" type="java.lang.String" value="Ficha de Registro - registration card"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBoxAptos">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Apt&#xba; 1"/>
-                    <StringItem index="1" value="Apt&#xba; 2"/>
-                    <StringItem index="2" value="Apt&#xba; 3"/>
-                    <StringItem index="3" value="Apt&#xba; 4"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxAptosItemStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxAptosActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButtonCadastrarNovoCliente">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastrar Novo Locat&#xe1;rio"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadastrarNovoClienteActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabelApto">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Apt&#xba;:"/>
@@ -929,7 +893,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonregistrarEntrada">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Registrar Entrada"/>
+                <Property name="text" type="java.lang.String" value="Registrar Saida"/>
                 <Property name="actionCommand" type="java.lang.String" value=""/>
               </Properties>
               <Events>
@@ -937,6 +901,11 @@
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelapt">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelaptnome">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel1"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

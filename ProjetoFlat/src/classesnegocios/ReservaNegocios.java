@@ -24,7 +24,17 @@ public class ReservaNegocios {
         this.reservasdao = new ReservaDAO();
     }
     public void save(Reserva a) throws ReservaException{
-	
+        if(a.getDataentrada()== null){
+            throw new ReservaException("Data de entrada nao pode esta vazia");
+        }
+	if(a.getDataentrada().after(a.getDataregistro())){
+            throw new ReservaException("Data de entrada nao pode ser Anterior a hoje");
+        }
+        if(a.getDatasaida()== null){
+            throw new ReservaException("Data de saida nao pode esta vazia");
+        }
+         
+         
 	this.reservasdao.save(a);
 }
 public Reserva find(Reserva a){

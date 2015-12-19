@@ -24,6 +24,12 @@ public class CheckInNegocios {
         this.checkindao = new CheckInDAO();
     }
     public void save(CheckIn a) throws CheckInException{
+        if(a.getDataentrada()==null){
+            throw new CheckInException("Data de entrada nao pode ser vazia");
+        }
+        if(a.getValormensal()== 0.0){
+            throw new CheckInException("Valor mensal nao pode ser vazio");
+        }
 	
 	this.checkindao.save(a);
 }
@@ -43,5 +49,11 @@ public List<CheckIn> listall(CheckIn a){
 	}
         return listaCheckIn;
 }
-    
+public int pesquisarQtdCheckin(){
+    return this.checkindao.pesquisarQtdCheckin();
+}
+
+public int pesquisarUltimo(){
+    return this.checkindao.pesquisarUltimo();
+}    
 }

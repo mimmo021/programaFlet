@@ -10,6 +10,7 @@ import classesdados.ApartamentoDAO;
 import classesexception.ApartamentoException;
 import classesinterfaces.InterfaceApartamento;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,9 +34,7 @@ public class ApartamentoNegocios {
         if(a.getNumero()==0){
             throw new ApartamentoException("Numero do apt nao escolhido");
         }
-        if(a.getValorminimo()==0){
-            throw new ApartamentoException("Valor minimo nao escolhido");
-        }
+       
 	this.apartamentodao.save(a);
 }
 public Apartamento find(Apartamento a){
@@ -54,4 +53,16 @@ public List<Apartamento> listall(Apartamento a){
 	}
         return listaApartamento;
 }
+public List<Apartamento> pesquisarReserva(Date entrada, Date saida){
+    List<Apartamento> listaApartamento = new ArrayList<Apartamento>();
+    
+ 
+	listaApartamento = this.apartamentodao.pesquisarReserva(entrada, saida);
+	
+     
+        return listaApartamento;
+}
+public int pesquisarQtdApartamento(){
+    return this.apartamentodao.pesquisarQtdApartamento();
+} 
 }

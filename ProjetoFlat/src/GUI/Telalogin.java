@@ -5,7 +5,12 @@
 package GUI;
 
 import classesbasicas.Login;
+import classesbasicas.Registro;
+import classesexception.RegistroException;
 import classesfachada.Fachada;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,7 +46,6 @@ Fachada f;
         jLabelImagemCadeado = new javax.swing.JLabel();
         jPasswordFieldPassWord = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
-        jButtonNovoCadastro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,18 +63,13 @@ Fachada f;
             }
         });
 
+        jTextFieldUserName.setText("usuario");
+
         jLabelImagemCadeado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/portal_loginNIMBUS.jpg"))); // NOI18N
 
-        jPasswordFieldPassWord.setText("jPasswordField1");
+        jPasswordFieldPassWord.setText("senha");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra.png"))); // NOI18N
-
-        jButtonNovoCadastro.setText("Novo Cadastro");
-        jButtonNovoCadastro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNovoCadastroActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,12 +89,9 @@ Fachada f;
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addComponent(jLabelLogin)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonNovoCadastro)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonLogin))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonLogin)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jPasswordFieldPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))
@@ -105,7 +101,7 @@ Fachada f;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelTitulo)
@@ -119,9 +115,7 @@ Fachada f;
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabelPassWord)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonLogin)
-                            .addComponent(jButtonNovoCadastro)))
+                        .addComponent(jButtonLogin))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabelImagemCadeado, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -130,31 +124,45 @@ Fachada f;
 
         jLabelLogin.getAccessibleContext().setAccessibleDescription("");
 
-        setSize(new java.awt.Dimension(356, 205));
+        setSize(new java.awt.Dimension(356, 223));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonNovoCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoCadastroActionPerformed
-        // TODO add your handling code here:
-        TelaNovoUsuario nu = new TelaNovoUsuario();
-        this.setVisible(false);
-        nu.setVisible(true);
-    }//GEN-LAST:event_jButtonNovoCadastroActionPerformed
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // TODO add your handling code here:
         if(jTextFieldUserName.getText()!= null && jTextFieldUserName.getText().trim().equals("")== false &&
            jPasswordFieldPassWord.getPassword()!= null &&
            jPasswordFieldPassWord.getPassword().toString().equals("")== false){
-            Login l = new Login();
-            l.setUsuario(jTextFieldUserName.getText());
-            l.setSenha(jPasswordFieldPassWord.getPassword().toString());
             
-            f.findLogin(l);
+        String usuario = jTextFieldUserName.getText();
+        String senha = new String (jPasswordFieldPassWord.getPassword());
+            
+        int idl =    f.acesso(usuario,senha);
+        Login login = new Login();
+        login.setId(idl);
+        login = f.findLogin(login);
+        if(login != null){
+            try {
+                JOptionPane.showMessageDialog(rootPane,"Bem vindo SR(a)  " +login.getUsuario() );
+                Registro re = new Registro();
+                re.setLogin(login);
+                re.setDescricao("Login Realizado");
+                Date datareg = new Date();
+                re.setDataregistro(datareg);
+                f.saveRegistro(re);
+                TelaPainelPrincipal tela = new TelaPainelPrincipal(login);
+                tela.setVisible(true);       
+                this.dispose();
+            } catch (RegistroException ex) {
+                Logger.getLogger(Telalogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane,"Usuario ou senha nao encontrados");
+        }
         }else{
             JOptionPane.showMessageDialog(this,"Nome de Usuário ou Senha Inválidos","Erro",JOptionPane.ERROR_MESSAGE);
         }
-        this.dispose();
+        
         
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
@@ -195,7 +203,6 @@ Fachada f;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogin;
-    private javax.swing.JButton jButtonNovoCadastro;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelImagemCadeado;
     private javax.swing.JLabel jLabelLogin;

@@ -6,8 +6,10 @@
 package GUI;
 
 import classesbasicas.CheckIn;
+import classesbasicas.Login;
 import classesfachada.Fachada;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,15 +21,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaPainelPrincipal extends javax.swing.JFrame {
 
+    Login login;
+    CheckIn chekinSelecionado;
     
-    CheckIn chekinSelecionado= new CheckIn();
-    /**
-     * Creates new form PainelPrincipal
-     */
-    public TelaPainelPrincipal() {
+    public TelaPainelPrincipal(){
+        
+    }
+    public TelaPainelPrincipal(Login login2) {
         initComponents();
         listarTabelaP();
-
+        this.login = login2;
     }
 
     public void listarTabelaP() {
@@ -42,13 +45,16 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         dtm.setColumnIdentifiers(new String[]{"Id","Aptº", "Data Entrada",
             "Data Saída", "Locatario", "Situação"});
         for (int i = 0; i < listaCheckIno.size(); i++) {
-            dtm.addRow(new String[]{listaCheckIno.get(i).getId() + "",
-                listaCheckIno.get(i).getApartamento().getNumero() + "",
-                listaCheckIno.get(i).getDataentrada() + "",
-                listaCheckIno.get(i).getDatasaida() + "",
-                listaCheckIno.get(i).getLocatario().getNome() + "",
-                listaCheckIno.get(i).getApartamento().getSituacao()
-            });
+            if(listaCheckIno.get(i).getDataCheckout()==null){
+                    dtm.addRow(new String[]{listaCheckIno.get(i).getId() + "",
+                    listaCheckIno.get(i).getApartamento().getNumero() + "",
+                    listaCheckIno.get(i).getDataentrada() + "",
+                    listaCheckIno.get(i).getDatasaida() + "",
+                    listaCheckIno.get(i).getLocatario().getNome() + "",
+                    listaCheckIno.get(i).getApartamento().getSituacao()
+            
+                            });
+            }
         }
 
         jTablePrincipal.setModel(dtm);
@@ -77,21 +83,20 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         jLabelLocador = new javax.swing.JLabel();
         jTextFieldVM = new javax.swing.JTextField();
         jTextFieldLocador = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jButtonCheckIn = new javax.swing.JButton();
         jButtonApt = new javax.swing.JButton();
         jButtonLocatario = new javax.swing.JButton();
         jButtonReservas = new javax.swing.JButton();
         jButtonProprietarios = new javax.swing.JButton();
-        jButtonCheckout = new javax.swing.JButton();
+        jButtonCheckIn1 = new javax.swing.JButton();
+        jButtonProprietarios1 = new javax.swing.JButton();
+        jButtonProprietarios2 = new javax.swing.JButton();
+        jButtonReservas1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-        setSize(new java.awt.Dimension(950, 300));
 
         jLabelApt.setText("Aptº:");
 
@@ -147,28 +152,6 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
         jTextFieldLocador.setEditable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Obs.:"));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
-        );
-
         jButtonCheckIn.setText("Check In");
         jButtonCheckIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,10 +187,32 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButtonCheckout.setText("Check Out");
-        jButtonCheckout.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCheckIn1.setText("CheckOut");
+        jButtonCheckIn1.setToolTipText("");
+        jButtonCheckIn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCheckoutActionPerformed(evt);
+                jButtonCheckIn1ActionPerformed(evt);
+            }
+        });
+
+        jButtonProprietarios1.setText("Sair");
+        jButtonProprietarios1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProprietarios1ActionPerformed(evt);
+            }
+        });
+
+        jButtonProprietarios2.setText("Veiculos");
+        jButtonProprietarios2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProprietarios2ActionPerformed(evt);
+            }
+        });
+
+        jButtonReservas1.setText("Relatorios");
+        jButtonReservas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReservas1ActionPerformed(evt);
             }
         });
 
@@ -215,19 +220,22 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonCheckIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCheckout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonCheckIn, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                    .addComponent(jButtonCheckIn1, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                    .addComponent(jButtonProprietarios2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonApt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonReservas, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(jButtonReservas1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonReservas, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                    .addComponent(jButtonLocatario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonProprietarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonApt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonLocatario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonProprietarios1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -235,14 +243,19 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonReservas)
                     .addComponent(jButtonCheckIn)
-                    .addComponent(jButtonProprietarios))
+                    .addComponent(jButtonProprietarios)
+                    .addComponent(jButtonApt))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonLocatario)
-                    .addComponent(jButtonCheckout)
-                    .addComponent(jButtonApt))
+                    .addComponent(jButtonReservas)
+                    .addComponent(jButtonCheckIn1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonProprietarios1)
+                    .addComponent(jButtonProprietarios2)
+                    .addComponent(jButtonReservas1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -280,12 +293,11 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(jTextFieldLocador)))
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(17, 17, 17))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,10 +305,9 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(6, 6, 6)
                 .addComponent(jLabel1)
-                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
+                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldApt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldVM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -320,15 +331,12 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
                                 .addGap(3, 3, 3)
                                 .addComponent(jLabelLocador))
                             .addComponent(jTextFieldLocador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(808, 384));
@@ -337,19 +345,14 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
     private void jButtonCheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckInActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaCheckIn tCheckIn = new TelaGerenciaCheckIn();
+        TelaGerenciaCheckIn tCheckIn = new TelaGerenciaCheckIn(login);
         this.setVisible(false);
         tCheckIn.setVisible(true);
     }//GEN-LAST:event_jButtonCheckInActionPerformed
 
-    private void jButtonCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckoutActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jButtonCheckoutActionPerformed
-
     private void jButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReservasActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaReserva tRes = new TelaGerenciaReserva();
+        TelaGerenciaReserva tRes = new TelaGerenciaReserva(login);
         
         tRes.setVisible(true);
         this.dispose();
@@ -357,7 +360,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
     private void jButtonProprietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProprietariosActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaProprietario tPro = new TelaGerenciaProprietario();
+        TelaGerenciaProprietario tPro = new TelaGerenciaProprietario(login);
         this.setVisible(false);
         tPro.setVisible(true);
         
@@ -365,7 +368,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
     private void jButtonLocatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocatarioActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaLocatario tLoc = new TelaGerenciaLocatario();
+        TelaGerenciaLocatario tLoc = new TelaGerenciaLocatario(login);
         
         tLoc.setVisible(true);
         this.dispose();
@@ -373,7 +376,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
     private void jButtonAptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAptActionPerformed
         // TODO add your handling code here:
-        TelaGerenciaApt tApt = new TelaGerenciaApt();
+        TelaGerenciaApt tApt = new TelaGerenciaApt(login);
         
         tApt.setVisible(true);
         this.dispose();
@@ -396,6 +399,33 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         jTextFieldLocador.setText(chekinSelecionado.getApartamento().getProprietario().getNome());
 
     }//GEN-LAST:event_jTablePrincipalMouseClicked
+
+    private void jButtonProprietarios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProprietarios1ActionPerformed
+       this.dispose();
+       System.exit(WIDTH);
+    }//GEN-LAST:event_jButtonProprietarios1ActionPerformed
+
+    private void jButtonCheckIn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckIn1ActionPerformed
+       if(chekinSelecionado!= null){
+        TelaGerenciaCheckOut tela = new TelaGerenciaCheckOut(chekinSelecionado,login);
+         tela.setVisible(true);
+       this.dispose();}
+       else{
+           JOptionPane.showMessageDialog(rootPane,"Registro Não Selecionado");
+       }
+    }//GEN-LAST:event_jButtonCheckIn1ActionPerformed
+
+    private void jButtonProprietarios2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProprietarios2ActionPerformed
+       TelaGerenciarVeiculos tela = new TelaGerenciarVeiculos(login);
+       tela.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jButtonProprietarios2ActionPerformed
+
+    private void jButtonReservas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReservas1ActionPerformed
+        TelaRelatorios tela = new TelaRelatorios(login);
+        tela.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonReservas1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -437,10 +467,13 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonApt;
     private javax.swing.JButton jButtonCheckIn;
-    private javax.swing.JButton jButtonCheckout;
+    private javax.swing.JButton jButtonCheckIn1;
     private javax.swing.JButton jButtonLocatario;
     private javax.swing.JButton jButtonProprietarios;
+    private javax.swing.JButton jButtonProprietarios1;
+    private javax.swing.JButton jButtonProprietarios2;
     private javax.swing.JButton jButtonReservas;
+    private javax.swing.JButton jButtonReservas1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelApt;
@@ -448,12 +481,9 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelNQuartos;
     private javax.swing.JLabel jLabelSituacao;
     private javax.swing.JLabel jLabelVM;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTablePrincipal;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextFieldApt;
     private javax.swing.JTextField jTextFieldLocador;
     private javax.swing.JTextField jTextFieldNQuartos;

@@ -19,7 +19,7 @@ public class Proprietario {
 	private String telefone2;
 	private String telefone3;
 	private String email;
-        private Situacao situacao;
+        private String situacao;
 	@OneToMany
 	private Collection<Apartamento> apartamento;
         public Proprietario(){
@@ -80,14 +80,14 @@ public class Proprietario {
     /**
      * @return the situacao
      */
-    public Situacao getSituacao() {
+    public String getSituacao() {
         return situacao;
     }
 
     /**
      * @param situacao the situacao to set
      */
-    public void setSituacao(Situacao situacao) {
+    public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
 }

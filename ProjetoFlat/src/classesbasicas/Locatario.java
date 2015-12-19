@@ -37,7 +37,7 @@ public class Locatario {
 	private String passaporte;
 	@Column(nullable = false)
 	private String cpf;
-	private int idade;
+	private String idade;
 	private String estadocivil;
 	private String responsavelpagamento;
 	private String carro;
@@ -45,13 +45,16 @@ public class Locatario {
         private Date dataderegistro;
 	private String carrocor;
 	private String placa;
-        private Situacao situacao;
+        private String situacao;
         @OneToMany
         private Collection<CheckIn> checkin;
+        @OneToMany
+        Collection<Reserva> reserva;
         
         public Locatario(){
             this.checkin = new ArrayList<>();
             this.dataderegistro = new Date();
+            this.reserva = new ArrayList<>();
         }
 
 	public String getPlaca() {
@@ -98,20 +101,20 @@ public class Locatario {
 		this.estadocivil = estadocivil;
 	}
 
-	public int getIdade() {
+	public String getIdade() {
 		return idade;
 	}
 
-	public void setIdade(int idade) {
+	public void setIdade(String idade) {
 		this.idade = idade;
 	}
 
-	public String getCpg() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpg(String cpg) {
-		this.cpf = cpg;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getPassaporte() {
@@ -267,14 +270,14 @@ public class Locatario {
     /**
      * @return the situacao
      */
-    public Situacao getSituacao() {
+    public String getSituacao() {
         return situacao;
     }
 
     /**
      * @param situacao the situacao to set
      */
-    public void setSituacao(Situacao situacao) {
+    public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
 

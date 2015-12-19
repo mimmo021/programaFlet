@@ -20,13 +20,16 @@ private Date dataregistro;
  private Date datasaida;
 @ManyToOne
 private Apartamento apartamento;
+@ManyToOne
+private Locatario locatario;
 private Double valor;
 private Boolean calcao;
 private Double valorcalcao;
-private Situacao situacao;
+
 
 public Reserva(){
     this.apartamento = new Apartamento();
+    this.locatario = new Locatario();
     this.dataentrada = new Date();
     this.dataregistro = new Date();
     this.datasaida = new Date();
@@ -147,18 +150,20 @@ public Reserva(){
     }
 
     /**
-     * @return the situacao
+     * @return the locatario
      */
-    public Situacao getSituacao() {
-        return situacao;
+    public Locatario getLocatario() {
+        return locatario;
     }
 
     /**
-     * @param situacao the situacao to set
+     * @param locatario the locatario to set
      */
-    public void setSituacao(Situacao situacao) {
-        this.situacao = situacao;
+    public void setLocatario(Locatario locatario) {
+        this.locatario = locatario;
     }
+
+   
 
     
   

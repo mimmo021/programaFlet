@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import classesbasicas.Login;
 import classesbasicas.Proprietario;
 import classesfachada.Fachada;
 import java.util.ArrayList;
@@ -24,12 +25,15 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
     Fachada f = new Fachada();
     Proprietario e = new Proprietario();
     ArrayList<Proprietario> listaProprietario;
-
-    public TelaGerenciaProprietario() {
+    Login login;
+    public TelaGerenciaProprietario(Login l) {
         initComponents();
-      
+        this.login = l;
         this.jButtonAlterar.setEnabled(false);
         listarTabelaProprietario();
+    }
+    public TelaGerenciaProprietario(){
+        
     }
 
     
@@ -259,7 +263,7 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarProprietario nPro = new TelaNovoAlterarProprietario();
+        TelaNovoAlterarProprietario nPro = new TelaNovoAlterarProprietario(login);
         this.setVisible(false);
         nPro.setVisible(true);
         
@@ -285,13 +289,13 @@ public class TelaGerenciaProprietario extends javax.swing.JFrame {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
-        TelaNovoAlterarProprietario nPro = new TelaNovoAlterarProprietario(proSelecionado);
+        TelaNovoAlterarProprietario nPro = new TelaNovoAlterarProprietario(proSelecionado,login);
         this.setVisible(false);
         nPro.setVisible(true);
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonretornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonretornarActionPerformed
-      TelaPainelPrincipal tpp = new TelaPainelPrincipal();
+      TelaPainelPrincipal tpp = new TelaPainelPrincipal(login);
         this.dispose();
         tpp.setVisible(true);
         

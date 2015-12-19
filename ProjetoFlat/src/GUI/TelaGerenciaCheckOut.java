@@ -11,7 +11,6 @@ import classesbasicas.Login;
 import classesexception.ApartamentoException;
 import classesexception.CheckInException;
 import classesfachada.Fachada;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,75 +18,71 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import util.Datas;
 
 /**
  *
  * @author mimmo
  */
-public class TelaGerenciaCheckIn extends javax.swing.JFrame {
+public class TelaGerenciaCheckOut extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroImovel
      */
-    Login login;
-    ArrayList<Locatario> listaLocatario;
-    ArrayList<Apartamento> listaApartamento;
     Locatario cpfSelecionado;
     Apartamento aptSelecionado;
-    Date datareg ;
-    public TelaGerenciaCheckIn(Login l) {
+    CheckIn c;
+    Login login;
+    
+    public TelaGerenciaCheckOut(CheckIn checkin,Login l) {
         initComponents();
-        carregarComboApt();
-        carregarComboCpfLocatario();
+        this.c = checkin;
         this.login = l;
+        jTextFieldNomeCompleto.setText(c.getLocatario().getNome());
+        jTextFieldEstCivil.setText(c.getLocatario().getEstadocivil());
+        jTextFieldFone.setText(c.getLocatario().getTelefone());
+        jTextFieldCelular.setText(c.getLocatario().getTelefone2());
+        jTextFieldIdade.setText(c.getLocatario().getIdade());
+        jTextFieldEnderecoRes.setText(c.getLocatario().getEndereco());
+        jTextFieldAptN.setText(c.getLocatario().getApto());
+        jTextFieldBairro.setText(c.getLocatario().getBairro());
+        jTextFieldCEP.setText(c.getLocatario().getCep());
+        jTextFieldProcedencia.setText(c.getLocatario().getProcedencia());
+        jTextFieldMotivo.setText(c.getLocatario().getMotivoviagem());
+        jTextFieldEmail.setText(c.getLocatario().getEmail());
+        jTextFieldIdentidade.setText(c.getLocatario().getIdentidade());
+        jTextFieldOrgExp.setText(c.getLocatario().getOrgexp());
+        jTextFieldPassaport.setText(c.getLocatario().getPassaporte());
+        jTextFieldResponsavel.setText(c.getLocatario().getResponsavelpagamento());
+        jTextFieldCarroMarca.setText(c.getLocatario().getCarro());
+        jTextFieldCor.setText(c.getLocatario().getCarrocor());
+        jTextFieldPlacas.setText(c.getLocatario().getPlaca());
+        jLabelaptnome.setText(c.getApartamento().getNumero() + "");
+        jLabelcpfnome.setText(c.getLocatario().getCpf());
+        jTextFieldDataEntrada.setText(c.getDataentrada() + "");
+       
+        jTextFieldValorDiaria.setText(c.getValordiaria() + "");
+        jTextFieldValorMensal.setText(c.getValormensal() + "");
 
-        //data de Entrada
-        datareg = new Date();
-        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
-        String dataRegT = DATE_FORMAT.format(datareg);
-        jTextField1DataDeRegistro.setText(dataRegT);
-        jTextField1DataDeRegistro.setEnabled(false);
-        jTextFieldDataEntrada.setText(dataRegT);
-
-    }
-    public TelaGerenciaCheckIn(){
-        
-    }
-    
-
-    
-
-   
-
-    private void carregarComboApt() {
-        Fachada fachada = new Fachada();
-        Apartamento apt = new Apartamento();
-
-        listaApartamento = (ArrayList<Apartamento>) fachada.listallApartamento(apt);
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for (int i = 0; i < listaApartamento.size(); i++) {
-             modelo.addElement(listaApartamento.get(i).getNumero());
-            
+        jTextFieldValorTotal.setText(c.getValortotaldiarias() + "");
+        jTextFieldLeituraEntrada.setText(c.getLeituraEntrada());
+        if (c.isAcompanhouLeituraEntrada()) {
+            jCheckBox2Sim.setSelected(rootPaneCheckingEnabled);
+        } else {
+            jCheckBox2Nao.setSelected(rootPaneCheckingEnabled);
         }
-        jComboBoxAptos.setModel(modelo);
+        if (c.getLocatario().getCarro() == null || c.getLocatario().getCarro().trim().equals("")) {
+            jCheckBox1Nao.setSelected(true);
+
+        } else {
+            jCheckBox1Sim.setSelected(true);
+        }
+        jTextField1DataDeRegistro.setText(c.getDataderegistro().toString());
+
     }
 
-    private void carregarComboCpfLocatario() {
-        Fachada fachada = new Fachada();
-        Locatario locatario = new Locatario();
-        AutoCompleteDecorator.decorate(jComboBoxCPF);
-        listaLocatario = (ArrayList<Locatario>) fachada.listallLocatario(locatario);
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for (int i = 0; i < listaLocatario.size(); i++) {
-            modelo.addElement(listaLocatario.get(i).getCpf());
-        }
-
-        jComboBoxCPF.setModel(modelo);
-        
-        
+    private TelaGerenciaCheckOut() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -138,6 +133,7 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
         jLabelDataSaida = new javax.swing.JLabel();
         jLabel1DataRegistro = new javax.swing.JLabel();
         jTextField1DataDeRegistro = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1DadosLocatario = new javax.swing.JPanel();
         jLabelEnderecoRes = new javax.swing.JLabel();
         jTextFieldEnderecoRes = new javax.swing.JTextField();
@@ -166,13 +162,13 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
         jTextFieldCEP = new javax.swing.JTextField();
         jLabelBairro = new javax.swing.JLabel();
         jLabelCPF = new javax.swing.JLabel();
-        jComboBoxCPF = new javax.swing.JComboBox();
         jLabelEstCivil = new javax.swing.JLabel();
         jTextFieldEstCivil = new javax.swing.JTextField();
         jLabelNome = new javax.swing.JLabel();
         jTextFieldNomeCompleto = new javax.swing.JTextField();
         jTextFieldResponsavel = new javax.swing.JTextField();
         jLabelResponsavel = new javax.swing.JLabel();
+        jLabelcpfnome = new javax.swing.JLabel();
         jPanel1Carro = new javax.swing.JPanel();
         jCheckBox1Sim = new javax.swing.JCheckBox();
         jCheckBox1Nao = new javax.swing.JCheckBox();
@@ -184,11 +180,10 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
         jLabelPlacas = new javax.swing.JLabel();
         jLabelCor = new javax.swing.JLabel();
         jLabelTitulo = new javax.swing.JLabel();
-        jComboBoxAptos = new javax.swing.JComboBox();
-        jButtonCadastrarNovoCliente = new javax.swing.JButton();
         jLabelApto = new javax.swing.JLabel();
         jButtonregistrarEntrada = new javax.swing.JButton();
         jLabelapt = new javax.swing.JLabel();
+        jLabelaptnome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -213,11 +208,9 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
 
         jLabelLeituraSaida.setText("Leitura de Saída:");
 
-        jTextFieldLeituraSaida.setEnabled(false);
-
-        jTextFieldTotalKw.setEnabled(false);
-
         jLabel2Acompanhou.setText("Hóspede acompanhou a leitura?");
+
+        jTextFieldLeituraEntrada.setEnabled(false);
 
         jLabelValorTotal.setText("Valor Total de Diárias:");
 
@@ -225,19 +218,19 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
 
         buttonGroup2leituraSaida.add(jCheckBox3Nao);
         jCheckBox3Nao.setText("Não");
-        jCheckBox3Nao.setEnabled(false);
 
         buttonGroup1leituraEntrada.add(jCheckBox2Nao);
         jCheckBox2Nao.setText("Não");
+        jCheckBox2Nao.setEnabled(false);
 
         jLabelValorMensal.setText("Valor mensal do Alugue:");
 
         buttonGroup1leituraEntrada.add(jCheckBox2Sim);
         jCheckBox2Sim.setText("Sim");
+        jCheckBox2Sim.setEnabled(false);
 
         buttonGroup2leituraSaida.add(jCheckBox3Sim);
         jCheckBox3Sim.setText("Sim");
-        jCheckBox3Sim.setEnabled(false);
 
         jLabelFormaDePagamento.setText("Forma de Pagamento:");
 
@@ -254,6 +247,8 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
 
         jTextField1DataDeRegistro.setEditable(false);
         jTextField1DataDeRegistro.setEnabled(false);
+
+        jLabel1.setText("dd/mm/YYYY");
 
         javax.swing.GroupLayout jPanelDadosLayout = new javax.swing.GroupLayout(jPanelDados);
         jPanelDados.setLayout(jPanelDadosLayout);
@@ -313,6 +308,8 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
                         .addComponent(jLabelDataSaida)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldDataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1DataRegistro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -329,7 +326,8 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
                     .addComponent(jLabelDataSaida)
                     .addComponent(jTextFieldDataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1DataRegistro)
-                    .addComponent(jTextField1DataDeRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1DataDeRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelValorMensal)
@@ -415,24 +413,6 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
 
         jLabelCPF.setText("CPF Nº");
 
-        jComboBoxCPF.setEditable(true);
-        jComboBoxCPF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBoxCPF.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBoxCPFItemStateChanged(evt);
-            }
-        });
-        jComboBoxCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxCPFActionPerformed(evt);
-            }
-        });
-        jComboBoxCPF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jComboBoxCPFKeyPressed(evt);
-            }
-        });
-
         jLabelEstCivil.setText("Est. Civil / Marital Status:");
 
         jTextFieldEstCivil.setEnabled(false);
@@ -444,6 +424,8 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
         jTextFieldResponsavel.setEnabled(false);
 
         jLabelResponsavel.setText("Responsável pelo Pagamento / Responsabile for payment:");
+
+        jLabelcpfnome.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1DadosLocatarioLayout = new javax.swing.GroupLayout(jPanel1DadosLocatario);
         jPanel1DadosLocatario.setLayout(jPanel1DadosLocatarioLayout);
@@ -467,8 +449,8 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
                     .addGroup(jPanel1DadosLocatarioLayout.createSequentialGroup()
                         .addComponent(jLabelCPF)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelcpfnome, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
                         .addComponent(jLabelNome, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldNomeCompleto))
@@ -532,9 +514,9 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1DadosLocatarioLayout.createSequentialGroup()
                 .addGroup(jPanel1DadosLocatarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCPF)
-                    .addComponent(jComboBoxCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelNome)
-                    .addComponent(jTextFieldNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelcpfnome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1DadosLocatarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelEstCivil)
@@ -657,34 +639,17 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
         jLabelTitulo.setFont(new java.awt.Font("Razer Header Regular", 1, 24)); // NOI18N
         jLabelTitulo.setText("Ficha de Registro - registration card");
 
-        jComboBoxAptos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aptº 1", "Aptº 2", "Aptº 3", "Aptº 4" }));
-        jComboBoxAptos.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBoxAptosItemStateChanged(evt);
-            }
-        });
-        jComboBoxAptos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxAptosActionPerformed(evt);
-            }
-        });
-
-        jButtonCadastrarNovoCliente.setText("Cadastrar Novo Locatário");
-        jButtonCadastrarNovoCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCadastrarNovoClienteActionPerformed(evt);
-            }
-        });
-
         jLabelApto.setText("Aptº:");
 
-        jButtonregistrarEntrada.setText("Registrar Entrada");
+        jButtonregistrarEntrada.setText("Registrar Saida");
         jButtonregistrarEntrada.setActionCommand("");
         jButtonregistrarEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonregistrarEntradaActionPerformed(evt);
             }
         });
+
+        jLabelaptnome.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -702,17 +667,15 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
                     .addComponent(jPanel1Carro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonCadastrarNovoCliente)
-                            .addComponent(jLabelTitulo))
+                        .addComponent(jLabelTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelapt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelApto, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelApto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxAptos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(22, 22, 22)))
+                                .addComponent(jLabelaptnome))
+                            .addComponent(jLabelapt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -725,9 +688,8 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelApto)
-                    .addComponent(jComboBoxAptos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCadastrarNovoCliente))
-                .addGap(7, 7, 7)
+                    .addComponent(jLabelaptnome))
+                .addGap(12, 12, 12)
                 .addComponent(jPanel1DadosLocatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1Carro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -763,228 +725,65 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void limparCamposDepoisDeSalvar() {
 
-        this.carregarComboApt();
-        this.carregarComboCpfLocatario();
-        
-        
-        jTextFieldDataSaida.setText(null);
-        
-        //////////////////////////////////////////
-        jTextFieldNomeCompleto.setText(null);
-        jTextFieldEstCivil.setText(null);
-        jTextFieldFone.setText(null);
-        jTextFieldCelular.setText(null);
-        jTextFieldIdade.setText(null);
-        jTextFieldEnderecoRes.setText(null);
-        jTextFieldAptN.setText(null);
-        jTextFieldBairro.setText(null);
-        jTextFieldCEP.setText(null);
-        jTextFieldProcedencia.setText(null);
-        jTextFieldMotivo.setText(null);
-        jTextFieldEmail.setText(null);
-        jTextFieldIdentidade.setText(null);
-        jTextFieldOrgExp.setText(null);
-        jTextFieldPassaport.setText(null);
-        jTextFieldResponsavel.setText(null);
-        jTextFieldCarroMarca.setText(null);
-        jTextFieldCor.setText(null);
-        jTextFieldPlacas.setText(null);
-
-        //////////////////////////////////////////
-        jCheckBox1Nao.setSelected(false);
-        jCheckBox1Sim.setSelected(false);
-        jCheckBox2Nao.setSelected(false);
-        jCheckBox2Sim.setSelected(false);
-        jCheckBox3Nao.setSelected(false);
-        jCheckBox3Sim.setSelected(false);
-        
-        /////////////////////////////////////////
-        
-        
-        
-        jTextFieldValorDiaria.setText(null);
-        jTextFieldValorMensal.setText(null);
-        jTextFieldValorTotal.setText(null);
-        jTextFieldLeituraEntrada.setText(null);
-        jTextFieldLeituraSaida.setText(null);
-        jTextFieldTotalKw.setText(null);
-
-    }
-    
     private void jButtonRetornarPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarPrincipalActionPerformed
         // TODO add your handling code here:
         TelaPainelPrincipal tpp = new TelaPainelPrincipal(login);
         tpp.setVisible(true);
-        
+
         this.dispose();
     }//GEN-LAST:event_jButtonRetornarPrincipalActionPerformed
-
-    private void jButtonCadastrarNovoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarNovoClienteActionPerformed
-        // TODO add your handling code here:
-        TelaNovoAlterarLocatario nLoc = new TelaNovoAlterarLocatario(login);
-       
-        nLoc.setVisible(true);
-         this.dispose();
-    }//GEN-LAST:event_jButtonCadastrarNovoClienteActionPerformed
-
-    private void jComboBoxCPFItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCPFItemStateChanged
-
-    }//GEN-LAST:event_jComboBoxCPFItemStateChanged
-
-    private void jComboBoxAptosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxAptosItemStateChanged
-      
-       
-    }//GEN-LAST:event_jComboBoxAptosItemStateChanged
 
     private void jButtonregistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonregistrarEntradaActionPerformed
         // TODO add your handling code here:
         try {
             Fachada fachada = new Fachada();
-            CheckIn c = new CheckIn();
-            Apartamento a = listaApartamento.get(jComboBoxAptos.getSelectedIndex());
-            c.setApartamento(a);
-            c.setLocatario(cpfSelecionado);
-             
-            //datas
-            c.setDataderegistro(datareg);
-             
-        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
-        String dataentradaT = jTextFieldDataEntrada.getText();
-        Date dataentrada;
-        dataentrada = new java.sql.Date(DATE_FORMAT.parse(dataentradaT).getTime());  
-        String datasaidaT = jTextFieldDataSaida.getText();
-        Date datasaida;
-        if(datasaidaT.equals("  /  /    ")){
-            datasaida = null;
-        }else{
-               
-        datasaida = new java.sql.Date(DATE_FORMAT.parse(datasaidaT).getTime());  
-        }
-     
-            c.setDataentrada(dataentrada);
-            c.setDatasaida(datasaida);
-            //////////////////////////////////////////////////////////////////////////
-             Double valorMensal;
-             Double valorDiaria;
-             Double valorTotal ;
+            CheckIn checkin = fachada.findCheckIn(c);
+            Apartamento a = fachada.findApartamento(checkin.getApartamento());
+            Date checkout = new Date();
+            SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+            String dataRegT = DATE_FORMAT.format(checkout);
+            if(jTextFieldDataSaida.getText().equals("  /  /    ")){
+                checkin.setDatasaida(Datas.criarData(dataRegT));
+             }else{
+            checkin.setDatasaida(Datas.criarData(jTextFieldDataSaida.getText()));
+            }
             //Valores
-            if(jTextFieldValorMensal.getText().equals("")){
-                valorMensal = 0.0;
-            }else{
-               valorMensal   = Double.parseDouble(jTextFieldValorMensal.getText());
-            }
-            c.setValormensal(valorMensal);
-            
-            if(jTextFieldValorDiaria.getText().equals("")){
-                valorDiaria = 0.0;
-            }else{
-                 valorDiaria = Double.parseDouble(jTextFieldValorDiaria.getText());
-            }
-           
-            c.setValordiaria(valorDiaria);
-            if(jTextFieldValorTotal.getText().equals("")){
-                valorTotal = 0.0;
-            }else{
-                 valorTotal = Double.parseDouble(jTextFieldValorTotal.getText());
-            }
-            
+            Double valorMensal = Double.parseDouble(jTextFieldValorMensal.getText());
+            checkin.setValormensal(valorMensal);
 
-            c.setValortotaldiarias(valorTotal);
-            ///////////////////////////////////////////////////////////////////////
-            c.setFormaPagamento(jComboBoxFormaDePagamento.getSelectedItem().toString());
+            Double valorDiaria = Double.parseDouble(jTextFieldValorDiaria.getText());
+            checkin.setValordiaria(valorDiaria);
 
-            c.setLeituraEntrada(jTextFieldLeituraEntrada.getText());
-            
-            //campos Booleanos de Leituras
-            if (jCheckBox2Sim.isSelected()) {
-                c.setAcompanhouLeituraEntrada(true);
+            Double valorTotal = Double.parseDouble(jTextFieldValorTotal.getText());
+
+            checkin.setValortotaldiarias(valorTotal);
+
+            checkin.setFormaPagamento(jComboBoxFormaDePagamento.getSelectedItem().toString());
+            checkin.setLeituraSaida(jTextFieldLeituraSaida.getText());
+            checkin.setLeituraTotal(jTextFieldTotalKw.getText());
+            if (jCheckBox3Sim.isSelected()) {
+                checkin.setAcompanhouLeituraSaida(true);
             } else {
-                c.setAcompanhouLeituraEntrada(false);
+                checkin.setAcompanhouLeituraSaida(false);
             }
+          
 
-           
-            Apartamento apt = fachada.findApartamento(a);
-            apt.setSituacao("Ocupado");
-            fachada.saveCheckIn(c);
-            fachada.saveApartamento(apt);
-            this.limparCamposDepoisDeSalvar();
-            int resposta= JOptionPane.showConfirmDialog(rootPane, "Deseja cadastrar Acompanhantes?");
-                    if (resposta == JOptionPane.YES_OPTION) {
-                        c.setId(fachada.pesquisarUltimo());
-                        
-                        CheckIn checkin = fachada.findCheckIn(c);
-                       TelaNovoAcompanhante tela = new TelaNovoAcompanhante(checkin,login);
-                       tela.setVisible(true);
-                       this.dispose();
-                    } else if (resposta == JOptionPane.NO_OPTION) {
-                         JOptionPane.showMessageDialog(rootPane, "CheckIn Registrado com sucesso!");
-                         TelaPainelPrincipal t = new TelaPainelPrincipal(login);
-                         t.setVisible(true);
-                         this.dispose();
-                    }
-           
-           
+            checkin.setDataCheckout(Datas.criarData(dataRegT));
+
+            a.setSituacao("Vago");
+            fachada.saveCheckIn(checkin);
+            fachada.saveApartamento(a);
+
+            JOptionPane.showMessageDialog(rootPane, "CheckOut Registrado com sucesso!");
         } catch (CheckInException x) {
-            JOptionPane.showMessageDialog(rootPane, x.getMessage());
+            JOptionPane.showMessageDialog(rootPane, x);
         } catch (ApartamentoException ex) {
-            Logger.getLogger(TelaGerenciaCheckIn.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(TelaGerenciaCheckIn.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaGerenciaCheckOut.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
 
     }//GEN-LAST:event_jButtonregistrarEntradaActionPerformed
-
-    private void jComboBoxCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCPFActionPerformed
-          Fachada f = new Fachada();
-        Locatario l;
-        try{
-        l = listaLocatario.get(jComboBoxCPF.getSelectedIndex());
-        }catch(Exception e){
-            l = listaLocatario.get(0);
-        }
-        cpfSelecionado = f.findLocatario(l);
-
-        jTextFieldNomeCompleto.setText(cpfSelecionado.getNome());
-        jTextFieldEstCivil.setText(cpfSelecionado.getEstadocivil());
-        jTextFieldFone.setText(cpfSelecionado.getTelefone());
-        jTextFieldCelular.setText(cpfSelecionado.getTelefone2());
-        jTextFieldIdade.setText(cpfSelecionado.getIdade() + "");
-        jTextFieldEnderecoRes.setText(cpfSelecionado.getEndereco());
-        jTextFieldAptN.setText(cpfSelecionado.getApto());
-        jTextFieldBairro.setText(cpfSelecionado.getBairro());
-        jTextFieldCEP.setText(cpfSelecionado.getCep());
-        jTextFieldProcedencia.setText(cpfSelecionado.getProcedencia());
-        jTextFieldMotivo.setText(cpfSelecionado.getMotivoviagem());
-        jTextFieldEmail.setText(cpfSelecionado.getEmail());
-        jTextFieldIdentidade.setText(cpfSelecionado.getIdentidade());
-        jTextFieldOrgExp.setText(cpfSelecionado.getOrgexp());
-        jTextFieldPassaport.setText(cpfSelecionado.getPassaporte());
-        jTextFieldResponsavel.setText(cpfSelecionado.getResponsavelpagamento());
-        jTextFieldCarroMarca.setText(cpfSelecionado.getCarro());
-        jTextFieldCor.setText(cpfSelecionado.getCarrocor());
-        jTextFieldPlacas.setText(cpfSelecionado.getPlaca());
-       
-
-        if (cpfSelecionado.getCarro() == null || cpfSelecionado.getCarro().trim().equals("")) {
-            jCheckBox1Nao.setSelected(true);
-
-        } else {
-            jCheckBox1Sim.setSelected(true);
-        }
-    }//GEN-LAST:event_jComboBoxCPFActionPerformed
-
-    private void jComboBoxAptosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAptosActionPerformed
-         Apartamento a = listaApartamento.get(jComboBoxAptos.getSelectedIndex());
-        jLabelapt.setText("Proprietario: "+a.getProprietario().getNome());
-       
-    }//GEN-LAST:event_jComboBoxAptosActionPerformed
-
-    private void jComboBoxCPFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBoxCPFKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxCPFKeyPressed
 
     /**
      * @param args the command line arguments
@@ -1003,14 +802,16 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaGerenciaCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaCheckOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaGerenciaCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaCheckOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaGerenciaCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaCheckOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaGerenciaCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaCheckOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -1018,7 +819,7 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaGerenciaCheckIn().setVisible(true);
+                new TelaGerenciaCheckOut().setVisible(true);
             }
         });
     }
@@ -1026,7 +827,6 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1leituraEntrada;
     private javax.swing.ButtonGroup buttonGroup2leituraSaida;
     private javax.swing.ButtonGroup buttonGroupPossueCarros;
-    private javax.swing.JButton jButtonCadastrarNovoCliente;
     private javax.swing.JButton jButtonRetornarPrincipal;
     private javax.swing.JButton jButtonregistrarEntrada;
     private javax.swing.JCheckBox jCheckBox1Nao;
@@ -1035,9 +835,8 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox2Sim;
     private javax.swing.JCheckBox jCheckBox3Nao;
     private javax.swing.JCheckBox jCheckBox3Sim;
-    private javax.swing.JComboBox jComboBoxAptos;
-    private javax.swing.JComboBox jComboBoxCPF;
     private javax.swing.JComboBox jComboBoxFormaDePagamento;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel1Acompanhou;
     private javax.swing.JLabel jLabel1DataRegistro;
     private javax.swing.JLabel jLabel2Acompanhou;
@@ -1074,6 +873,8 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelValorMensal;
     private javax.swing.JLabel jLabelValorTotal;
     private javax.swing.JLabel jLabelapt;
+    private javax.swing.JLabel jLabelaptnome;
+    private javax.swing.JLabel jLabelcpfnome;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel1Carro;
     private javax.swing.JPanel jPanel1DadosLocatario;
@@ -1108,6 +909,4 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldValorMensal;
     private javax.swing.JTextField jTextFieldValorTotal;
     // End of variables declaration//GEN-END:variables
-
 }
-

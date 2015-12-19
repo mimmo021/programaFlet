@@ -6,6 +6,7 @@
 package GUI;
 
 import classesbasicas.Apartamento;
+import classesbasicas.Login;
 import classesbasicas.Proprietario;
 import classesexception.ApartamentoException;
 import classesfachada.Fachada;
@@ -20,17 +21,15 @@ import javax.swing.JOptionPane;
  * @author SONY VAIO
  */
 public class TelaNovoAlterarApt extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TelaNovoAlterarApt
-     */
+Login login;
+    
     Apartamento aptSelecionado = new Apartamento();
     
     ArrayList<Proprietario> listaProprietario;
 
-    public TelaNovoAlterarApt(Apartamento aptSelecionado) {
+    public TelaNovoAlterarApt(Apartamento aptSelecionado,Login l) {
         initComponents();
-        
+        this.login = l;
         carregarProprietario();
         this.aptSelecionado = aptSelecionado;
         jComboBoxProprietario.setSelectedItem(aptSelecionado.getProprietario().getNome());
@@ -44,10 +43,14 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
         this.jButtonSalvar.setEnabled(false);
     }
 
-    public TelaNovoAlterarApt() {
+    public TelaNovoAlterarApt(Login l) {
         initComponents();
+        this.login = l;
          carregarProprietario();
         this.jButtonAlterar.setEnabled(false);
+    }
+    public TelaNovoAlterarApt(){
+        
     }
 
   
@@ -122,9 +125,9 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Aptº"));
 
-        jLabelCelpe.setText("Número Celpe:");
+        jLabelCelpe.setText("* Número Celpe:");
 
-        jLabelNet.setText("Número NET:");
+        jLabelNet.setText("* Número NET:");
 
         jLabelSituação.setText("Situação:");
 
@@ -132,11 +135,11 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
 
         jLabelPropietario.setText("Propietário:");
 
-        jLabelApt.setText("Número Aptº:");
+        jLabelApt.setText("* Número Aptº:");
 
         jComboBoxNQuartos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2" }));
 
-        jLabelVM.setText("Valor Mínimo:");
+        jLabelVM.setText("* Valor Mínimo:");
 
         jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vago", "Ocupado", "Reservado" }));
         jComboBoxSituacao.addActionListener(new java.awt.event.ActionListener() {
@@ -281,11 +284,20 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
             p=  listaProprietario.get(jComboBoxProprietario.getSelectedIndex());
 
             a.setProprietario(f.findProprietario(p));
-            a.setNumero(Integer.parseInt(jTextFieldApt.getText()));
+            if(jTextFieldApt.getText().equals("")){
+                JOptionPane.showMessageDialog(rootPane,"Campo numero nao pode ser vazio");
+            }else{
+                a.setNumero(Integer.parseInt(jTextFieldApt.getText()));
+            }
             a.setNumerocelpe(jTextFieldCelpe.getText());
             a.setNumeronet(jTextFieldNet.getText());
             a.setQuartos(Integer.parseInt((String) jComboBoxNQuartos.getSelectedItem()));
-            a.setValorminimo(Double.parseDouble(jTextFieldVM.getText()));
+              if(jTextFieldVM.getText().equals("")){
+                JOptionPane.showMessageDialog(rootPane,"Campo valor minimo nao pode ser vazio");
+            }else{
+                 a.setValorminimo(Double.parseDouble(jTextFieldVM.getText()));
+            }
+           
             a.setSituacao((String) jComboBoxSituacao.getSelectedItem());
 
             f.saveApartamento(a);
@@ -331,7 +343,7 @@ public class TelaNovoAlterarApt extends javax.swing.JFrame {
     private void jToggleButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonRetornarActionPerformed
         // TODO add your handling code here:
        
-        TelaGerenciaApt form = new TelaGerenciaApt();
+        TelaGerenciaApt form = new TelaGerenciaApt(login);
         form.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jToggleButtonRetornarActionPerformed

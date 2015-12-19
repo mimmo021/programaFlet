@@ -26,15 +26,22 @@ private Date dataderegistro;
 private Date dataentrada;
 @Temporal(javax.persistence.TemporalType.DATE)
 private Date datasaida;
-@OneToOne
-private CheckOut checkout;
 private String formaPagamento;
 private String LeituraEntrada;
 private String LeituraSaida;
 private String LeituraTotal;
+private String totalkwh;
+@Temporal(javax.persistence.TemporalType.DATE)
+private Date dataCheckout;
 
 private boolean acompanhouLeituraEntrada;
 private boolean acompanhouLeituraSaida;
+private String acnome;
+private String acnome2;
+private String acnome3;
+private String accpf;
+private String accpf2;
+private String accpf3;
 
 public CheckIn(){
     this.apartamento = new Apartamento();
@@ -42,6 +49,8 @@ public CheckIn(){
     this.dataderegistro = new Date();
     this.datasaida = new Date();
     this.dataentrada = new Date();
+    
+    
 }
     /**
      * @return the id
@@ -168,21 +177,7 @@ public CheckIn(){
     public void setDatasaida(Date datasaida) {
         this.datasaida = datasaida;
     }
-
-    /**
-     * @return the checkout
-     */
-    public CheckOut getCheckout() {
-        return checkout;
-    }
-
-    /**
-     * @param checkout the checkout to set
-     */
-    public void setCheckout(CheckOut checkout) {
-        this.checkout = checkout;
-    }
-
+      
     /**
      * @return the formaPagamento
      */
@@ -265,5 +260,117 @@ public CheckIn(){
      */
     public void setAcompanhouLeituraSaida(boolean acompanhouLeituraSaida) {
         this.acompanhouLeituraSaida = acompanhouLeituraSaida;
+    }
+
+    /**
+     * @return the totalkwh
+     */
+    public String getTotalkwh() {
+        return totalkwh;
+    }
+
+    /**
+     * @param totalkwh the totalkwh to set
+     */
+    public void setTotalkwh(String totalkwh) {
+        this.totalkwh = totalkwh;
+    }
+
+    /**
+     * @return the dataCheckout
+     */
+    public Date getDataCheckout() {
+        return dataCheckout;
+    }
+
+    /**
+     * @param dataCheckout the dataCheckout to set
+     */
+    public void setDataCheckout(Date dataCheckout) {
+        this.dataCheckout = dataCheckout;
+    }
+
+    /**
+     * @return the acnome
+     */
+    public String getAcnome() {
+        return acnome;
+    }
+
+    /**
+     * @param acnome the acnome to set
+     */
+    public void setAcnome(String acnome) {
+        this.acnome = acnome;
+    }
+
+    /**
+     * @return the acnome2
+     */
+    public String getAcnome2() {
+        return acnome2;
+    }
+
+    /**
+     * @param acnome2 the acnome2 to set
+     */
+    public void setAcnome2(String acnome2) {
+        this.acnome2 = acnome2;
+    }
+
+    /**
+     * @return the acnome3
+     */
+    public String getAcnome3() {
+        return acnome3;
+    }
+
+    /**
+     * @param acnome3 the acnome3 to set
+     */
+    public void setAcnome3(String acnome3) {
+        this.acnome3 = acnome3;
+    }
+
+    /**
+     * @return the accpf
+     */
+    public String getAccpf() {
+        return accpf;
+    }
+
+    /**
+     * @param accpf the accpf to set
+     */
+    public void setAccpf(String accpf) {
+        this.accpf = accpf;
+    }
+
+    /**
+     * @return the accpf2
+     */
+    public String getAccpf2() {
+        return accpf2;
+    }
+
+    /**
+     * @param accpf2 the accpf2 to set
+     */
+    public void setAccpf2(String accpf2) {
+        this.accpf2 = accpf2;
+    }
+
+    /**
+     * @return the accpf3
+     */
+    public String getAccpf3() {
+        return accpf3;
+    }
+
+    /**
+     * @param accpf3 the accpf3 to set
+     */
+    public void setAccpf3(String accpf3) {
+        this.accpf3 = accpf3;
     }
 }
