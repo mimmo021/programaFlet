@@ -129,7 +129,7 @@ Fachada f;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
-       
+       //test
         if(jTextFieldUserName.getText()!= null && jTextFieldUserName.getText().trim().equals("")== false &&
            jPasswordFieldPassWord.getPassword()!= null &&
            jPasswordFieldPassWord.getPassword().toString().equals("")== false){
