@@ -7,11 +7,15 @@ package GUI;
 
 import classesbasicas.CheckIn;
 import classesbasicas.Login;
+import classesbasicas.Registro;
 import classesexception.CheckInException;
+import classesexception.RegistroException;
 import classesfachada.Fachada;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import util.Datas;
 
 /**
  *
@@ -21,6 +25,8 @@ public class TelaNovoAcompanhante extends javax.swing.JFrame {
     CheckIn ch;
      Fachada f;
      Login login;
+     Date datareg = Datas.obterTimestampAtual();
+     String dataRegT = Datas.formatarData(datareg, "dd/MM/yyyy");
     public TelaNovoAcompanhante(CheckIn checkin, Login l) {
         initComponents();
         this.f = new Fachada();
@@ -189,10 +195,17 @@ public class TelaNovoAcompanhante extends javax.swing.JFrame {
         try {
             f.saveCheckIn(ch);
             JOptionPane.showMessageDialog(rootPane,"CheckIn cadastrado com sucesso!");
+               Registro re = new Registro();
+                            re.setLogin(login);
+                            re.setDescricao("Salvou CheckIn de: "+ch.getLocatario().getNome());
+                            re.setDataregistro(datareg);
+                            f.saveRegistro(re);
             TelaPainelPrincipal tela = new TelaPainelPrincipal(login);
             tela.setVisible(true);
             this.dispose();
         } catch (CheckInException ex) {
+            Logger.getLogger(TelaNovoAcompanhante.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RegistroException ex) {
             Logger.getLogger(TelaNovoAcompanhante.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

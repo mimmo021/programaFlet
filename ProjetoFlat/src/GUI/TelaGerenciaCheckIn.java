@@ -8,8 +8,10 @@ import classesbasicas.Apartamento;
 import classesbasicas.CheckIn;
 import classesbasicas.Locatario;
 import classesbasicas.Login;
+import classesbasicas.Registro;
 import classesexception.ApartamentoException;
 import classesexception.CheckInException;
+import classesexception.RegistroException;
 import classesfachada.Fachada;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -920,6 +922,11 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
                        this.dispose();
                     } else if (resposta == JOptionPane.NO_OPTION) {
                          JOptionPane.showMessageDialog(rootPane, "CheckIn Registrado com sucesso!");
+                            Registro re = new Registro();
+                            re.setLogin(login);
+                            re.setDescricao("Realizou CheckIn de: "+c.getLocatario().getNome());
+                            re.setDataregistro(datareg);
+                            fachada.saveRegistro(re);
                          TelaPainelPrincipal t = new TelaPainelPrincipal(login);
                          t.setVisible(true);
                          this.dispose();
@@ -931,6 +938,8 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
         } catch (ApartamentoException ex) {
             Logger.getLogger(TelaGerenciaCheckIn.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
+            Logger.getLogger(TelaGerenciaCheckIn.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RegistroException ex) {
             Logger.getLogger(TelaGerenciaCheckIn.class.getName()).log(Level.SEVERE, null, ex);
         }
        

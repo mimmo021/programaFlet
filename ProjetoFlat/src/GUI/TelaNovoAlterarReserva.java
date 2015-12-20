@@ -8,7 +8,9 @@ package GUI;
 import classesbasicas.Apartamento;
 import classesbasicas.Locatario;
 import classesbasicas.Login;
+import classesbasicas.Registro;
 import classesbasicas.Reserva;
+import classesexception.RegistroException;
 import classesexception.ReservaException;
 import classesfachada.Fachada;
 import java.text.ParseException;
@@ -37,7 +39,7 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
     ArrayList<Locatario> listaLocatario;
     ArrayList<Apartamento> listaApartamento;
 
-  
+        Date datareg = Datas.obterTimestampAtual();
     Login login;
     public TelaNovoAlterarReserva(){
         
@@ -581,13 +583,19 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
             
             r.setLocatario(cpfSelecionado);
             fachada.saveReserva(r);
-
+            Registro re = new Registro();
+            re.setLogin(login);
+            re.setDescricao("Salvou Reserva de : "+r.getLocatario().getNome());
+            re.setDataregistro(datareg);
+            fachada.saveRegistro(re);
             this.limparCamposDepoisDeSalvar();
             
             JOptionPane.showMessageDialog(rootPane, "Reserva Salva com sucesso!");
 
         } catch (ReservaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        } catch (RegistroException ex) {
+            Logger.getLogger(TelaNovoAlterarReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jButtonSalvarActionPerformed
@@ -632,12 +640,19 @@ public class TelaNovoAlterarReserva extends javax.swing.JFrame {
             resSelecionada.setLocatario(cpfSelecionado);
             
             f.saveReserva(resSelecionada);
+             Registro re = new Registro();
+            re.setLogin(login);
+            re.setDescricao("Alterou Reserva de : "+resSelecionada.getLocatario().getNome());
+            re.setDataregistro(datareg);
+            f.saveRegistro(re);
             this.limparCamposDepoisDeAlterar();
 
             JOptionPane.showMessageDialog(rootPane, "Reserva Alterada com sucesso!");
             
         } catch (ReservaException ex) {
             Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex.getMessage());
+        } catch (RegistroException ex) {
+            Logger.getLogger(TelaNovoAlterarReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
         
 

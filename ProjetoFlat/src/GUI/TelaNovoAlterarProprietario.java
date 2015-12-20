@@ -7,11 +7,15 @@ package GUI;
 
 import classesbasicas.Login;
 import classesbasicas.Proprietario;
+import classesbasicas.Registro;
 import classesexception.ProprietarioException;
+import classesexception.RegistroException;
 import classesfachada.Fachada;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import util.Datas;
 
 /**
  *
@@ -22,7 +26,8 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
     /**
      * Creates new form NovoAlterarLocador
      */
-    
+       Date datareg = Datas.obterTimestampAtual();
+        String dataRegT = Datas.formatarData(datareg, "dd/MM/yyyy");
     Proprietario proSelecionado = new Proprietario();
     Login login;
     //<editor-fold defaultstate="collapsed" desc="Construtores da tela">
@@ -249,12 +254,18 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
             }
             
             fachada.saveProprietario(p);
-            
+            Registro r = new Registro();
+            r.setLogin(login);
+            r.setDescricao("Salvou Proprietario: "+p.getNome());
+            r.setDataregistro(datareg);
+            fachada.saveRegistro(r);
             this.limparCamposDepoisDeSalvar();
              JOptionPane.showMessageDialog(rootPane, "Proprietário Salvo com sucesso!");
         } catch (ProprietarioException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-        }
+        }  catch (RegistroException ex) {
+               Logger.getLogger(TelaNovoAlterarProprietario.class.getName()).log(Level.SEVERE, null, ex);
+           }
        
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -278,12 +289,18 @@ public class TelaNovoAlterarProprietario extends javax.swing.JFrame {
             }
             
             f.saveProprietario(proSelecionado);
-            
+                 Registro r = new Registro();
+            r.setLogin(login);
+            r.setDescricao("Alterou Proprietario: "+proSelecionado.getNome());
+            r.setDataregistro(datareg);
+            f.saveRegistro(r);
             this.limparCamposDepoisDeAlterar();
             JOptionPane.showMessageDialog(rootPane, "Proprietario Alterado com sucesso!");
         } catch (ProprietarioException ex) {
             Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }  catch (RegistroException ex) {
+               Logger.getLogger(TelaNovoAlterarProprietario.class.getName()).log(Level.SEVERE, null, ex);
+           }
         
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
