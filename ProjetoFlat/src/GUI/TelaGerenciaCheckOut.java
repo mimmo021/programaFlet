@@ -8,8 +8,10 @@ import classesbasicas.Apartamento;
 import classesbasicas.CheckIn;
 import classesbasicas.Locatario;
 import classesbasicas.Login;
+import classesbasicas.Registro;
 import classesexception.ApartamentoException;
 import classesexception.CheckInException;
+import classesexception.RegistroException;
 import classesfachada.Fachada;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -774,11 +776,17 @@ public class TelaGerenciaCheckOut extends javax.swing.JFrame {
             a.setSituacao("Vago");
             fachada.saveCheckIn(checkin);
             fachada.saveApartamento(a);
-
+            Registro re = new Registro();
+                            re.setLogin(login);
+                            re.setDescricao("Realizou CheckOut de: "+checkin.getLocatario().getNome());
+                            re.setDataregistro(checkin.getDataCheckout());
+                            fachada.saveRegistro(re);
             JOptionPane.showMessageDialog(rootPane, "CheckOut Registrado com sucesso!");
         } catch (CheckInException x) {
             JOptionPane.showMessageDialog(rootPane, x);
         } catch (ApartamentoException ex) {
+            Logger.getLogger(TelaGerenciaCheckOut.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RegistroException ex) {
             Logger.getLogger(TelaGerenciaCheckOut.class.getName()).log(Level.SEVERE, null, ex);
         }
 

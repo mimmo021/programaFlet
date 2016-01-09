@@ -7,7 +7,9 @@ package GUI;
 
 import classesbasicas.Locatario;
 import classesbasicas.Login;
+import classesbasicas.Registro;
 import classesexception.LocatarioException;
+import classesexception.RegistroException;
 import classesfachada.Fachada;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,16 +28,15 @@ public class TelaNovoAlterarLocatario extends javax.swing.JFrame {
      * Creates new form NovoAlterarLocatario
      */
     Locatario locSelecionado = new Locatario();
-    
+      Date datareg = Datas.obterTimestampAtual();
+        String dataRegT = Datas.formatarData(datareg, "dd/MM/yyyy");
    Login login;
     public TelaNovoAlterarLocatario(Login l) {
         initComponents();
         this.login = l;
         this.jButtonAlterar.setEnabled(false);
         //data de registro
-        Date datareg;
-        datareg = Datas.obterTimestampAtual();
-        String dataRegT = Datas.formatarData(datareg, "dd/MM/yyyy");
+      
         this.jTextFieldDataRegistro.setText(dataRegT);
         this.jTextFieldDataRegistro.setEnabled(false);
     }
@@ -50,6 +51,7 @@ public class TelaNovoAlterarLocatario extends javax.swing.JFrame {
         initComponents();
         this.login = l;
         this.locSelecionado = loc;
+       
         jTextFieldNome.setText(loc.getNome());
         jTextFieldEndereco.setText(loc.getEndereco());
         jTextFieldApto.setText(loc.getApto());
@@ -572,13 +574,19 @@ public class TelaNovoAlterarLocatario extends javax.swing.JFrame {
             l.setEmail(jTextFieldEmail.getText());
             l.setPassaporte(jTextFieldPassaporte.getText());
             l.setResponsavelpagamento(jTextFieldResponsavelPag.getText());
-
+                        
             fachada.saveLocatario(l);
-            
+            Registro r = new Registro();
+            r.setLogin(login);
+            r.setDescricao("Cadastrou locatario: "+l.getNome());
+            r.setDataregistro(datareg);
+            fachada.saveRegistro(r);
             this.limparCamposDepoisDeSalvar();
             JOptionPane.showMessageDialog(rootPane, "Locatário Salvo com sucesso!");
         } catch (LocatarioException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        } catch (RegistroException ex) {
+            Logger.getLogger(TelaNovoAlterarLocatario.class.getName()).log(Level.SEVERE, null, ex);
         }
         
 
@@ -631,11 +639,18 @@ public class TelaNovoAlterarLocatario extends javax.swing.JFrame {
             locSelecionado.setResponsavelpagamento(jTextFieldResponsavelPag.getText());
             
             f.saveLocatario(locSelecionado);
+            Registro r = new Registro();
+            r.setLogin(login);
+            r.setDescricao("Alterou locatario: "+locSelecionado.getNome());
+            r.setDataregistro(datareg);
+            f.saveRegistro(r);
             this.limparCamposDepoisDeAlterar();
 
             JOptionPane.showMessageDialog(rootPane, "Locatário Alterado com sucesso!");
         } catch (LocatarioException ex) {
             Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex.getMessage());
+        } catch (RegistroException ex) {
+            Logger.getLogger(TelaNovoAlterarLocatario.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jButtonAlterarActionPerformed

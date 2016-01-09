@@ -8,13 +8,17 @@ package GUI;
 import classesbasicas.Apartamento;
 import classesbasicas.Login;
 import classesbasicas.Proprietario;
+import classesbasicas.Registro;
 import classesexception.ApartamentoException;
+import classesexception.RegistroException;
 import classesfachada.Fachada;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import util.Datas;
 
 /**
  *
@@ -26,7 +30,8 @@ Login login;
     Apartamento aptSelecionado = new Apartamento();
     
     ArrayList<Proprietario> listaProprietario;
-
+     Date datareg = Datas.obterTimestampAtual();
+        String dataRegT = Datas.formatarData(datareg, "dd/MM/yyyy");
     public TelaNovoAlterarApt(Apartamento aptSelecionado,Login l) {
         initComponents();
         this.login = l;
@@ -301,13 +306,19 @@ Login login;
             a.setSituacao((String) jComboBoxSituacao.getSelectedItem());
 
             f.saveApartamento(a);
-
+               Registro re = new Registro();
+            re.setLogin(login);
+            re.setDescricao("Salvou Apartamento n°: "+a.getNumero());
+            re.setDataregistro(datareg);
+            f.saveRegistro(re);
             this.limparCamposDepoisDeSalvar();
             
             JOptionPane.showMessageDialog(rootPane, "Apartamento Salvo com sucesso!");
         } catch (ApartamentoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-        }
+        } catch (RegistroException ex) {
+        Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
+    }
         
 
     }//GEN-LAST:event_jButtonSalvarActionPerformed
@@ -330,13 +341,19 @@ Login login;
             aptSelecionado.setSituacao((String) jComboBoxSituacao.getSelectedItem());
 
             f.saveApartamento(aptSelecionado);
-            
+               Registro re = new Registro();
+            re.setLogin(login);
+            re.setDescricao("Alterou Apartamento n°: "+aptSelecionado.getNumero());
+            re.setDataregistro(datareg);
+            f.saveRegistro(re);
             this.limparCamposDepoisDeAlterar();
 
             JOptionPane.showMessageDialog(rootPane, "Apartamento Alterado com sucesso!");
         } catch (ApartamentoException ex) {
             Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex.getMessage());
-        }
+        } catch (RegistroException ex) {
+        Logger.getLogger(TelaNovoAlterarApt.class.getName()).log(Level.SEVERE, null, ex);
+    }
         
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
