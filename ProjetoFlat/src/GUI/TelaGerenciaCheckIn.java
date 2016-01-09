@@ -11,15 +11,25 @@ import classesbasicas.Login;
 import classesexception.ApartamentoException;
 import classesexception.CheckInException;
 import classesfachada.Fachada;
+import classesfactory.FactoryEM;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import org.hibernate.Session;
+import org.hibernate.internal.SessionImpl;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import util.Datas;
 
@@ -839,7 +849,42 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxAptosItemStateChanged
 
     private void jButtonregistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonregistrarEntradaActionPerformed
-        // TODO add your handling code here:
+
+       try {
+            
+           //Connection conn = FactoryEM.create().getTransaction().
+           Session ss = (Session) FactoryEM.create().getDelegate();
+           
+           
+            HashMap parameterMap = new HashMap();
+            parameterMap.put("Var_ID", 8);//sending the report title as a parameter.
+             // Generate jasper print
+            String jasperPath = new File("").getAbsolutePath() + "\\CheckIn\\report1.jasper";
+            JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperPath, parameterMap, ((SessionImpl)ss).connection());
+            
+           // Export pdf file
+            String path = "C:\\Users\\mimmo\\Desktop\\projetos\\programaFlet\\" +
+                   (new Date().getTime()) + ".pdf";
+           JasperExportManager.exportReportToPdfFile(jprint, path);
+   
+           if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File(path);
+                Desktop.getDesktop().open(myFile);
+            } catch (IOException ex) {
+                // no application registered for PDFs
+            }
+        }
+           
+   System.out.println("Done exporting reports to pdf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           
+       }
+
+
+// TODO add your handling code here:
         try {
             Fachada fachada = new Fachada();
             CheckIn c = new CheckIn();
