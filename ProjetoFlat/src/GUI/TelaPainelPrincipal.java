@@ -455,6 +455,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
     private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
         // TODO add your handling code here:
+        if(chekinSelecionado!=null){
         try {
             
            //Connection conn = FactoryEM.create().getTransaction().
@@ -488,7 +489,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
            
        }
     }//GEN-LAST:event_jButtonImprimirActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
