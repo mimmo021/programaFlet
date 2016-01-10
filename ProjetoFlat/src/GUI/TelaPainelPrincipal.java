@@ -8,9 +8,20 @@ package GUI;
 import classesbasicas.CheckIn;
 import classesbasicas.Login;
 import classesfachada.Fachada;
+import classesfactory.FactoryEM;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import org.hibernate.Session;
+import org.hibernate.internal.SessionImpl;
 
 /**
  *
@@ -94,6 +105,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         jButtonProprietarios2 = new javax.swing.JButton();
         jButtonReservas1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButtonImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -261,6 +273,13 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/barra2.png"))); // NOI18N
 
+        jButtonImprimir.setText("Imprimir");
+        jButtonImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonImprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -293,11 +312,13 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(jTextFieldLocador)))
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonImprimir)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,8 +355,13 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jButtonImprimir)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -427,6 +453,42 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonReservas1ActionPerformed
 
+    private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
+        // TODO add your handling code here:
+        try {
+            
+           //Connection conn = FactoryEM.create().getTransaction().
+           Session ss = (Session) FactoryEM.create().getDelegate();
+           
+           
+            HashMap parameterMap = new HashMap();
+            parameterMap.put("Var_ID", chekinSelecionado.getId());//sending the report title as a parameter.
+             // Generate jasper print
+            String jasperPath = new File("").getAbsolutePath() + "\\CheckIn\\report1.jasper";
+            JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperPath, parameterMap, ((SessionImpl)ss).connection());
+            
+           // Export pdf file provavelmente terá que mudar esse path,Peppe!
+            String path = "C:\\Users\\mimmo\\Desktop\\projetos\\programaFlet\\" +
+                   (new Date().getTime()) + ".pdf";
+           JasperExportManager.exportReportToPdfFile(jprint, path);
+   
+           if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File(path);
+                Desktop.getDesktop().open(myFile);
+            } catch (IOException ex) {
+                // no application registered for PDFs
+            }
+        }
+           
+   System.out.println("Done exporting reports to pdf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           
+       }
+    }//GEN-LAST:event_jButtonImprimirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -468,6 +530,7 @@ public class TelaPainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonApt;
     private javax.swing.JButton jButtonCheckIn;
     private javax.swing.JButton jButtonCheckIn1;
+    private javax.swing.JButton jButtonImprimir;
     private javax.swing.JButton jButtonLocatario;
     private javax.swing.JButton jButtonProprietarios;
     private javax.swing.JButton jButtonProprietarios1;

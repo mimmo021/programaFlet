@@ -850,41 +850,7 @@ public class TelaGerenciaCheckIn extends javax.swing.JFrame {
 
     private void jButtonregistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonregistrarEntradaActionPerformed
 
-       try {
-            
-           //Connection conn = FactoryEM.create().getTransaction().
-           Session ss = (Session) FactoryEM.create().getDelegate();
-           
-           
-            HashMap parameterMap = new HashMap();
-            parameterMap.put("Var_ID", 8);//sending the report title as a parameter.
-             // Generate jasper print
-            String jasperPath = new File("").getAbsolutePath() + "\\CheckIn\\report1.jasper";
-            JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperPath, parameterMap, ((SessionImpl)ss).connection());
-            
-           // Export pdf file
-            String path = "C:\\Users\\mimmo\\Desktop\\projetos\\programaFlet\\" +
-                   (new Date().getTime()) + ".pdf";
-           JasperExportManager.exportReportToPdfFile(jprint, path);
-   
-           if (Desktop.isDesktopSupported()) {
-            try {
-                File myFile = new File(path);
-                Desktop.getDesktop().open(myFile);
-            } catch (IOException ex) {
-                // no application registered for PDFs
-            }
-        }
-           
-   System.out.println("Done exporting reports to pdf");
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-           
-       }
-
-
-// TODO add your handling code here:
+      // TODO add your handling code here:
         try {
             Fachada fachada = new Fachada();
             CheckIn c = new CheckIn();
